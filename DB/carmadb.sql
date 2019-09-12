@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` VARCHAR(45) NOT NULL,
   `enabled` TINYINT NULL DEFAULT 1,
   `role` VARCHAR(45) NULL,
+  `email` VARCHAR(200) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB;
@@ -46,7 +47,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `carmadb`;
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`) VALUES (1, 'jim', 'carmauser', true, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`) VALUES (1, 'jim', 'carmauser', true, NULL, NULL);
 
 COMMIT;
 

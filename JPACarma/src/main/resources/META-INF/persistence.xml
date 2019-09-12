@@ -9,13 +9,14 @@
     </provider>
     <!-- entities here -->
     
-	<class>com.skilldistillery.Carma.entities.User</class>
+	<class>com.skilldistillery.carma.entities.User</class>
 	
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/carmadb?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=MST" />
       <property name="javax.persistence.jdbc.user" value="carmauser"/>
       <property name="javax.persistence.jdbc.password" value="carmauser" />
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
+      
 
       <property name="hibernate.show_sql" value="true" />
       <property name="hibernate.format_sql" value="true" />

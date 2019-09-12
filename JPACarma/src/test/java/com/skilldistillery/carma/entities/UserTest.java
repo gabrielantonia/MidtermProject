@@ -1,5 +1,6 @@
 package com.skilldistillery.carma.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
@@ -13,10 +14,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class UserTest {
-	static EntityManagerFactory emf ;
-	static EntityManager em ;
+	static EntityManagerFactory emf;
+	static EntityManager em;
 	static User user;
-	
+
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("Carma");
@@ -30,17 +31,20 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = new User();
+		user = em.find(User.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
+		user = null;
 	}
 
 	@Test
 	void test1() {
+		System.out.println(user.getUsername());
+		assertEquals("jim", user.getUsername());
 		assertNotNull(user);
-			}
+	}
 
 }
