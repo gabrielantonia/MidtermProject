@@ -1,6 +1,6 @@
 package com.skilldistillery.carma.entities;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -40,7 +40,7 @@ class UserTest {
 
 	@Test
 	void test1() {
-		fail("Not yet implemented");
-	}
+		assertNotNull(user);
+			}
 
 }
