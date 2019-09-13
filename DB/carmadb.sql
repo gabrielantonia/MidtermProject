@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `enabled` TINYINT NULL DEFAULT 1,
   `role` VARCHAR(45) NOT NULL DEFAULT 'user',
   `email` VARCHAR(200) NULL,
-  `date_user_account_created` DATETIME NULL,
+  `date_user_account_created` VARCHAR(30) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB;
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `parking_fail` (
   `car_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `location_id` INT NOT NULL,
-  `fail_time` DATETIME NOT NULL,
+  `fail_time` VARCHAR(30) NOT NULL,
   `description` TEXT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_parking_fail_car1_idx` (`car_id` ASC),
@@ -164,7 +164,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `carmadb`;
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`) VALUES (1, 'jim', 'carmauser', true, 'user', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`) VALUES (1, 'jim', 'carmauser', 1, 'user', 'blahblahb@gmail.com', '20190911');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`) VALUES (2, 'dave chappelle', 'carmauser', 1, 'user', 'whocares@yahoo.com', '20190912');
 
 COMMIT;
 
@@ -174,7 +175,52 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `carmadb`;
-INSERT INTO `car` (`id`, `license_plate`, `make`, `model`, `color`, `description`, `alias`) VALUES (DEFAULT, 'big coc', 'toyota', 'camre', 'black', 'freaking car cut me off', NULL);
+INSERT INTO `car` (`id`, `license_plate`, `make`, `model`, `color`, `description`, `alias`) VALUES (1, 'big coc', 'toyota', 'camre', 'black', 'shitty ass toyta camre', 'ShitYota');
+INSERT INTO `car` (`id`, `license_plate`, `make`, `model`, `color`, `description`, `alias`) VALUES (2, 'little coc', 'honda', 'civic', 'white', 'a beauitful honda civic with homeless people shit on the stop of it', 'HondaShitic');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `location`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `carmadb`;
+INSERT INTO `location` (`id`, `name`, `street`, `city`, `state`, `zip`) VALUES (1, 'McDonald\'s Parking Lot', 'parklikeshit st', 'Somecity', 'CO', '80011');
+INSERT INTO `location` (`id`, `name`, `street`, `city`, `state`, `zip`) VALUES (2, 'Deaddog Mall', 'runovademdeaddogs blvd', 'Deaddog city', 'CA', '92886');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `parking_fail`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `carmadb`;
+INSERT INTO `parking_fail` (`id`, `title`, `car_id`, `user_id`, `location_id`, `fail_time`, `description`) VALUES (1, 'MCDonalds Park Failure', 1, 1, 1, '0834', 'a fuckin car parked in the drivethrough');
+INSERT INTO `parking_fail` (`id`, `title`, `car_id`, `user_id`, `location_id`, `fail_time`, `description`) VALUES (2, 'Dead dogs Splattered', 2, 2, 2, '0955', 'a shitty ass honda decided to run over a pack of dogs and then keep running them over');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `picture`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `carmadb`;
+INSERT INTO `picture` (`id`, `url`, `parking_fail_id`) VALUES (1, 'https://i.pinimg.com/originals/28/ed/f9/28edf930fcfb4e187abac4ed1e4c9035.jpg', 1);
+INSERT INTO `picture` (`id`, `url`, `parking_fail_id`) VALUES (2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnaNkS-7WAwfidtHs7Vya3DBWnVk93fxxl3jSv-m4SfkgJ3V9l', 2);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `carma`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `carmadb`;
+INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `comment`, `date_voted`) VALUES (DEFAULT, 1, 1, 1, 'shitty ass toyota parks fucked up', '20190911');
+INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `comment`, `date_voted`) VALUES (DEFAULT, 2, 2, 1, 'god damned honda runs over a pile of dead dogs', '20190912');
 
 COMMIT;
 
