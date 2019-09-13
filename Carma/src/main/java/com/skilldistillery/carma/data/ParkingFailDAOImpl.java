@@ -36,18 +36,32 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		return em.find(ParkingFail.class, pfId);
 	}
 
+	@Override
 	public void createParkingFail(ParkingFail parkingFail) {
-		// TODO Auto-generated method stub
-		
+		em.persist(parkingFail);
+		em.flush();
+	}
+	
+	@Override
+	public void updateParkingFail(ParkingFail parkingFail) {
+		ParkingFail managed = em.find(ParkingFail.class, parkingFail.getId());
+		managed.setCar(parkingFail.getCar());
+		managed.setDescription(parkingFail.getDescription());
+		managed.setFailTime(parkingFail.getFailTime());
+		managed.setListOfPictures(parkingFail.getListOfPictures());
+		managed.setLocation(parkingFail.getLocation());
+		managed.setText(parkingFail.getText());
+		managed.setTitle(parkingFail.getTitle());
+		managed.setUser(parkingFail.getUser());
 	}
 
-	public void updateParkingFail(ParkingFail parkingFail, int id) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	@Override
 	public boolean deleteParkingFail(ParkingFail parkingFail) {
-		// TODO Auto-generated method stub
+		if (em.contains(parkingFail)) {
+			em.remove(em.find(ParkingFail.class, parkingFail.getId()));
+			return true;
+		}
 		return false;
 	}
+
 }
