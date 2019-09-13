@@ -5,31 +5,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>rocket Details</title>
+<title>Parking Fail Details</title>
 </head>	
 <body>
 	<div>
-		<c:forEach var="rocket" items='${rockets }'>
-		<h2>Vehicle</h2>
+		<c:forEach var="parkingfail" items='${parkingfail }'>
+		<h2>Parking Fail Atrocities</h2>
 		 <hr>
-		<ol>Rocket ID :${rocket.id}
+		<ol>Profile Name :${parkingfail.name}
 		</ol>
-		<ol>Rocket Name :${rocket.name}
+		<ol>Incident ID :${parkingfail.title} 
 		</ol>
-		<ol>Height (meters): ${rocket.height}m
+		<ol>Location : ${parkingfail.location}
 		</ol>
 		<br>
-		<ul>Maximum Thrust: ${rocket.thrust } lbs
+		<ul>Moment of Failure ${parkingfail.failtime }
 		</ul>
-		<ul>Number of Engines: ${rocket.engines}
+		<ul>The Violation: ${parkingfail.description}
 		</ul>
 
-		<ol>Company: ${rocket.company}
+		<ol>Evidence: Image ${parkingfail.url}
+          <img src="parkingfail.url" alt="error link" height="500" width="500">
+
 		</ol>
 		<br>
 		 </c:forEach>
 		 <hr>
-		<p><a href="addRocket.do">Add A New Rocket</a></p>
+      		<h4>Parking Fail Atrocities</h4>
+      <p>Some MoFo being a <strong>Menace</strong> to Society?</p>
+		<p><a href="createParkingFail.do">Add A New Parking Fail</a></p>
 		<p><a href="/">homepage</a></p>
 	</div>
 </body>
