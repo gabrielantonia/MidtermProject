@@ -12,7 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.carma.data.ParkingFailDAOImpl;
+import com.skilldistillery.carma.entities.Car;
+import com.skilldistillery.carma.entities.Location;
 import com.skilldistillery.carma.entities.ParkingFail;
+import com.skilldistillery.carma.entities.ParkingFailDTO;
+import com.skilldistillery.carma.entities.Picture;
+import com.skilldistillery.carma.entities.User;
 
 @Controller
 public class ParkingFailController {
@@ -27,12 +32,25 @@ public class ParkingFailController {
 		return "index";
 		// return "index"; // if using a ViewResolver.
 	}
-	@RequestMapping(path = "create.do")
+	@RequestMapping(path = "create.do", method=RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView mv = new ModelAndView();
-		ParkingFail parkingFail = new ParkingFail();
-		mv.addObject("parkingFail", parkingFail);
+		mv.addObject("parkingFail", new ParkingFailDTO());
 		mv.setViewName("sub/addParkingFail");
+		return mv;
+		// return "index"; // if using a ViewResolver.
+	}
+
+	@RequestMapping(path = "create.do", method=RequestMethod.POST)
+	public ModelAndView addParkingFail(@ModelAttribute("parkingFail") ParkingFailDTO pfd) {
+		ModelAndView mv = new ModelAndView("sub/show");
+		Car c = new Car(pfd.getLicensePlate(), pfd.getMake(), pfd.getModel(), pfd.getColor(), pfd.getDescription(), pfd.getAlias());
+		User u = new User("finaltest", "test2", "test3");
+		Location l = new Location(pfd.getName(), pfd.getStreet(), pfd.getCity(), pfd.getState(), pfd.getZip());
+		ParkingFail pf = new ParkingFail(pfd.getTitle(), c, u, l, "8:30", pfd.getDescription());
+		dao.createParkingFail(pf);
+		dao.addPicture(new Picture("google.com", pf));
+		mv.addObject("parkingFail", pf);
 		return mv;
 		// return "index"; // if using a ViewResolver.
 	}
