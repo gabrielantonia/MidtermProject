@@ -1,5 +1,7 @@
 package com.skilldistillery.carma.data;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -20,6 +22,19 @@ public class PictureDAOImpl implements PictureDAO {
 			em.close();
 			return picture;
 	}
-	
-	
+
+	@Override
+	public List<Picture> findAll() {
+		String jpql = "Select p from Picture p";
+		em = emf.createEntityManager();
+		List<Picture> listOfPictures = em.createQuery(jpql, Picture.class).getResultList();
+		em.close();
+		return listOfPictures;
+	}
+
+	@Override
+	public Picture findPictureByUserId(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
