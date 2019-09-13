@@ -9,6 +9,11 @@
     </provider>
     <!-- entities here -->
     
+	<class>com.skilldistillery.carma.entities.Car</class>
+	<class>com.skilldistillery.carma.entities.Carma</class>
+	<class>com.skilldistillery.carma.entities.Location</class>
+	<class>com.skilldistillery.carma.entities.ParkingFail</class>
+	<class>com.skilldistillery.carma.entities.Picture</class>
 	<class>com.skilldistillery.carma.entities.User</class>
 	
     <properties>
