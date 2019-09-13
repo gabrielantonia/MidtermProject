@@ -1,9 +1,12 @@
 package com.skilldistillery.carma.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -14,7 +17,17 @@ public class User {
 	private String username;
 	private String password;
 	private String email;
+	@OneToMany(mappedBy="user")
+	private List<Carma> listOfCarma;
 	
+
+	public List<Carma> getListOfCarma() {
+		return listOfCarma;
+	}
+
+	public void setListOfCarma(List<Carma> listOfCarma) {
+		this.listOfCarma = listOfCarma;
+	}
 
 	public int getId() {
 		return id;
@@ -48,9 +61,8 @@ public class User {
 		this.email = email;
 	}
 
-	public User(int id, String username, String password, String email) {
+	public User(String username, String password, String email) {
 		super();
-		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.email = email;
