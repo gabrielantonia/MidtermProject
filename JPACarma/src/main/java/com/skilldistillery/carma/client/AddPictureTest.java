@@ -14,6 +14,7 @@ public class AddPictureTest {
 	public static void main(String[] args) {
 		LocalDateTime ldt = LocalDateTime.now();
 		PictureDAOImpl pdi = new PictureDAOImpl();
-		pdi.addPicture(new Picture("google.com/images", new ParkingFail("newtest", new Car("212", "Honda", "civic", "black", "fast", "dsf"), new User("test3", "test", "test"), new Location("name", "715", "test", "CA", "ttest"), ldt, "terrible")));
+//		pdi.addPicture(new Picture("google.com/images", new ParkingFail("newtest", new Car("212", "Honda", "civic", "black", "fast", "dsf"), new User("test3", "test", "test"), new Location("name", "715", "test", "CA", "ttest"), ldt, "terrible")));
+		pdi.findAll();
 	}
 }
