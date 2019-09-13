@@ -35,4 +35,19 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 	public ParkingFail findParkingFailById(int pfId) {
 		return em.find(ParkingFail.class, pfId);
 	}
+
+	public void createParkingFail(ParkingFail parkingFail) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void updateParkingFail(ParkingFail parkingFail, int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean deleteParkingFail(ParkingFail parkingFail) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

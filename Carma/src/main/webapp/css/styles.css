@@ -1,0 +1,27 @@
+body {
+
+background-image : url("../images/pokballbackground.png");
+background-repeat : repeat-y;
+font-family: monospace;
+text-shadow: activeborder;
+color:black;
+padding: 3em 5em;
+
+}
+a{
+	 text-decoration: none;
+	 font-family: monospace;
+	 color:black;
+	
+}
+
+ ul {
+    display: -ms-flexbox;           /* IE 10 */
+    display: -webkit-flex;          /* Safari 6.1+. iOS 7.1+ */
+    display: flex;
+    -webkit-flex-flow: wrap column; /* Safari 6.1+ */
+    flex-flow: wrap column;
+    max-height: 3000px;    
+     list-style-type:none;  
+ }
+
