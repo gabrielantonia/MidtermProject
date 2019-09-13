@@ -20,11 +20,11 @@ public class ParkingFailController {
 	@Autowired
 	private ParkingFailDAOImpl dao;
 
-	@RequestMapping(path = "/")
+	@RequestMapping(path = "/", method=RequestMethod.GET)
 	public String index(Model model) {
 		List<ParkingFail> parkingFail= dao.findAll();
 		model.addAttribute("parkingFail", parkingFail);
-		return "/WEB-INF/index.jsp";
+		return "index";
 		// return "index"; // if using a ViewResolver.
 	}
 	@RequestMapping(path = "create.do")
@@ -32,7 +32,7 @@ public class ParkingFailController {
 		ModelAndView mv = new ModelAndView();
 		ParkingFail parkingFail = new ParkingFail();
 		mv.addObject("parkingFail", parkingFail);
-		mv.setViewName("/WEB-INF/sub/create.jsp");
+		mv.setViewName("sub/addParkingFail");
 		return mv;
 		// return "index"; // if using a ViewResolver.
 	}
@@ -63,7 +63,7 @@ public class ParkingFailController {
 
 	@RequestMapping(path = "updateParkingFail.do", method = RequestMethod.POST)
 	public String updateParkingFail( ParkingFail parkingFail, Model model) {
-		dao.updateParkingFail(parkingFail , parkingFail.getId());
+		dao.updateParkingFail(parkingFail);
 		model.addAttribute("parkingFail", dao.findAll());
 		return "index";
 	}
@@ -73,7 +73,7 @@ public class ParkingFailController {
 		ModelAndView mv = new ModelAndView();
 		boolean deleteParkingFail = dao.deleteParkingFail(parkingFail);
 		if (deleteParkingFail) {
-			mv.setViewName("ub/delete");
+			mv.setViewName("sub/delete");
 		} else {
 			mv.setViewName("sub/errorDeletion");
 		}
