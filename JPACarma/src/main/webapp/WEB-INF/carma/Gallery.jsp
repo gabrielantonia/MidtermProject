@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>rocket Details</title>
+<title>Parking Fail Details</title>
 </head>	
 <body>
 	<div>
-		<c:forEach var="rocket" items='${rockets }'>
+		<c:forEach var="parkingfail" items='${parkingfail }'>
 		<h2>Parking Fail Atrocities</h2>
 		 <hr>
 		<ol>Profile Name :${parkingfail.name}
@@ -24,7 +24,9 @@
 		<ul>The Violation: ${parkingfail.description}
 		</ul>
 
-		<ol>Evidence: ${parkingfail.url}
+		<ol>Evidence: Image ${parkingfail.url}
+          <img src="parkingfail.url" alt="error link" height="500" width="500">
+
 		</ol>
 		<br>
 		 </c:forEach>

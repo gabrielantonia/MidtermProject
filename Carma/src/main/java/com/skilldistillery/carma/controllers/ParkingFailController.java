@@ -2,6 +2,8 @@ package com.skilldistillery.carma.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.carma.data.ParkingFailDAOImpl;
 import com.skilldistillery.carma.entities.ParkingFail;
+import com.skilldistillery.carma.entities.User;
 
 @Controller
 public class ParkingFailController {
@@ -79,6 +82,21 @@ public class ParkingFailController {
 		}
 		return mv;
 	}
+	
+	@RequestMapping(path = "registerUser.do",  method = RequestMethod.POST)
+	public String registerUser( User user, Model model) {
+		model.addAttribute("parkingFail", dao.findAll());
+		dao.registerUser(user);
+		return "index";
+	}
+	
+	//Attempt at sessioning
+	@RequestMapping("GetNumbers.do")
+	  public ModelAndView getNumbers(@RequestParam(value="howmany", defaultValue="6") int count, HttpSession session) {
+
+		return null;
+	}
+	//Attempt at sessioning
 
 	
 }

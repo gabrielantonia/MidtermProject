@@ -22,12 +22,24 @@
 	<input type="submit" value="submit" >
 </form>
 
+<!--  ****************************************************DIVIDER************************************************************************** -->
+<!-- login.jsp -->
+
+
+<!-- wrapper code excluded for brevity -->
+<form:form action="login.do" method="POST" modelAttribute="user">
+  <form:label path="email">Email:</form:label>
+  <form:input path="email" />
+  <br />
+  <form:label path="password">Password:</form:label>
+  <form:input path="password" />
+  <br />
+  <input type="submit" value="Login" />
+</form:form>
 
 
 
-
-
-
+<!--  *********************************************DIVIDER******************************************* -->
 
 <hr />
 <h5>Add or Update a Parking Fail (Temp Site)</h5>
@@ -49,3 +61,12 @@
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 </form>
+
+  <!--  ****************************************************DIVIDER************************************************************************** -->
+<form action="welcome.php" method="post">
+Make: <input type="text" name="make"><br>
+Model: <input type="text" name="model"><br>
+Color <input type="text" name="color"><br>
+Description <input type="text" name="description"><br>
+Alias  <input type="text" name="alias"><br>
+  </form>

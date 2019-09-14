@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.carma.entities.ParkingFail;
 import com.skilldistillery.carma.entities.Picture;
+import com.skilldistillery.carma.entities.User;
 
 @Transactional
 @Service
@@ -49,5 +50,10 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 	public boolean deleteParkingFail(ParkingFail parkingFail) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	public void registerUser(User user) {
+		// TODO Auto-generated method stub
+		
 	}
 }
