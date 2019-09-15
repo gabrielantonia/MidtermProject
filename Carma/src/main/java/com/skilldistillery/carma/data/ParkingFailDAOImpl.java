@@ -69,6 +69,17 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		return false;
 	}
 
+	@Override
+	public boolean addUser(User user) {
+		if (em.contains(user)) {
+			return false;
+		} else {
+			em.persist(user);
+			em.flush();
+			return true;
+		}
+	}
+
 	public ParkingFail findParkingFailOfDay() {
 		ArrayList<ParkingFail> allPF = (ArrayList<ParkingFail>) findAll();
 		ParkingFailComparator pfc = new ParkingFailComparator();

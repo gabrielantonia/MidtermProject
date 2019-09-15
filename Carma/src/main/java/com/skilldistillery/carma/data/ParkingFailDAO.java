@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.skilldistillery.carma.entities.ParkingFail;
 import com.skilldistillery.carma.entities.Picture;
+import com.skilldistillery.carma.entities.User;
 
 public interface ParkingFailDAO {
 	public Picture addPicture(Picture picture);
@@ -12,4 +13,5 @@ public interface ParkingFailDAO {
 	void createParkingFail(ParkingFail parkingFail);
 	boolean deleteParkingFail(ParkingFail parkingFail);
 	void updateParkingFail(ParkingFail parkingFail);
+	boolean addUser(User user);
 }
