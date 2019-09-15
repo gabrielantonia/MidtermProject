@@ -24,7 +24,7 @@ public class ParkingFailController {
 	public String index(Model model) {
 		List<ParkingFail> parkingFail= dao.findAll();
 		model.addAttribute("parkingFail", parkingFail);
-		return "/WEB-INF/index.jsp";
+		return "index.jsp";
 		// return "index"; // if using a ViewResolver.
 	}
 	@RequestMapping(path = "create.do")
@@ -32,7 +32,7 @@ public class ParkingFailController {
 		ModelAndView mv = new ModelAndView();
 		ParkingFail parkingFail = new ParkingFail();
 		mv.addObject("parkingFail", parkingFail);
-		mv.setViewName("/WEB-INF/sub/create.jsp");
+		mv.setViewName("sub/create.jsp");
 		return mv;
 		// return "index"; // if using a ViewResolver.
 	}
@@ -41,7 +41,7 @@ public class ParkingFailController {
 	public String showParkingFail(@RequestParam("pfid") Integer pfid, Model model) {
 		ParkingFail pf = dao.findParkingFailById(pfid);
 		model.addAttribute("parkingFail", pf);
-		return "/WEB-INF/sub/show.jsp";
+		return "sub/show.jsp";
 		// return "show"; // if using a ViewResolver.
 	}
 	
@@ -49,14 +49,14 @@ public class ParkingFailController {
 	public String createPokemon( ParkingFail parkingFail, Model model) {
 		model.addAttribute("parkingFail", dao.findAll());
 		dao.createParkingFail(parkingFail);
-		return "/WEB-INF/index.jsp";
+		return "index";
 	}
 	@RequestMapping(path = "update.do")
 	public ModelAndView update(ParkingFail parkingFail) {
 		ModelAndView mv = new ModelAndView();
 		parkingFail = dao.findParkingFailById(parkingFail.getId());
 		mv.addObject("parkingFail", parkingFail);
-		mv.setViewName("/WEB-INF/sub/update.jsp");
+		mv.setViewName("sub/update");
 		return mv;
 		// return "index"; // if using a ViewResolver.
 	}
@@ -65,7 +65,7 @@ public class ParkingFailController {
 	public String updateParkingFail( ParkingFail parkingFail, Model model) {
 		dao.updateParkingFail(parkingFail , parkingFail.getId());
 		model.addAttribute("parkingFail", dao.findAll());
-		return "/WEB-INF/index.jsp";
+		return "index";
 	}
 	
 	@RequestMapping(path = "deleteParkingFail.do", method = RequestMethod.POST)
@@ -73,12 +73,14 @@ public class ParkingFailController {
 		ModelAndView mv = new ModelAndView();
 		boolean deleteParkingFail = dao.deleteParkingFail(parkingFail);
 		if (deleteParkingFail) {
-			mv.setViewName("WEB-INF/sub/delete.jsp");
+			mv.setViewName("sub/delete");
 		} else {
-			mv.setViewName("WEB-INF/sub/errorDeletion.jsp");
+			mv.setViewName("sub/errorDeletion");
 		}
 		return mv;
 	}
+	
+	
 
 	
 }

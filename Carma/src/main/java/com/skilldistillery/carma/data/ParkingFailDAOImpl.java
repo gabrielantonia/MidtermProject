@@ -20,8 +20,8 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 
 	@Override
 	public Picture addPicture(Picture picture) {
-			em.persist(picture);
-			return picture;
+		em.persist(picture);
+		return picture;
 	}
 
 	@Override
@@ -35,4 +35,20 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 	public ParkingFail findParkingFailById(int pfId) {
 		return em.find(ParkingFail.class, pfId);
 	}
+
+	@Override
+	public boolean deleteParkingFail(int pfId) {
+		boolean status = false;
+
+		ParkingFail parkingFail = em.find(ParkingFail.class, pfId);
+		em.getTransaction().begin();
+		em.remove(parkingFail);
+		em.flush();
+		em.getTransaction().commit();
+		status = em.contains(parkingFail);
+
+		return status;
+
+	}
+	
 }

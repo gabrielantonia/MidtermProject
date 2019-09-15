@@ -9,4 +9,6 @@ public interface ParkingFailDAO {
 	public Picture addPicture(Picture picture);
 	public List<ParkingFail> findAll();
 	public ParkingFail findParkingFailById(int pfId);
+
+	boolean deleteParkingFail(int pfId);
 }
