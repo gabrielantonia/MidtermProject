@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.carma.entities.ParkingFail;
 import com.skilldistillery.carma.entities.Picture;
+import com.skilldistillery.carma.entities.User;
 
 @Transactional
 @Service
@@ -63,5 +64,18 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		}
 		return false;
 	}
+
+	@Override
+	public boolean addUser(User user) {
+		if (em.contains(user)) {
+			return false;
+		} else {
+			em.persist(user);
+			em.flush();
+			return true;
+		}
+	}
+	
+	
 
 }
