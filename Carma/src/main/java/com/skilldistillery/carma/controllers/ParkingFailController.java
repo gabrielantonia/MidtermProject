@@ -1,5 +1,6 @@
 package com.skilldistillery.carma.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,6 +111,27 @@ public class ParkingFailController {
 		}
 		return mv;
 	}
-
+	
+	@RequestMapping(path = "getParkingFailOfDay.do", method = RequestMethod.GET)
+	public ModelAndView getParkingFailOfDay() {
+		ParkingFail parkingFail = dao.findParkingFailOfDay();
+		User user = dao.findUserOfDay();
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("parkingFail", parkingFail);
+		mv.addObject("user", user);
+		mv.setViewName("sub/main");
+		return mv;
+		// return "show"; // if using a ViewResolver.
+	}
+	
+	@RequestMapping(path = "getWallOfShame.do", method = RequestMethod.GET)
+	public ModelAndView getWallOfShame() {
+		ArrayList<ParkingFail> parkingFailList = dao.findParkingAllTime();
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("parkingFailList", parkingFailList);
+		mv.setViewName("sub/wallofshame");
+		return mv;
+		// return "show"; // if using a ViewResolver.
+	}
 	
 }
