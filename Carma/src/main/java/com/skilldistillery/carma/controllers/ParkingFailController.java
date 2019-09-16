@@ -30,7 +30,9 @@ public class ParkingFailController {
 	public String index(Model model) {
 		List<ParkingFail> parkingFail= dao.findAll();
 		model.addAttribute("parkingFail", parkingFail);
+
 		return "index";
+
 		// return "index"; // if using a ViewResolver.
 	}
 	@RequestMapping(path = "create.do", method=RequestMethod.GET)
@@ -112,6 +114,7 @@ public class ParkingFailController {
 		return mv;
 	}
 	
+
 	@RequestMapping(path = "getParkingFailOfDay.do", method = RequestMethod.GET)
 	public ModelAndView getParkingFailOfDay() {
 		ParkingFail parkingFail = dao.findParkingFailOfDay();
@@ -133,5 +136,6 @@ public class ParkingFailController {
 		return mv;
 		// return "show"; // if using a ViewResolver.
 	}
+
 	
 }
