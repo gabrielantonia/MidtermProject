@@ -70,6 +70,9 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		return false;
 	}
 
+	public void registerUser(User user) {
+		// TODO Auto-generated method stub
+	}
 	@Override
 	public boolean addUser(User user) {
 		if (em.contains(user)) {

@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,8 +19,6 @@ import com.skilldistillery.carma.data.ParkingFailDAOImpl;
 import com.skilldistillery.carma.entities.Car;
 import com.skilldistillery.carma.entities.Location;
 import com.skilldistillery.carma.entities.ParkingFail;
-import com.skilldistillery.carma.entities.ParkingFailDTO;
-import com.skilldistillery.carma.entities.Picture;
 import com.skilldistillery.carma.entities.User;
 
 @Controller
@@ -116,6 +116,21 @@ public class ParkingFailController {
 		}
 		return mv;
 	}
+	
+	@RequestMapping(path = "registerUser.do",  method = RequestMethod.POST)
+	public String registerUser( User user, Model model) {
+		model.addAttribute("parkingFail", dao.findAll());
+		dao.registerUser(user);
+		return "index";
+	}
+	
+	//Attempt at sessioning
+	@RequestMapping("GetNumbers.do")
+	  public ModelAndView getNumbers(@RequestParam(value="howmany", defaultValue="6") int count, HttpSession session) {
+
+		return null;
+	}
+	//Attempt at sessioning
 
 	@RequestMapping(path = "getParkingFailOfDay.do", method = RequestMethod.GET)
 	public ModelAndView getParkingFailOfDay() {
