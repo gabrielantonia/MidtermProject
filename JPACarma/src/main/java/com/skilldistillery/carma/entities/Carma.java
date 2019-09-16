@@ -26,7 +26,9 @@ public class Carma {
 	private ParkingFail parkingFail;
 	
 	private int vote;
+	
 	private String comment;
+	
 	@Column(name="date_voted")
 	LocalDateTime dateVoted;
 	
