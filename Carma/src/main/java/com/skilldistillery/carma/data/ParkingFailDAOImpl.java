@@ -105,18 +105,20 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		return allPF.get(0);
 	}
 
+	// Implement session
 	public ArrayList<ParkingFail> findParkingAllTime() {
 		ArrayList<ParkingFail> allPF = (ArrayList<ParkingFail>) findAll();
 		ParkingFailComparator pfc = new ParkingFailComparator();
 		Collections.sort(allPF, pfc);
 		Collections.reverse(allPF);
-		ArrayList<ParkingFail> topTen = null;
-		for (int i = 0; i < 10; i++) {
-			topTen.add(allPF.get(i));
+		ArrayList<ParkingFail> topList = new ArrayList<ParkingFail>();
+		for (int i = 0; i < allPF.size(); i++) {
+			topList.add(allPF.get(i));
 		}
-		return topTen;
+		return topList;
 	}
-
+	
+//	Implement session
 	public User findUserOfDay() {
 		ArrayList<User> userList = new ArrayList<User>();
 		ArrayList<ParkingFail> allPF = (ArrayList<ParkingFail>) findAll();
