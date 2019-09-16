@@ -33,6 +33,7 @@ public class ParkingFailController {
 		model.addAttribute("parkingFail", parkingFail);
 		model.addAttribute("user", new User());
 		return "index";
+
 		// return "index"; // if using a ViewResolver.
 	}
 	@RequestMapping(path = "create.do", method=RequestMethod.GET)
@@ -137,5 +138,6 @@ public class ParkingFailController {
 		return mv;
 		// return "show"; // if using a ViewResolver.
 	}
+
 
 }
