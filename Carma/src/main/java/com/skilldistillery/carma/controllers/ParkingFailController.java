@@ -2,7 +2,6 @@ package com.skilldistillery.carma.controllers;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -159,5 +158,16 @@ public class ParkingFailController {
 		// return "show"; // if using a ViewResolver.
 	}
 
+////////////////////////////////////////////////////////////////////////////
+//GALLERY
+@RequestMapping(path = "gallery.do", method = RequestMethod.GET)
+public ModelAndView findAllPictures() {
+ModelAndView mv = new ModelAndView();
+mv.addObject("user" , new User());
+mv.addObject("pictures", dao.findAllPictures());
+mv.setViewName("sub/gallery");
+return mv;
+}
+///////////////////////////////////////////////////////////////////////////
 
 }
