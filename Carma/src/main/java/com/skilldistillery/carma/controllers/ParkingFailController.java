@@ -59,20 +59,6 @@ public class ParkingFailController {
 		// return "index"; // if using a ViewResolver.
 	}
 
-	@RequestMapping(path = "register.do", method=RequestMethod.GET)
-	public String registerUser(Model model) {
-		model.addAttribute("user", new User());
-		return "sub/register";
-	}
-
-	@RequestMapping(path="register.do", method=RequestMethod.POST)
-	public String createUser(@ModelAttribute("user") User user, Model model) {
-		user.setDateCreated(LocalDate.now().toString());
-		dao.addUser(user);
-		model.addAttribute("user", user);
-		return "sub/userpage";
-	}
-
 
 	@RequestMapping(path = "getParkingFail.do")
 	public String showParkingFail(@RequestParam("pfid") Integer pfid, Model model) {

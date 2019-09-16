@@ -115,5 +115,11 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		return userList.get(0);
 	}
 
+	@Override
+	public List<ParkingFail> findParkingFailByUserId(int id) {
+		String jpql = "Select p from ParkingFail p where p.user.id=:id";
+		return em.createQuery(jpql, ParkingFail.class).setParameter("id", id).getResultList();
+	}
+
 
 }

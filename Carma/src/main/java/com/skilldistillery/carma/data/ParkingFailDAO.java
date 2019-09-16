@@ -15,5 +15,6 @@ public interface ParkingFailDAO {
 	boolean deleteParkingFail(ParkingFail parkingFail);
 	void updateParkingFail(ParkingFail parkingFail);
 	boolean addUser(User user);
+	public Object findParkingFailByUserId(int id);
 
 }
