@@ -31,13 +31,16 @@ public class ParkingFailController {
 
 	@RequestMapping(path = "/", method=RequestMethod.GET)
 	public String index(Model model) {
-		List<ParkingFail> parkingFail= dao.findAll();
-		model.addAttribute("parkingFail", parkingFail);
+		ArrayList<ParkingFail> parkingFailList = dao.findParkingAllTime();
+//		List<ParkingFail> parkingFailList= dao.findAll();
+		model.addAttribute("parkingFail1", parkingFailList.get(0));
+		model.addAttribute("parkingFail2", parkingFailList.get(1));
+//		model.addAttribute("parkingFail3", parkingFailList.get(2));
 		model.addAttribute("user", new User());
+//		model.addAttribute("parkingFailList" , parkingFailList);
 		return "index";
-
-		// return "index"; // if using a ViewResolver.
 	}
+	
 	@RequestMapping(path = "create.do", method=RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView mv = new ModelAndView();
@@ -134,17 +137,17 @@ public class ParkingFailController {
 	}
 	//Attempt at sessioning
 
-	@RequestMapping(path = "getParkingFailOfDay.do", method = RequestMethod.GET)
-	public ModelAndView getParkingFailOfDay() {
-		ParkingFail parkingFail = dao.findParkingFailOfDay();
-		User user = dao.findUserOfDay();
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("parkingFail", parkingFail);
-		mv.addObject("user", user);
-		mv.setViewName("sub/main");
-		return mv;
+//	@RequestMapping(path = "/", method = RequestMethod.GET)
+//	public ModelAndView getParkingFailOfDay() {
+//		ArrayList<ParkingFail> parkingFailList = dao.findParkingAllTime();
+//		User user = dao.findUserOfDay();
+//		ModelAndView mv = new ModelAndView();
+//		mv.addObject("parkingFailList", parkingFailList);
+//		mv.addObject("user", user);
+//		mv.setViewName("index");
+//		return mv;
 		// return "show"; // if using a ViewResolver.
-	}
+//	}
 
 	@RequestMapping(path = "getWallOfShame.do", method = RequestMethod.GET)
 	public ModelAndView getWallOfShame() {
