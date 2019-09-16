@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Carma/src/java"/>
+	<classpathentry kind="src" path="Carma/src/main/java"/>
+	<classpathentry kind="src" path="Carma/src/test/java"/>
+	<classpathentry kind="src" path="JPACarma/src/main/java"/>
+	<classpathentry kind="src" path="JPACarma/src/test/java"/>
+	<classpathentry kind="src" path="TESTER/src"/>
+	<classpathentry kind="lib" path="Carma/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="JPACarma/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

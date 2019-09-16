@@ -29,6 +29,16 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		return picture;
 	}
 
+////////////////////////////////////////////////////////////////////////////////
+//GALLERY
+	@Override
+	public List<Picture> findAllPictures() {
+		String jpql = "SELECT picture FROM Picture picture";
+		List<Picture> listOfPictures = em.createQuery(jpql, Picture.class).getResultList();
+		return listOfPictures;
+	}
+
+////////////////////////////////////////////////////////////////////////////////
 	@Override
 	public List<ParkingFail> findAll() {
 		String jpql = "Select p from ParkingFail p";
@@ -73,6 +83,7 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 	public void registerUser(User user) {
 		// TODO Auto-generated method stub
 	}
+
 	@Override
 	public boolean addUser(User user) {
 		if (em.contains(user)) {
@@ -117,6 +128,5 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		Collections.sort(userList, pfc);
 		return userList.get(0);
 	}
-
 
 }
