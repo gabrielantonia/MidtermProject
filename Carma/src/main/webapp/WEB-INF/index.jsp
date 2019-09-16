@@ -10,6 +10,7 @@
 </head>
 <!-- ---------------------------------------------------------------------------------------------------- -->
 <div><jsp:include page="../navbar.jsp" /></div>
+
 <body>
 
 	<div id="carouselExampleIndicators" class="carousel slide"

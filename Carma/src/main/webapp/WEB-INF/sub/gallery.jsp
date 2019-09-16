@@ -23,10 +23,10 @@
 	</div>
 </div>
 <div class="container-fluid">
-
 </div>
 </body>
 <footer>
 Footer Placeholder
 </footer>
+
 </html>
