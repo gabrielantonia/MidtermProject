@@ -8,12 +8,21 @@ import com.skilldistillery.carma.entities.User;
 
 public interface ParkingFailDAO {
 	public Picture addPicture(Picture picture);
+
 	public List<ParkingFail> findAll();
+
 	public ParkingFail findParkingFailById(int pfId);
-	public void registerUser (User user);
+
+	public void registerUser(User user);
+
 	void createParkingFail(ParkingFail parkingFail);
+
 	boolean deleteParkingFail(ParkingFail parkingFail);
+
 	void updateParkingFail(ParkingFail parkingFail);
+
 	boolean addUser(User user);
+
+	List<Picture> findAllPictures();
 
 }

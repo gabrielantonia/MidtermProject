@@ -9,6 +9,7 @@
 <title>ParkingFail List</title>
 </head>
 <jsp:include page="../navbar.jsp" />
+
 <body>
 	<!-- <hr>
   <form action="getParkingFail.do" method="GET">
