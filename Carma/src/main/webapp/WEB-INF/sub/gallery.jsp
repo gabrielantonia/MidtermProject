@@ -7,41 +7,26 @@
 <head>
 
 <meta charset="UTF-8">
-
-<title>Parking Fail Gallery</title>
+<jsp:include page="../styletags.jsp" />
+<title>Gallery</title>
 </head>
+<div><jsp:include page="../../navbar.jsp" /></div>
 
-<h1>Parking Fail Gallery</h1>
-
-<div id=“page-content-wrapper”>
-
-	<div class=“container-fluid”>
-
-		<c:forEach var="picture" items="${pictures}">
-
-			<img src="${picture.url}" alt="Picture Gallery" height=400 width=500> 
-			
-			
-		</c:forEach>
-
-
-
-	</div>
-
-	<%-- <c:forEach var="picture" items="${carmadb.picture}">
-
-	<img src="${picture}" alt="Picture Gallery" height=400 width=500">
-
-</c:forEach> --%>
-
-
-
-
-
-
-</div>
 
 <body>
+<h1>Gallery</h1>
+<div id=“page-content-wrapper”>
+	<div class=“col-lg-4”>
+		<c:forEach var="picture" items="${pictures}">
+			<img src="${picture.url}" alt="Picture Gallery" > 
+		</c:forEach>
+	</div>
+</div>
+<div class="container-fluid">
 
+</div>
 </body>
+<footer>
+Footer Placeholder
+</footer>
 </html>

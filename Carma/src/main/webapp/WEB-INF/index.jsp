@@ -5,17 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
-<link rel="stylesheet" href="/path/to/flickity.css" media="screen">
-<script src="/path/to/flickity.pkgd.min.js"></script>
 <title>Index</title>
+<jsp:include page="styletags.jsp" />
 </head>
 <!-- ---------------------------------------------------------------------------------------------------- -->
-<jsp:include page="../navbar.jsp" />
-
+<div><jsp:include page="../navbar.jsp" /></div>
 <body>
 
 	<div id="carouselExampleIndicators" class="carousel slide"
@@ -27,32 +21,34 @@
 			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 		</ol>
 		<div class="carousel-inner">
-		
+
 			<div class="carousel-item active">
-				<img class="d-block w-100"
-					src="${parkingFail1.getListOfPictures().get(0).getUrl() }"
-					alt="First slide">
-				<div class="carousel-caption d-none d-md-block">
-					<h5>${parkingFail1.getTitle() }</h5>
-					<p>${parkingFail1.getDescription() }</p>
+				<img class="d-block w-100" src="${parkingFail1.getListOfPictures().get(0).getUrl() }"
+					 alt="First slide">
+
+					<div class="carousel-caption d-none d-md-block">
+						<h5>${parkingFail1.getTitle() }</h5>
+						<p>${parkingFail1.getDescription() }</p>
+					</div>
 				</div>
-			</div>
-			
-			<div class="carousel-item">
-				<img class="d-block w-100 "
-					src="${parkingFail2.getListOfPictures().get(0).getUrl() }"
-					alt="Second slide">
-			</div>
-			<div class="carousel-caption d-none d-md-block">
-					<h5>${parkingFail2.getTitle() }</h5>
-					<p>${parkingFail2.getDescription() }</p>
+
+				<div class="carousel-item">
+					<img class="d-block w-100 "
+						src="${parkingFail2.getListOfPictures().get(0).getUrl() }"
+						alt="Second slide">
+
+					<div class="carousel-caption d-none d-md-block">
+						<h5>${parkingFail2.getTitle() }</h5>
+						<p>${parkingFail2.getDescription() }</p>
+					</div>
 				</div>
-				
-			<div class="carousel-item">
-				<img class="d-block w-100" src="..." alt="Third slide">
+
+				<div class="carousel-item">
+					<img class="d-block w-100" src="..." alt="Third slide">
+				</div>
 			</div>
 		</div>
-		
+
 		<a class="carousel-control-prev" href="#carouselExampleIndicators"
 			role="button" data-slide="prev"> <span
 			class="carousel-control-prev-icon" aria-hidden="true"></span> <span
@@ -62,7 +58,6 @@
 			class="carousel-control-next-icon" aria-hidden="true"></span> <span
 			class="sr-only">Next</span>
 		</a>
-	</div>
 	
 	<!-- ---------------------------------------------------------------------------------------------------- -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -79,4 +74,7 @@
 
 
 </body>
+<footer class="bg-dark">
+Footer Placeholder
+</footer>
 </html>
