@@ -1,6 +1,7 @@
 package com.skilldistillery.carma.entities;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,40 +16,42 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="parking_fail")
-public class ParkingFail {
+@Table(name = "parking_fail")
+public class ParkingFail  {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String title;
-	
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="car_id")
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "car_id")
 	private Car car;
 
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="user_id")
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
 	private User user;
-	
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="location_id")
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "location_id")
 	private Location location;
 	
 	@Column(name="fail_time")
 	private String failTime;
-	
+
 	private String description;
-	
-	@OneToMany(mappedBy="parkingFail")
+
+	@OneToMany(mappedBy = "parkingFail")
 	private List<Picture> listOfPictures;
-	
+
+	@OneToMany(mappedBy = "parkingFail")
+	private List<Carma> listOfCarma;
 
 	public ParkingFail() {
-		
+
 	}
-	
+
 	public ParkingFail(String title, Car car, User user, Location location, String failTime,
 			String description) {
 		super();
@@ -119,18 +122,27 @@ public class ParkingFail {
 	public String getDescription() {
 		return description;
 	}
-	
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	public List<Picture> getListOfPictures() {
 		return new ArrayList<>(listOfPictures);
 	}
-	
+
 	public void setListOfPictures(List<Picture> listOfPictures) {
 		this.listOfPictures = listOfPictures;
 	}
+
+	public List<Carma> getListOfCarma() {
+		return listOfCarma;
+	}
+
+	public void setListOfCarma(List<Carma> listOfCarma) {
+		this.listOfCarma = listOfCarma;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -156,11 +168,13 @@ public class ParkingFail {
 	@Override
 	public String toString() {
 		return "ParkingFail [id=" + id + ", title=" + title + ", car=" + car + ", user=" + user + ", failTime="
-				+ failTime + ", text=" + description + ", getId()=" + getId() + ", getTitle()=" + getTitle() + ", getCar()="
-				+ getCar() + ", getUser()=" + getUser() + ", getFailTime()=" + getFailTime() + ", getText()="
-				+ getText() + ", hashCode()=" + hashCode() + ", getClass()=" + getClass() + ", toString()="
-				+ super.toString() + "]";
+				+ failTime + ", text=" + description + ", getId()=" + getId() + ", getTitle()=" + getTitle()
+				+ ", getCar()=" + getCar() + ", getUser()=" + getUser() + ", getFailTime()=" + getFailTime()
+				+ ", getText()=" + getText() + ", hashCode()=" + hashCode() + ", getClass()=" + getClass()
+				+ ", toString()=" + super.toString() + "]";
 	}
+
 	
-	
+
+
 }
