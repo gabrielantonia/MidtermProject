@@ -9,8 +9,14 @@
 <jsp:include page="styletags.jsp" />
 </head>
 <!-- ---------------------------------------------------------------------------------------------------- -->
-<div><jsp:include page="../navbar.jsp" /></div>
-
+<c:choose>
+	<c:when test="${not empty loggedInUser }" >
+		<jsp:include page="loggedinnav.jsp" />
+	</c:when>
+	<c:otherwise>
+		<jsp:include page="navbar.jsp" />
+	</c:otherwise>
+</c:choose>
 <body>
 
 	<div id="carouselExampleIndicators" class="carousel slide"
@@ -24,42 +30,44 @@
 		<div class="carousel-inner">
 
 			<div class="carousel-item active">
-				<img class="d-block w-100" src="${parkingFail1.getListOfPictures().get(0).getUrl() }"
-					 alt="First slide">
+				<img class="d-block w-100"
+					src="${parkingFail1.getListOfPictures().get(0).getUrl() }"
+					alt="First slide">
 
-					<div class="carousel-caption d-none d-md-block">
-						<h5>${parkingFail1.getTitle() }</h5>
-						<p>${parkingFail1.getDescription() }</p>
-					</div>
-				</div>
-
-				<div class="carousel-item">
-					<img class="d-block w-100 "
-						src="${parkingFail2.getListOfPictures().get(0).getUrl() }"
-						alt="Second slide">
-
-					<div class="carousel-caption d-none d-md-block">
-						<h5>${parkingFail2.getTitle() }</h5>
-						<p>${parkingFail2.getDescription() }</p>
-					</div>
-				</div>
-
-				<div class="carousel-item">
-					<img class="d-block w-100" src="..." alt="Third slide">
+				<div class="carousel-caption d-none d-md-block">
+					<h5>${parkingFail1.getTitle() }</h5>
+					<p>${parkingFail1.getDescription() }</p>
 				</div>
 			</div>
-		</div>
 
-		<a class="carousel-control-prev" href="#carouselExampleIndicators"
-			role="button" data-slide="prev"> <span
-			class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-			class="sr-only">Previous</span>
-		</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
-			role="button" data-slide="next"> <span
-			class="carousel-control-next-icon" aria-hidden="true"></span> <span
-			class="sr-only">Next</span>
-		</a>
-	
+			<div class="carousel-item">
+				<img class="d-block w-100 "
+					src="${parkingFail2.getListOfPictures().get(0).getUrl() }"
+					alt="Second slide">
+
+				<div class="carousel-caption d-none d-md-block">
+					<h5>${parkingFail2.getTitle() }</h5>
+					<p>${parkingFail2.getDescription() }</p>
+				</div>
+			</div>
+
+			<div class="carousel-item">
+				<img class="d-block w-100" src="..." alt="Third slide">
+			</div>
+		</div>
+	</div>
+
+	<a class="carousel-control-prev" href="#carouselExampleIndicators"
+		role="button" data-slide="prev"> <span
+		class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+		class="sr-only">Previous</span>
+	</a>
+	<a class="carousel-control-next" href="#carouselExampleIndicators"
+		role="button" data-slide="next"> <span
+		class="carousel-control-next-icon" aria-hidden="true"></span> <span
+		class="sr-only">Next</span>
+	</a>
+
 	<!-- ---------------------------------------------------------------------------------------------------- -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -75,7 +83,5 @@
 
 
 </body>
-<footer class="bg-dark">
-Footer Placeholder
-</footer>
+<footer class="bg-dark"> Footer Placeholder </footer>
 </html>
