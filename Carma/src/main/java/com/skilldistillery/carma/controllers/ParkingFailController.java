@@ -19,6 +19,8 @@ import com.skilldistillery.carma.data.ParkingFailDAOImpl;
 import com.skilldistillery.carma.entities.Car;
 import com.skilldistillery.carma.entities.Location;
 import com.skilldistillery.carma.entities.ParkingFail;
+import com.skilldistillery.carma.entities.ParkingFailDTO;
+import com.skilldistillery.carma.entities.Picture;
 import com.skilldistillery.carma.entities.User;
 
 @Controller
