@@ -1,6 +1,5 @@
 package com.skilldistillery.carma.entities;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -37,9 +36,9 @@ public class ParkingFail  {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "location_id")
 	private Location location;
-
-	@Column(name = "fail_time")
-	private LocalDateTime failTime;
+	
+	@Column(name="fail_time")
+	private String failTime;
 
 	private String description;
 
@@ -53,7 +52,7 @@ public class ParkingFail  {
 
 	}
 
-	public ParkingFail(String title, Car car, User user, Location location, LocalDateTime failTime,
+	public ParkingFail(String title, Car car, User user, Location location, String failTime,
 			String description) {
 		super();
 		this.title = title;
@@ -104,11 +103,11 @@ public class ParkingFail  {
 		this.location = location;
 	}
 
-	public LocalDateTime getFailTime() {
+	public String getFailTime() {
 		return failTime;
 	}
 
-	public void setFailTime(LocalDateTime failTime) {
+	public void setFailTime(String failTime) {
 		this.failTime = failTime;
 	}
 

@@ -14,4 +14,5 @@ public interface ParkingFailDAO {
 	void createParkingFail(ParkingFail parkingFail);
 	boolean deleteParkingFail(ParkingFail parkingFail);
 	void updateParkingFail(ParkingFail parkingFail);
+	boolean addUser(User user);
 }
