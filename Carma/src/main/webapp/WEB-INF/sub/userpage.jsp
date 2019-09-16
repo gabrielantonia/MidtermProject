@@ -27,7 +27,7 @@
 
 			<div class="container-fluid">
 
-				${user } added to db.
+				${loggedInUser } added to db.
 
 			</div>
 		</div>

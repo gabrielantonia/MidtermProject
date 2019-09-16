@@ -11,7 +11,7 @@
 	crossorigin="anonymous">
 <title>User registration</title>
 </head>
-<jsp:include page="../../navbar.jsp" />
+<jsp:include page="../navbar.jsp" />
 <body>
 	<div class="d-flex" id="wrapper">
 
