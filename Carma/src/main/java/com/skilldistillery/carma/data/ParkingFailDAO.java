@@ -11,4 +11,7 @@ public interface ParkingFailDAO {
 	public List<ParkingFail> findAll();
 	public ParkingFail findParkingFailById(int pfId);
 	public void registerUser (User user);
+	void createParkingFail(ParkingFail parkingFail);
+	boolean deleteParkingFail(ParkingFail parkingFail);
+	void updateParkingFail(ParkingFail parkingFail);
 }

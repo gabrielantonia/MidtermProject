@@ -21,11 +21,11 @@
 	private List<Carma> going to be null initially  -->
 	
 <hr />
-<h5>Register New Carma Account</h5>
+<img src="img_girl.jpg" alt="Car failing" style="width:500px;height:600px;">
+<h5>Register New Carma User Account</h5>
   
 <form action="register.do" method="post">
-<label for="search">Username:</label><input name="username" type="text"
-		 />
+<label for="search">Username:</label><input name="username" type="text"/>
 
 <br/>Enter a Password<input
 		name="password" type="password"/>
