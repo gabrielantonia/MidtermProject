@@ -1,5 +1,6 @@
 package com.skilldistillery.carma.controllers;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,9 @@ public class ParkingFailController {
 	public String index(Model model) {
 		List<ParkingFail> parkingFail= dao.findAll();
 		model.addAttribute("parkingFail", parkingFail);
+		model.addAttribute("user", new User());
 		return "index";
+
 		// return "index"; // if using a ViewResolver.
 	}
 	@RequestMapping(path = "create.do", method=RequestMethod.GET)
@@ -55,20 +58,22 @@ public class ParkingFailController {
 		return mv;
 		// return "index"; // if using a ViewResolver.
 	}
-	
+
 	@RequestMapping(path = "register.do", method=RequestMethod.GET)
 	public String registerUser(Model model) {
 		model.addAttribute("user", new User());
 		return "sub/register";
 	}
-	
+
 	@RequestMapping(path="register.do", method=RequestMethod.POST)
 	public String createUser(@ModelAttribute("user") User user, Model model) {
+		user.setDateCreated(LocalDate.now().toString());
 		dao.addUser(user);
 		model.addAttribute("user", user);
 		return "sub/userpage";
 	}
-	
+
+
 	@RequestMapping(path = "getParkingFail.do")
 	public String showParkingFail(@RequestParam("pfid") Integer pfid, Model model) {
 		ParkingFail pf = dao.findParkingFailById(pfid);
@@ -76,7 +81,7 @@ public class ParkingFailController {
 		return "sub/show.jsp";
 		// return "show"; // if using a ViewResolver.
 	}
-	
+
 	@RequestMapping(path = "createParkingFail.do", method = RequestMethod.POST)
 	public String createPokemon( ParkingFail parkingFail, Model model) {
 		model.addAttribute("parkingFail", dao.findAll());
@@ -99,7 +104,7 @@ public class ParkingFailController {
 		model.addAttribute("parkingFail", dao.findAll());
 		return "index";
 	}
-	
+
 	@RequestMapping(path = "deleteParkingFail.do", method = RequestMethod.POST)
 	public ModelAndView deleteParkingFail(@ModelAttribute("parkingFail") ParkingFail parkingFail) {
 		ModelAndView mv = new ModelAndView();
@@ -138,7 +143,7 @@ public class ParkingFailController {
 		return mv;
 		// return "show"; // if using a ViewResolver.
 	}
-	
+
 	@RequestMapping(path = "getWallOfShame.do", method = RequestMethod.GET)
 	public ModelAndView getWallOfShame() {
 		ArrayList<ParkingFail> parkingFailList = dao.findParkingAllTime();
@@ -148,5 +153,6 @@ public class ParkingFailController {
 		return mv;
 		// return "show"; // if using a ViewResolver.
 	}
-	
+
+
 }

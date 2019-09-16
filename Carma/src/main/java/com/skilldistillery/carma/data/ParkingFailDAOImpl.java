@@ -42,6 +42,7 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 	}
 
 	@Override
+
 	public void createParkingFail(ParkingFail parkingFail) {
 		em.persist(parkingFail);
 		em.flush();
@@ -116,5 +117,6 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		Collections.sort(userList, pfc);
 		return userList.get(0);
 	}
+
 
 }

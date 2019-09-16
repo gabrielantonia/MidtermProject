@@ -2,6 +2,7 @@ package com.skilldistillery.carma.entities;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +20,17 @@ public class User {
 	private String email;
 	@OneToMany(mappedBy="user")
 	private List<Carma> listOfCarma;
+	@Column(name="date_user_account_created")
+	private String dateCreated;
 	
+
+	public String getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(String dateCreated) {
+		this.dateCreated = dateCreated;
+	}
 
 	public List<Carma> getListOfCarma() {
 		return listOfCarma;
