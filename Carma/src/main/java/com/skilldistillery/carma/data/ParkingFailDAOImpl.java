@@ -69,12 +69,9 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		return false;
 	}
 
-<<<<<<< HEAD
-
 	public void registerUser(User user) {
 		// TODO Auto-generated method stub
-		
-=======
+	}
 	@Override
 	public boolean addUser(User user) {
 		if (em.contains(user)) {
@@ -84,7 +81,6 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 			em.flush();
 			return true;
 		}
->>>>>>> dbf3c57fad8ec0ad73abbeb9a8c25ab0c897cc77
 	}
 
 	public ParkingFail findParkingFailOfDay() {
