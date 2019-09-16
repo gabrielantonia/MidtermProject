@@ -2,7 +2,8 @@ package com.skilldistillery.carma.controllers;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,13 +30,16 @@ public class ParkingFailController {
 
 	@RequestMapping(path = "/", method=RequestMethod.GET)
 	public String index(Model model) {
-		List<ParkingFail> parkingFail= dao.findAll();
-		model.addAttribute("parkingFail", parkingFail);
+		ArrayList<ParkingFail> parkingFailList = dao.findParkingAllTime();
+//		List<ParkingFail> parkingFailList= dao.findAll();
+		model.addAttribute("parkingFail1", parkingFailList.get(0));
+		model.addAttribute("parkingFail2", parkingFailList.get(1));
+//		model.addAttribute("parkingFail3", parkingFailList.get(2));
 		model.addAttribute("user", new User());
+//		model.addAttribute("parkingFailList" , parkingFailList);
 		return "index";
-
-		// return "index"; // if using a ViewResolver.
 	}
+	
 	@RequestMapping(path = "create.do", method=RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView mv = new ModelAndView();
@@ -102,18 +106,33 @@ public class ParkingFailController {
 		}
 		return mv;
 	}
-
-	@RequestMapping(path = "getParkingFailOfDay.do", method = RequestMethod.GET)
-	public ModelAndView getParkingFailOfDay() {
-		ParkingFail parkingFail = dao.findParkingFailOfDay();
-		User user = dao.findUserOfDay();
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("parkingFail", parkingFail);
-		mv.addObject("user", user);
-		mv.setViewName("sub/main");
-		return mv;
-		// return "show"; // if using a ViewResolver.
+	
+	@RequestMapping(path = "registerUser.do",  method = RequestMethod.POST)
+	public String registerUser( User user, Model model) {
+		model.addAttribute("parkingFail", dao.findAll());
+		dao.registerUser(user);
+		return "index";
 	}
+	
+	//Attempt at sessioning
+	@RequestMapping("GetNumbers.do")
+	  public ModelAndView getNumbers(@RequestParam(value="howmany", defaultValue="6") int count, HttpSession session) {
+
+		return null;
+	}
+	//Attempt at sessioning
+
+//	@RequestMapping(path = "/", method = RequestMethod.GET)
+//	public ModelAndView getParkingFailOfDay() {
+//		ArrayList<ParkingFail> parkingFailList = dao.findParkingAllTime();
+//		User user = dao.findUserOfDay();
+//		ModelAndView mv = new ModelAndView();
+//		mv.addObject("parkingFailList", parkingFailList);
+//		mv.addObject("user", user);
+//		mv.setViewName("index");
+//		return mv;
+		// return "show"; // if using a ViewResolver.
+//	}
 
 	@RequestMapping(path = "getWallOfShame.do", method = RequestMethod.GET)
 	public ModelAndView getWallOfShame() {
@@ -125,5 +144,16 @@ public class ParkingFailController {
 		// return "show"; // if using a ViewResolver.
 	}
 
+////////////////////////////////////////////////////////////////////////////
+//GALLERY
+@RequestMapping(path = "gallery.do", method = RequestMethod.GET)
+public ModelAndView findAllPictures() {
+ModelAndView mv = new ModelAndView();
+mv.addObject("user" , new User());
+mv.addObject("pictures", dao.findAllPictures());
+mv.setViewName("sub/gallery");
+return mv;
+}
+///////////////////////////////////////////////////////////////////////////
 
 }

@@ -10,26 +10,31 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Picture {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
+	
 	private String url;
-
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "parking_fail_id")
+	
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="parking_fail_id")
 	private ParkingFail parkingFail;
-
+	
+	
 	public Picture() {
-
+		
 	}
-
+	
+	
+	
 	public Picture(String url, ParkingFail parkingFail) {
 		super();
 		this.url = url;
 		this.parkingFail = parkingFail;
 	}
+
+
 
 	public int getId() {
 		return id;
@@ -81,5 +86,6 @@ public class Picture {
 	public String toString() {
 		return "Picture [id=" + id + ", url=" + url + ", parkingFail=" + parkingFail + "]";
 	}
-
+	
+	
 }

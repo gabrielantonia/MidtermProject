@@ -10,3 +10,18 @@ input[type=text], input[type=password] {
 	margin: auto;
 }
 
+footer {
+	color: white;
+	height: 50px;
+	background-color: #818181;
+	
+}
+
+body{
+	background-color: black;
+	color:white;
+}
+h1{
+	text-align: center;
+	color:white;
+}

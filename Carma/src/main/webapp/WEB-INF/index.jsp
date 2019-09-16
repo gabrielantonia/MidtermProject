@@ -5,43 +5,62 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<title>ParkingFail List</title>
+<title>Index</title>
+<jsp:include page="styletags.jsp" />
 </head>
-<jsp:include page="../navbar.jsp" />
+<!-- ---------------------------------------------------------------------------------------------------- -->
+<div><jsp:include page="../navbar.jsp" /></div>
+
 <body>
-	<!-- <hr>
-  <form action="getParkingFail.do" method="GET">
-        Parking Fail ID: <input type="text" name="parkingfailid" /> <input type="submit"
-            value=" Show  ParkingFail " />
-    </form>
-    
-    <form action="updateParkingFail.do" method="GET">
-        Parking Fail ID: <input type="text" name="parkingfailid" /> <input type="submit"
-            value="Update ParkingFail" />
-    </form>
-    
-      <form action="deleteParkingFail.do" method="GET">
-        Parking Fail ID: <input type="text" name="parkingfailid" /> <input type="submit"
-            value="Delete ParkingFail" />
-    </form>
-    
-    <h3>MENU: </h3>
-     <hr>
-    <form action="addParkingFail.do" method="GET">
-        Add new parking fail submission <input type="submit"
-            value="Add New ParkingFail" />
-    </form>
 
-      <form action="showAll.do" method="GET">
-        See All Parking Fail Listings? <input type="submit"
-            value="Show Current Database" />
-    </form> -->
+	<div id="carouselExampleIndicators" class="carousel slide"
+		data-ride="carousel">
+		<ol class="carousel-indicators">
+			<li data-target="#carouselExampleIndicators" data-slide-to="0"
+				class="active"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+		</ol>
+		<div class="carousel-inner">
 
-	${parkingFail }
+			<div class="carousel-item active">
+				<img class="d-block w-100" src="${parkingFail1.getListOfPictures().get(0).getUrl() }"
+					 alt="First slide">
+
+					<div class="carousel-caption d-none d-md-block">
+						<h5>${parkingFail1.getTitle() }</h5>
+						<p>${parkingFail1.getDescription() }</p>
+					</div>
+				</div>
+
+				<div class="carousel-item">
+					<img class="d-block w-100 "
+						src="${parkingFail2.getListOfPictures().get(0).getUrl() }"
+						alt="Second slide">
+
+					<div class="carousel-caption d-none d-md-block">
+						<h5>${parkingFail2.getTitle() }</h5>
+						<p>${parkingFail2.getDescription() }</p>
+					</div>
+				</div>
+
+				<div class="carousel-item">
+					<img class="d-block w-100" src="..." alt="Third slide">
+				</div>
+			</div>
+		</div>
+
+		<a class="carousel-control-prev" href="#carouselExampleIndicators"
+			role="button" data-slide="prev"> <span
+			class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+			class="sr-only">Previous</span>
+		</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
+			role="button" data-slide="next"> <span
+			class="carousel-control-next-icon" aria-hidden="true"></span> <span
+			class="sr-only">Next</span>
+		</a>
 	
-
-
+	<!-- ---------------------------------------------------------------------------------------------------- -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
@@ -56,4 +75,7 @@
 
 
 </body>
+<footer class="bg-dark">
+Footer Placeholder
+</footer>
 </html>

@@ -29,6 +29,16 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		return picture;
 	}
 
+////////////////////////////////////////////////////////////////////////////////
+//GALLERY
+	@Override
+	public List<Picture> findAllPictures() {
+		String jpql = "SELECT picture FROM Picture picture";
+		List<Picture> listOfPictures = em.createQuery(jpql, Picture.class).getResultList();
+		return listOfPictures;
+	}
+
+////////////////////////////////////////////////////////////////////////////////
 	@Override
 	public List<ParkingFail> findAll() {
 		String jpql = "Select p from ParkingFail p";
@@ -70,6 +80,10 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		return false;
 	}
 
+	public void registerUser(User user) {
+		// TODO Auto-generated method stub
+	}
+
 	@Override
 	public boolean addUser(User user) {
 		if (em.contains(user)) {
@@ -91,18 +105,20 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		return allPF.get(0);
 	}
 
+	// Implement session
 	public ArrayList<ParkingFail> findParkingAllTime() {
 		ArrayList<ParkingFail> allPF = (ArrayList<ParkingFail>) findAll();
 		ParkingFailComparator pfc = new ParkingFailComparator();
 		Collections.sort(allPF, pfc);
 		Collections.reverse(allPF);
-		ArrayList<ParkingFail> topTen = null;
-		for (int i = 0; i < 10; i++) {
-			topTen.add(allPF.get(i));
+		ArrayList<ParkingFail> topList = new ArrayList<ParkingFail>();
+		for (int i = 0; i < allPF.size(); i++) {
+			topList.add(allPF.get(i));
 		}
-		return topTen;
+		return topList;
 	}
-
+	
+//	Implement session
 	public User findUserOfDay() {
 		ArrayList<User> userList = new ArrayList<User>();
 		ArrayList<ParkingFail> allPF = (ArrayList<ParkingFail>) findAll();
@@ -120,6 +136,5 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		String jpql = "Select p from ParkingFail p where p.user.id=:id";
 		return em.createQuery(jpql, ParkingFail.class).setParameter("id", id).getResultList();
 	}
-
 
 }
