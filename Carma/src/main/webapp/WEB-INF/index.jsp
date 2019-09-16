@@ -15,6 +15,7 @@
 </head>
 <!-- ---------------------------------------------------------------------------------------------------- -->
 <jsp:include page="../navbar.jsp" />
+
 <body>
 
 	<div id="carouselExampleIndicators" class="carousel slide"
