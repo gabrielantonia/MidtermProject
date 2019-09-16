@@ -1,5 +1,6 @@
 package com.skilldistillery.carma.controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ public class ParkingFailController {
 	public String index(Model model) {
 		List<ParkingFail> parkingFail= dao.findAll();
 		model.addAttribute("parkingFail", parkingFail);
+		model.addAttribute("user", new User());
 		return "index";
 		// return "index"; // if using a ViewResolver.
 	}
@@ -63,10 +65,12 @@ public class ParkingFailController {
 	
 	@RequestMapping(path="register.do", method=RequestMethod.POST)
 	public String createUser(@ModelAttribute("user") User user, Model model) {
+		user.setDateCreated(LocalDate.now().toString());
 		dao.addUser(user);
 		model.addAttribute("user", user);
 		return "sub/userpage";
 	}
+	
 	
 	@RequestMapping(path = "getParkingFail.do")
 	public String showParkingFail(@RequestParam("pfid") Integer pfid, Model model) {
