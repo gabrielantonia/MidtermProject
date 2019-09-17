@@ -2,7 +2,9 @@ package com.skilldistillery.carma.data;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,10 +36,10 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 ////////////////////////////////////////////////////////////////////////////////
 //GALLERY
 	@Override
-	public List<Picture> findAllPictures() {
+	public Map<Integer, String> findAllPictures() {
 		String jpql = "SELECT picture FROM Picture picture";
 		List<Picture> listOfPictures = em.createQuery(jpql, Picture.class).getResultList();
-		return listOfPictures;
+		return getImageIdsFromList(listOfPictures);
 	}
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -80,10 +82,6 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 			return true;
 		}
 		return false;
-	}
-
-	public void registerUser(User user) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
@@ -140,25 +138,46 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 	}
 	
 	@Override
-	public List<String> findPicturesByUserId(int userId) {
+	public Map<Integer, String> findPicturesByUserId(int userId) {
 		List<ParkingFail> lpf = findParkingFailByUserId(userId);
-		String jpql = "select p.url from Picture p where p.parkingFail.id = :id";
-		List<List<String>> lp = new ArrayList<>();
+		String jpql = "select p from Picture p where p.parkingFail.user.id = :id";
+		List<List<Picture>> lp = new ArrayList<>();
 		for (ParkingFail pf : lpf) {
-			lp.add(em.createQuery(jpql, String.class).setParameter("id", pf.getId()).getResultList());
+			lp.add(em.createQuery(jpql, Picture.class).setParameter("id", pf.getId()).getResultList());
 		}
+		
+		return getImageIds(lp);
+	}
+	
+	@Override
+	public Map<Integer, String> getImageIds(List<List<Picture>> lp) {
 		String regex = "=([A-za-z0-9-_]*)";
 		Pattern pattern = Pattern.compile(regex);
-		List<String> listOfId = new ArrayList<>();
-		for (List<String> ls : lp) {
-			for (String s : ls) {
-				Matcher matcher = pattern.matcher(s);
+		Map<Integer, String> pictureMap = new HashMap<>();
+		for (List<Picture> ls : lp) {
+			for (Picture s : ls) {
+				Matcher matcher = pattern.matcher(s.getUrl());
 				if (matcher.find()) {
-					listOfId.add(matcher.group(1));
+					pictureMap.put(s.getParkingFail().getId(), matcher.group(1));
 				}
 			}
 		}
-		return listOfId;
+		return pictureMap;
 	}
+	
+	@Override
+	public Map<Integer, String> getImageIdsFromList(List<Picture> lp) {
+		String regex = "=([A-za-z0-9-_]*)";
+		Pattern pattern = Pattern.compile(regex);
+		Map<Integer, String> pictureMap = new HashMap<>();
+			for (Picture p : lp) {
+				Matcher matcher = pattern.matcher(p.getUrl());
+				if (matcher.find()) {
+					pictureMap.put(p.getParkingFail().getId(), matcher.group(1));
+				}
+			}
+		return pictureMap;
+	}
+
 
 }

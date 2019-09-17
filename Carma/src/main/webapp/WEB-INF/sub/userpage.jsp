@@ -29,10 +29,11 @@
 
 				 ${listOfPF }	
 				${u.id }
-				<c:forEach items="${listOfPictures}" var="picture">
+				${listOfPictures }
+<%-- 				<c:forEach items="${listOfPictures}" var="picture">
 						<iframe src="https://drive.google.com/file/d/${picture }/preview" width="640" height="480"></iframe>
 				</c:forEach>
-			</div>
+ --%>			</div>
 			<a href="create.do"><img src="images/add.png"/></a>
 		</div>
 	</div>
