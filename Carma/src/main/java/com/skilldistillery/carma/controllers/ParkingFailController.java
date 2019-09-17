@@ -147,5 +147,14 @@ public class ParkingFailController {
 //		return mv;
 //	}
 ///////////////////////////////////////////////////////////////////////////
+//SEARCH BY LICENSE PLATE
+	@RequestMapping(path = "findCarByLicensePlate.do", method = RequestMethod.POST)
+	public ModelAndView findCarByLicensePlate(@RequestParam("licensePlate") String licensePlate) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("car", dao.findCarByLicensePlate(licensePlate));
+		mv.setViewName("sub/show");
+		return mv;
+	}
+///////////////////////////////////////////////////////////////////////////
 
 }

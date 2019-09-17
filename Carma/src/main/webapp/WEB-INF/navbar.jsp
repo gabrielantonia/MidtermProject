@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <link href="css/styles.css" rel="stylesheet" type="text/css">
@@ -15,14 +15,15 @@
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active"><a class="nav-link" href="gallery.do"> Gallery
-					<span class="sr-only">(current)</span>
+			<li class="nav-item active"><a class="nav-link"
+				href="gallery.do"> Gallery <span class="sr-only">(current)</span>
 			</a></li>
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false"> Login </a>
-				<div id="dropdown" class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<div id="dropdown" class="dropdown-menu"
+					aria-labelledby="navbarDropdown">
 					<!-- <form class="px-4 py-3">
 						<div class="form-group">
 							<label for="exampleDropdownFormEmail1">Email address</label> <input
@@ -36,25 +37,28 @@
 						</div>
 						<button type="submit" class="btn btn-primary">Sign in</button>
 					</form> -->
-					<form:form action="login.do" method="POST"
-					modelAttribute="user">
-					<form:label id="username" path="username">Username:</form:label>
-					<form:input type="text" path="username" required="required" />
-					<br />
-					<form:label id="password" path="password">Password:</form:label>
-					<form:input type="password" path="password" required="required" />
-					<br />
-				<input class="btn btn-primary" type="submit" value="Submit">
-				</form:form>
-					
+					<form:form action="login.do" method="POST" modelAttribute="user">
+						<form:label id="username" path="username">Username:</form:label>
+						<form:input type="text" path="username" required="required" />
+						<br />
+						<form:label id="password" path="password">Password:</form:label>
+						<form:input type="password" path="password" required="required" />
+						<br />
+						<input class="btn btn-primary" type="submit" value="Submit">
+					</form:form>
+
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="register.do">New around here? Sign up</a>
+					<a class="dropdown-item" href="register.do">New around here?
+						Sign up</a>
 				</div></li>
+
 		</ul>
-		<form class="form-inline my-2 my-lg-0">
-			<input class="form-control mr-sm-2" type="search"
-				placeholder="Search" aria-label="Search">
-			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		<form action="findCarByLicensePlate.do"
+			class="form-inline my-2 my-lg-0" method="post">
+			<input name="licensePlate" class="form-control mr-sm-2" type="search"
+				placeholder="Search" aria-label="Search"> <input
+				class="btn btn-outline-success my-2 my-sm-0" type="submit"
+				value="Search" />
 		</form>
 	</div>
 </nav>
