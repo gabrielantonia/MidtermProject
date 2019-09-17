@@ -44,13 +44,13 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		return p;
 	}
 ////////////////////////////////////////////////////////////////////////////////
-//GALLERY
-	@Override
-	public Map<Integer, String> findAllPictures() {
-		String jpql = "SELECT picture FROM Picture picture";
-		List<Picture> listOfPictures = em.createQuery(jpql, Picture.class).getResultList();
-		return getImageIdsFromList(listOfPictures);
-	}
+////GALLERY
+//	@Override
+//	public Map<Integer, String> findAllPictures() {
+//		String jpql = "SELECT picture FROM Picture picture";
+//		List<Picture> listOfPictures = em.createQuery(jpql, Picture.class).getResultList();
+//		return getImageIdsFromList(listOfPictures);
+//	}
 
 ////////////////////////////////////////////////////////////////////////////////
 	@Override
@@ -104,7 +104,7 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 			return true;
 		}
 	}
-
+	@Override
 	public ParkingFail findParkingFailOfDay() {
 		ArrayList<ParkingFail> allPF = (ArrayList<ParkingFail>) findAll();
 		ParkingFailComparator pfc = new ParkingFailComparator();
@@ -116,19 +116,21 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 	}
 
 	// Implement session
-	public ArrayList<ParkingFail> findParkingAllTime() {
+	@Override
+	public ArrayList<ParkingFail> findTopParkingFailByAmount(int j) {
 		ArrayList<ParkingFail> allPF = (ArrayList<ParkingFail>) findAll();
 		ParkingFailComparator pfc = new ParkingFailComparator();
 		Collections.sort(allPF, pfc);
 		Collections.reverse(allPF);
 		ArrayList<ParkingFail> topList = new ArrayList<ParkingFail>();
-		for (int i = 0; i < allPF.size(); i++) {
+		for (int i = 0; i < j; i++) {
 			topList.add(allPF.get(i));
 		}
 		return topList;
 	}
 
 //	Implement session
+	@Override
 	public User findUserOfDay() {
 		ArrayList<User> userList = new ArrayList<User>();
 		ArrayList<ParkingFail> allPF = (ArrayList<ParkingFail>) findAll();
@@ -149,45 +151,27 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 
 	@Override
 	public Map<Integer, String> findPicturesByUserId(int userId) {
-		List<ParkingFail> lpf = findParkingFailByUserId(userId);
-		String jpql = "select p from Picture p where p.parkingFail.user.id = :id";
-		List<List<Picture>> lp = new ArrayList<>();
-		for (ParkingFail pf : lpf) {
-			lp.add(em.createQuery(jpql, Picture.class).setParameter("id", pf.getId()).getResultList());
-		}
-		
-		return getImageIds(lp);
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
+
 	@Override
-	public Map<Integer, String> getImageIds(List<List<Picture>> lp) {
-		String regex = "=([A-za-z0-9-_]*)";
-		Pattern pattern = Pattern.compile(regex);
-		Map<Integer, String> pictureMap = new HashMap<>();
-		for (List<Picture> ls : lp) {
-			for (Picture s : ls) {
-				Matcher matcher = pattern.matcher(s.getUrl());
-				if (matcher.find()) {
-					pictureMap.put(s.getParkingFail().getId(), matcher.group(1));
-				}
-			}
-		}
-		return pictureMap;
+	public Map<Integer, String> findAllPictures() {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
-	@Override
-	public Map<Integer, String> getImageIdsFromList(List<Picture> lp) {
-		String regex = "=([A-za-z0-9-_]*)";
-		Pattern pattern = Pattern.compile(regex);
-		Map<Integer, String> pictureMap = new HashMap<>();
-			for (Picture p : lp) {
-				Matcher matcher = pattern.matcher(p.getUrl());
-				if (matcher.find()) {
-					pictureMap.put(p.getParkingFail().getId(), matcher.group(1));
-				}
-			}
-		return pictureMap;
-	}
+
+//	@Override
+//	public Map<Integer, String> findPicturesByUserId(int userId) {
+//		List<ParkingFail> lpf = findParkingFailByUserId(userId);
+//		String jpql = "select p from Picture p where p.parkingFail.user.id = :id";
+//		List<List<Picture>> lp = new ArrayList<>();
+//		for (ParkingFail pf : lpf) {
+//			lp.add(em.createQuery(jpql, Picture.class).setParameter("id", pf.getId()).getResultList());
+//		}
+//		
+//		return getImageIds(lp);
+//	}
 
 
 }

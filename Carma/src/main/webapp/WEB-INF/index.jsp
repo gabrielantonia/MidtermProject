@@ -7,81 +7,80 @@
 <meta charset="UTF-8">
 <title>Index</title>
 <jsp:include page="styletags.jsp" />
+<jsp:include page="scripts.jsp" />
 </head>
 <!-- ---------------------------------------------------------------------------------------------------- -->
 <c:choose>
-	<c:when test="${not empty loggedInUser }" >
+	<c:when test="${not empty loggedInUser }">
 		<jsp:include page="loggedinnav.jsp" />
 	</c:when>
 	<c:otherwise>
 		<jsp:include page="navbar.jsp" />
 	</c:otherwise>
 </c:choose>
-<body>
-
-	<div id="carouselExampleIndicators" class="carousel slide"
-		data-ride="carousel">
-		<ol class="carousel-indicators">
-			<li data-target="#carouselExampleIndicators" data-slide-to="0"
-				class="active"></li>
-			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-		</ol>
-		<div class="carousel-inner">
-
-			<div class="carousel-item active">
-				<img class="d-block w-100"
-					src="${parkingFail1.getListOfPictures().get(0).getUrl() }"
-					alt="First slide">
-
-				<div class="carousel-caption d-none d-md-block">
-					<h5>${parkingFail1.getTitle() }</h5>
-					<p>${parkingFail1.getDescription() }</p>
-				</div>
-			</div>
-
-			<div class="carousel-item">
-				<img class="d-block w-100 "
-					src="${parkingFail2.getListOfPictures().get(0).getUrl() }"
-					alt="Second slide">
-
-				<div class="carousel-caption d-none d-md-block">
-					<h5>${parkingFail2.getTitle() }</h5>
-					<p>${parkingFail2.getDescription() }</p>
-				</div>
-			</div>
-
-			<div class="carousel-item">
-				<img class="d-block w-100" src="..." alt="Third slide">
-			</div>
-		</div>
+<body class="d-flex flex-column h-100">
+	<!--  JumboTron-->
+	<div class="jumbotron">
+		<h1 class="display-4">Welcome to Carma! Go forth and shame!</h1>
+		<p class="lead">Carma is a new social media web application
+			designed to create an outlet of public punishment for all the
+			terrible parkers out there screwing up your daily parking experience.</p>
+		<hr class="my-4">
+		<!-- <p></p> -->
+		<a class="btn btn-primary btn-lg" href="#" role="button">Make your
+			first post!</a>
 	</div>
+	<!--  /JumboTron-->
 
-	<a class="carousel-control-prev" href="#carouselExampleIndicators"
-		role="button" data-slide="prev"> <span
-		class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-		class="sr-only">Previous</span>
-	</a>
-	<a class="carousel-control-next" href="#carouselExampleIndicators"
-		role="button" data-slide="next"> <span
-		class="carousel-control-next-icon" aria-hidden="true"></span> <span
-		class="sr-only">Next</span>
-	</a>
+	<!--  Carousel-->
 
-	<!-- ---------------------------------------------------------------------------------------------------- -->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-		crossorigin="anonymous"></script>
+	<div class="myCarousel">
+  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="${urls.get(0) }" class="d-block w-100" height="1000px" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+         <h5>${parkingFailTopThree.get(0).getTitle() }</h5>
+					<p>${parkingFailTopThree.get(0).getDescription() }</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="${urls.get(1) }" class="d-block w-100" height="1000px" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+         <h5>${parkingFailTopThree.get(1).getTitle() }</h5>
+					<p>${parkingFailTopThree.get(1).getDescription() }</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="${urls.get(2) }" class="d-block w-100" height="1000px" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+         <h5>${parkingFailTopThree.get(2).getTitle() }</h5>
+					<p>${parkingFailTopThree.get(2).getDescription() }</p>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
 
-
+	<!-- /Carousel -->
+<footer class="footer mt-auto py-3">
+  <div class="container">
+    <span class="text-muted">Place sticky footer content here.</span>
+  </div>
+</footer>
 </body>
-<footer class="bg-dark"> Footer Placeholder </footer>
+
 </html>

@@ -1,5 +1,6 @@
 package com.skilldistillery.carma.data;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -29,9 +30,12 @@ public interface ParkingFailDAO {
 
 	Map<Integer, String> findAllPictures();
 
-	Map<Integer, String> getImageIds(List<List<Picture>> lp);
 
-	Map<Integer, String> getImageIdsFromList(List<Picture> listOfUrl);
+	ParkingFail findParkingFailOfDay();
+
+	User findUserOfDay();
+
+	ArrayList<ParkingFail> findTopParkingFailByAmount(int j);
 
 
 	List<ParkingFail> findCarByLicensePlate(String licensePlate);

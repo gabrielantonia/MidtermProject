@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <link href="css/styles.css" rel="stylesheet" type="text/css">
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav id="myNav" class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<a class="navbar-brand" href="/">[ C A R M A ]</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarSupportedContent"

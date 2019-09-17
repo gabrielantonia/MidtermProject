@@ -6,16 +6,22 @@ input[type=text], input[type=password] {
     margin: auto;
 }
 
+img{
+	margin: auto;
+	width: 80%;
+}
+
+#myNav{
+	position:fixed;
+	width: 100%;
+	z-index: 10000;
+	
+}
+
 #username, #password {
 	margin: auto;
 }
 
-footer {
-	color: white;
-	height: 50px;
-	background-color: #818181;
-	
-}
 
 body{
 	background-color: black;
@@ -24,4 +30,18 @@ body{
 h1{
 	text-align: center;
 	color:white;
+}
+.jumbotron {
+	color: black;
+}
+.display-4 {
+	color: black;
+}
+
+.carousel-caption {
+	 text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
 }
