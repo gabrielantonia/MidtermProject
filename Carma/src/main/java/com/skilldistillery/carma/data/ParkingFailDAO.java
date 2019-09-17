@@ -22,7 +22,9 @@ public interface ParkingFailDAO {
 	void updateParkingFail(ParkingFail parkingFail);
 
 	boolean addUser(User user);
-	public Object findParkingFailByUserId(int id);
+	public List<ParkingFail> findParkingFailByUserId(int id);
+
+	List<String> findPicturesByUserId(int userId);
 
 	List<Picture> findAllPictures();
 

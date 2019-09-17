@@ -10,23 +10,27 @@
 <jsp:include page="../styletags.jsp" />
 <title>Gallery</title>
 </head>
-<div><jsp:include page="../../navbar.jsp" /></div>
+<c:choose>
+	<c:when test="${not empty loggedInUser }">
+		<jsp:include page="../loggedinnav.jsp" />
+	</c:when>
+	<c:otherwise>
+		<jsp:include page="../navbar.jsp" />
+	</c:otherwise>
+</c:choose>
 
 
 <body>
-<h1>Gallery</h1>
-<div id=“page-content-wrapper”>
-	<div class=“col-lg-4”>
-		<c:forEach var="picture" items="${pictures}">
-			<img src="${picture.url}" alt="Picture Gallery" > 
-		</c:forEach>
+	<h1>Gallery</h1>
+	<div id=“page-content-wrapper”>
+		<div class=“col-lg-4”>
+			<c:forEach var="picture" items="${pictures}">
+				<img src="${picture.url}" alt="Picture Gallery">
+			</c:forEach>
+		</div>
 	</div>
-</div>
-<div class="container-fluid">
-</div>
+	<div class="container-fluid"></div>
 </body>
-<footer>
-Footer Placeholder
-</footer>
+<footer> Footer Placeholder </footer>
 
 </html>

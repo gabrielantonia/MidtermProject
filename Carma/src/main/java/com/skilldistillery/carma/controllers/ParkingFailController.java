@@ -28,7 +28,7 @@ public class ParkingFailController {
 	@Autowired
 	private ParkingFailDAOImpl dao;
 
-	@RequestMapping(path = "/", method=RequestMethod.GET)
+	@RequestMapping(path = "/", method = RequestMethod.GET)
 	public String index(Model model) {
 		ArrayList<ParkingFail> parkingFailList = dao.findParkingAllTime();
 //		List<ParkingFail> parkingFailList= dao.findAll();
@@ -39,8 +39,8 @@ public class ParkingFailController {
 //		model.addAttribute("parkingFailList" , parkingFailList);
 		return "index";
 	}
-	
-	@RequestMapping(path = "create.do", method=RequestMethod.GET)
+
+	@RequestMapping(path = "create.do", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("parkingFail", new ParkingFailDTO());
@@ -49,10 +49,11 @@ public class ParkingFailController {
 		// return "index"; // if using a ViewResolver.
 	}
 
-	@RequestMapping(path = "create.do", method=RequestMethod.POST)
+	@RequestMapping(path = "create.do", method = RequestMethod.POST)
 	public ModelAndView addParkingFail(@ModelAttribute("parkingFail") ParkingFailDTO pfd) {
 		ModelAndView mv = new ModelAndView("sub/show");
-		Car c = new Car(pfd.getLicensePlate(), pfd.getMake(), pfd.getModel(), pfd.getColor(), pfd.getDescription(), pfd.getAlias());
+		Car c = new Car(pfd.getLicensePlate(), pfd.getMake(), pfd.getModel(), pfd.getColor(), pfd.getDescription(),
+				pfd.getAlias());
 		User u = new User("finaltest", "test2", "test3");
 		Location l = new Location(pfd.getName(), pfd.getStreet(), pfd.getCity(), pfd.getState(), pfd.getZip());
 		ParkingFail pf = new ParkingFail(pfd.getTitle(), c, u, l, "8:30", pfd.getDescription());
@@ -63,7 +64,6 @@ public class ParkingFailController {
 		// return "index"; // if using a ViewResolver.
 	}
 
-
 	@RequestMapping(path = "getParkingFail.do")
 	public String showParkingFail(@RequestParam("pfid") Integer pfid, Model model) {
 		ParkingFail pf = dao.findParkingFailById(pfid);
@@ -73,11 +73,12 @@ public class ParkingFailController {
 	}
 
 	@RequestMapping(path = "createParkingFail.do", method = RequestMethod.POST)
-	public String createPokemon( ParkingFail parkingFail, Model model) {
+	public String createPokemon(ParkingFail parkingFail, Model model) {
 		model.addAttribute("parkingFail", dao.findAll());
 		dao.createParkingFail(parkingFail);
 		return "index";
 	}
+
 	@RequestMapping(path = "update.do")
 	public ModelAndView update(ParkingFail parkingFail) {
 		ModelAndView mv = new ModelAndView();
@@ -89,7 +90,7 @@ public class ParkingFailController {
 	}
 
 	@RequestMapping(path = "updateParkingFail.do", method = RequestMethod.POST)
-	public String updateParkingFail( ParkingFail parkingFail, Model model) {
+	public String updateParkingFail(ParkingFail parkingFail, Model model) {
 		dao.updateParkingFail(parkingFail);
 		model.addAttribute("parkingFail", dao.findAll());
 		return "index";
@@ -106,21 +107,6 @@ public class ParkingFailController {
 		}
 		return mv;
 	}
-	
-	@RequestMapping(path = "registerUser.do",  method = RequestMethod.POST)
-	public String registerUser( User user, Model model) {
-		model.addAttribute("parkingFail", dao.findAll());
-		dao.registerUser(user);
-		return "index";
-	}
-	
-	//Attempt at sessioning
-	@RequestMapping("GetNumbers.do")
-	  public ModelAndView getNumbers(@RequestParam(value="howmany", defaultValue="6") int count, HttpSession session) {
-
-		return null;
-	}
-	//Attempt at sessioning
 
 //	@RequestMapping(path = "/", method = RequestMethod.GET)
 //	public ModelAndView getParkingFailOfDay() {
@@ -131,7 +117,7 @@ public class ParkingFailController {
 //		mv.addObject("user", user);
 //		mv.setViewName("index");
 //		return mv;
-		// return "show"; // if using a ViewResolver.
+	// return "show"; // if using a ViewResolver.
 //	}
 
 	@RequestMapping(path = "getWallOfShame.do", method = RequestMethod.GET)
@@ -146,14 +132,13 @@ public class ParkingFailController {
 
 ////////////////////////////////////////////////////////////////////////////
 //GALLERY
-@RequestMapping(path = "gallery.do", method = RequestMethod.GET)
-public ModelAndView findAllPictures() {
-ModelAndView mv = new ModelAndView();
-mv.addObject("user" , new User());
-mv.addObject("pictures", dao.findAllPictures());
-mv.setViewName("sub/gallery");
-return mv;
-}
+	@RequestMapping(path = "gallery.do", method = RequestMethod.GET)
+	public ModelAndView findAllPictures() {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("pictures", dao.findAllPictures());
+		mv.setViewName("sub/gallery");
+		return mv;
+	}
 ///////////////////////////////////////////////////////////////////////////
 
 }
