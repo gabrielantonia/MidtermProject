@@ -2,6 +2,7 @@ package com.skilldistillery.carma.data;
 
 import java.util.List;
 
+import com.skilldistillery.carma.entities.Car;
 import com.skilldistillery.carma.entities.ParkingFail;
 import com.skilldistillery.carma.entities.Picture;
 import com.skilldistillery.carma.entities.User;
@@ -22,10 +23,13 @@ public interface ParkingFailDAO {
 	void updateParkingFail(ParkingFail parkingFail);
 
 	boolean addUser(User user);
+
 	public List<ParkingFail> findParkingFailByUserId(int id);
 
 	List<String> findPicturesByUserId(int userId);
 
 	List<Picture> findAllPictures();
+
+	List<ParkingFail> findCarByLicensePlate(String licensePlate);
 
 }

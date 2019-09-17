@@ -12,6 +12,6 @@
 <title>${pokemon.name}</title>
 </head>
 <body style="">
-	${parkingFail }	
+	${car }	
 </body>
 </html>

@@ -12,6 +12,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.carma.entities.Car;
 import com.skilldistillery.carma.entities.ParkingFail;
 import com.skilldistillery.carma.entities.ParkingFailComparator;
 import com.skilldistillery.carma.entities.Picture;
@@ -31,6 +32,15 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		return picture;
 	}
 
+////////////////////////////////////////////////////////////////////////////////
+//SEARCH LICENSE PLATES
+	@Override
+	public List<ParkingFail> findCarByLicensePlate(String licensePlate) {
+		String jpql = "SELECT p FROM ParkingFail p WHERE p.car.licensePlate LIKE :id";
+		List<ParkingFail> p = em.createQuery(jpql, ParkingFail.class).setParameter("id", licensePlate).getResultList();
+		
+		return p;
+	}
 ////////////////////////////////////////////////////////////////////////////////
 //GALLERY
 	@Override
@@ -119,7 +129,7 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		}
 		return topList;
 	}
-	
+
 //	Implement session
 	public User findUserOfDay() {
 		ArrayList<User> userList = new ArrayList<User>();
@@ -138,7 +148,7 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		String jpql = "Select p from ParkingFail p where p.user.id=:id";
 		return em.createQuery(jpql, ParkingFail.class).setParameter("id", id).getResultList();
 	}
-	
+
 	@Override
 	public List<String> findPicturesByUserId(int userId) {
 		List<ParkingFail> lpf = findParkingFailByUserId(userId);
