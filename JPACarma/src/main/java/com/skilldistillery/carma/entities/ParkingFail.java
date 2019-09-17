@@ -18,7 +18,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "parking_fail")
 public class ParkingFail  {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -142,6 +142,18 @@ public class ParkingFail  {
 	public void setListOfCarma(List<Carma> listOfCarma) {
 		this.listOfCarma = listOfCarma;
 	}
+	
+	public int getCarmaValue() {
+		int carmaValue = 0;
+		List<Carma> carma = this.listOfCarma;
+		for (Carma carma2 : carma) {
+			carmaValue= carmaValue + carma2.getVote();
+		}
+		return carmaValue;
+		
+				
+	}
+	
 
 	@Override
 	public int hashCode() {
@@ -164,7 +176,7 @@ public class ParkingFail  {
 			return false;
 		return true;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "ParkingFail [id=" + id + ", title=" + title + ", car=" + car + ", user=" + user + ", failTime="

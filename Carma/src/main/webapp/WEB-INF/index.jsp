@@ -18,6 +18,7 @@
 		<jsp:include page="navbar.jsp" />
 	</c:otherwise>
 </c:choose>
+
 <body class="d-flex flex-column h-100">
 	<!--  JumboTron-->
 	<div class="jumbotron">
