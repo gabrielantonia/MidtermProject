@@ -34,7 +34,7 @@ public class ParkingFailController {
 //		List<ParkingFail> parkingFailList= dao.findAll();
 		model.addAttribute("parkingFail1", parkingFailList.get(0));
 		model.addAttribute("parkingFail2", parkingFailList.get(1));
-//		model.addAttribute("parkingFail3", parkingFailList.get(2));
+		model.addAttribute("parkingFail3", parkingFailList.get(2));
 		model.addAttribute("user", new User());
 //		model.addAttribute("parkingFailList" , parkingFailList);
 		return "index";

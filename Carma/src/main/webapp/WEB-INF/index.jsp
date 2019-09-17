@@ -18,7 +18,15 @@
 	</c:otherwise>
 </c:choose>
 <body>
-
+<!--  JumboTron-->
+<div class="jumbotron">
+  <h1 class="display-4">Welcome to Carma! Go forth and shame!</h1>
+  <p class="lead">Carma is a new social stigmitizing web application designed to create an outlet of public punishment for all the terrible parkers out there screwing up your daily parking experience.</p>
+  <hr class="my-4">
+  <!-- <p></p> -->
+  <a class="btn btn-primary btn-lg" href="#" role="button">Make your first post!</a>
+</div>
+<!--  /JumoTron-->
 	<div id="carouselExampleIndicators" class="carousel slide"
 		data-ride="carousel">
 		<ol class="carousel-indicators">
@@ -29,10 +37,10 @@
 		</ol>
 		<div class="carousel-inner">
 
+<iframe src="https://drive.google.com/file/d/${parkingFail1.getListOfPictures().get(0).getUrl() }/preview" width="640" height="480"></iframe>
+
 			<div class="carousel-item active">
-				<img class="d-block w-100"
-					src="${parkingFail1.getListOfPictures().get(0).getUrl() }"
-					alt="First slide">
+				<a href='https://drive.google.com/file/d/115sgRmxqG5k9Z4hK6toO0oCr5VDod8rD/view?usp=drive_open&amp;usp=embed_facebook&source=ctrlq.org'><img src='https://lh6.googleusercontent.com/5spvluwUi62_vU1LvPrvEHJ68WD3YZB1ZXt34THQqv5SUI7mwOwXTnMNS-A=w2400' /></a>
 
 				<div class="carousel-caption d-none d-md-block">
 					<h5>${parkingFail1.getTitle() }</h5>
@@ -48,6 +56,21 @@
 				<div class="carousel-caption d-none d-md-block">
 					<h5>${parkingFail2.getTitle() }</h5>
 					<p>${parkingFail2.getDescription() }</p>
+				</div>
+			</div>
+
+			<div class="carousel-item">
+				<img class="d-block w-100" src="..." alt="Third slide">
+			</div>
+		</div>
+			<div class="carousel-item">
+				<img class="d-block w-100 "
+					src="${parkingFail3.getListOfPictures().get(0).getUrl() }"
+					alt="Second slide">
+
+				<div class="carousel-caption d-none d-md-block">
+					<h5>${parkingFail3.getTitle() }</h5>
+					<p>${parkingFail3.getDescription() }</p>
 				</div>
 			</div>
 
@@ -83,5 +106,9 @@
 
 
 </body>
-<footer class="bg-dark"> Footer Placeholder </footer>
+<footer class="footer">
+      <div class="container">
+        <span class="text-muted">Place sticky footer content here.</span>
+      </div>
+    </footer>
 </html>

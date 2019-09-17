@@ -10,12 +10,6 @@ input[type=text], input[type=password] {
 	margin: auto;
 }
 
-footer {
-	color: white;
-	height: 50px;
-	background-color: #818181;
-	
-}
 
 body{
 	background-color: black;
@@ -24,4 +18,18 @@ body{
 h1{
 	text-align: center;
 	color:white;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color:  #818181;
+}
+.jumbotron {
+	color: black;
+}
+.display-4 {
+	color: black;
 }
