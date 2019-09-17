@@ -24,8 +24,12 @@
 	<h1>Gallery</h1>
 	<div id=“page-content-wrapper”>
 		<div class=“col-lg-4”>
-			<c:forEach var="picture" items="${pictures}">
+<%-- 			<c:forEach var="picture" items="${pictures}">
 				<img src="${picture.url}" alt="Picture Gallery">
+			</c:forEach>
+ --%>			<c:forEach var="entry" items="${pictures}">
+  				Key: <c:out value="${entry.key}" />
+ 				Value: <c:out value="${entry.value}" />
 			</c:forEach>
 		</div>
 	</div>

@@ -1,6 +1,7 @@
 package com.skilldistillery.carma.data;
 
 import java.util.List;
+import java.util.Map;
 
 import com.skilldistillery.carma.entities.ParkingFail;
 import com.skilldistillery.carma.entities.Picture;
@@ -13,8 +14,6 @@ public interface ParkingFailDAO {
 
 	public ParkingFail findParkingFailById(int pfId);
 
-	public void registerUser(User user);
-
 	void createParkingFail(ParkingFail parkingFail);
 
 	boolean deleteParkingFail(ParkingFail parkingFail);
@@ -24,8 +23,13 @@ public interface ParkingFailDAO {
 	boolean addUser(User user);
 	public List<ParkingFail> findParkingFailByUserId(int id);
 
-	List<String> findPicturesByUserId(int userId);
+	Map<Integer, String> findPicturesByUserId(int userId);
 
-	List<Picture> findAllPictures();
+	Map<Integer, String> findAllPictures();
+
+	Map<Integer, String> getImageIds(List<List<Picture>> lp);
+
+	Map<Integer, String> getImageIdsFromList(List<Picture> listOfUrl);
+
 
 }

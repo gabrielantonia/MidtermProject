@@ -1,9 +1,6 @@
 package com.skilldistillery.carma.controllers;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -136,6 +133,7 @@ public class ParkingFailController {
 	public ModelAndView findAllPictures() {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("pictures", dao.findAllPictures());
+		mv.addObject("user", new User());
 		mv.setViewName("sub/gallery");
 		return mv;
 	}
