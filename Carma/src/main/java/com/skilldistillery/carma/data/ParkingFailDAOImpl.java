@@ -3,6 +3,8 @@ package com.skilldistillery.carma.data;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -135,6 +137,28 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 	public List<ParkingFail> findParkingFailByUserId(int id) {
 		String jpql = "Select p from ParkingFail p where p.user.id=:id";
 		return em.createQuery(jpql, ParkingFail.class).setParameter("id", id).getResultList();
+	}
+	
+	@Override
+	public List<String> findPicturesByUserId(int userId) {
+		List<ParkingFail> lpf = findParkingFailByUserId(userId);
+		String jpql = "select p.url from Picture p where p.parkingFail.id = :id";
+		List<List<String>> lp = new ArrayList<>();
+		for (ParkingFail pf : lpf) {
+			lp.add(em.createQuery(jpql, String.class).setParameter("id", pf.getId()).getResultList());
+		}
+		String regex = "=([A-za-z0-9-_]*)";
+		Pattern pattern = Pattern.compile(regex);
+		List<String> listOfId = new ArrayList<>();
+		for (List<String> ls : lp) {
+			for (String s : ls) {
+				Matcher matcher = pattern.matcher(s);
+				if (matcher.find()) {
+					listOfId.add(matcher.group(1));
+				}
+			}
+		}
+		return listOfId;
 	}
 
 }
