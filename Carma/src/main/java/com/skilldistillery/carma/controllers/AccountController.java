@@ -1,8 +1,6 @@
 package com.skilldistillery.carma.controllers;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.skilldistillery.carma.data.ParkingFailDAO;
 import com.skilldistillery.carma.data.UserDAO;
-import com.skilldistillery.carma.entities.ParkingFail;
-import com.skilldistillery.carma.entities.Picture;
 import com.skilldistillery.carma.entities.User;
 
 @Controller
