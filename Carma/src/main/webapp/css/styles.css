@@ -6,9 +6,15 @@ input[type=text], input[type=password] {
     margin: auto;
 }
 
+img{
+	margin: auto;
+	width: 80%;
+}
+
 #myNav{
 	position:fixed;
-	width: 100%
+	width: 100%;
+	z-index: 10000;
 	
 }
 
@@ -25,15 +31,17 @@ h1{
 	text-align: center;
 	color:white;
 }
-footer {
-  position: fixed;
-    height: 100px;
-    bottom: 0;
-    width: 100%;
-}
 .jumbotron {
 	color: black;
 }
 .display-4 {
 	color: black;
+}
+
+.carousel-caption {
+	 text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
 }
