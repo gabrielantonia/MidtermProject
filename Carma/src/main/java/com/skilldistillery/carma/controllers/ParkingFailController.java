@@ -158,5 +158,12 @@ public class ParkingFailController {
 		return mv;
 	}
 ///////////////////////////////////////////////////////////////////////////
+	@RequestMapping(path = "findParkingFail.do", method = RequestMethod.GET)
+	public ModelAndView findParkingFailByKeyword(@RequestParam("val") int id) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("pf", dao.findParkingFailById(id));
+		mv.setViewName("sub/showparkingfail");
+		return mv;
+	}
 
 }
