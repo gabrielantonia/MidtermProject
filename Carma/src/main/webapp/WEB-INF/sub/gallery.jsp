@@ -14,7 +14,7 @@
 
 </head>
 
-<body class="d-flex flex-column h-100" >
+<body>
 <jsp:include page="../navbar.jsp" />
 <br><br><br> <!--room for navbar  -->
 	<div class="container">
@@ -23,7 +23,7 @@
 					<div class="cell">
 						<img class="image" id="galleryImg" src="${picture.url}" />
 						<div class="middle">
-						<a href="/"> 
+						<a href="findParkingFail.do?val=${picture.parkingFail.id }"> 
 							<div class="viewText">View</div>
 						</a>
 					</div>
