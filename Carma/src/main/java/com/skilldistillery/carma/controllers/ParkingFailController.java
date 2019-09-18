@@ -108,27 +108,19 @@ public class ParkingFailController {
 		return mv;
 	}
 
-//	@RequestMapping(path = "/", method = RequestMethod.GET)
-//	public ModelAndView getParkingFailOfDay() {
-//		ArrayList<ParkingFail> parkingFailList = dao.findParkingAllTime();
-//		User user = dao.findUserOfDay();
-//		ModelAndView mv = new ModelAndView();
-//		mv.addObject("parkingFailList", parkingFailList);
-//		mv.addObject("user", user);
-//		mv.setViewName("index");
-//		return mv;
-	// return "show"; // if using a ViewResolver.
-////	}
-//
-//	@RequestMapping(path = "getWallOfShame.do", method = RequestMethod.GET)
-//	public ModelAndView getWallOfShame() {
-//		ArrayList<ParkingFail> parkingFailList = dao.findParkingAllTime();
-//		ModelAndView mv = new ModelAndView();
-//		mv.addObject("parkingFailList", parkingFailList);
-//		mv.setViewName("sub/wallofshame");
-//		return mv;
-//		// return "show"; // if using a ViewResolver.
-//	}
+	@RequestMapping(path = "wallOfShame.do", method = RequestMethod.GET)
+	public ModelAndView getWallOfShame(User user) {
+		ArrayList<ParkingFail> parkingFailList = dao.findTopParkingFailByAmount(10);
+		ModelAndView mv = new ModelAndView();
+		ArrayList<String> urls = new ArrayList<String>();
+		for (ParkingFail parkingFail : parkingFailList) {
+			urls.add(parkingFail.getListOfPictures().get(0).getUrl());
+		}
+		mv.addObject("urls", urls);
+		mv.addObject("parkingFailList", parkingFailList);
+		mv.setViewName("sub/wallOfShame");
+		return mv;
+	}
 
 ////////////////////////////////////////////////////////////////////////////
 ////GALLERY

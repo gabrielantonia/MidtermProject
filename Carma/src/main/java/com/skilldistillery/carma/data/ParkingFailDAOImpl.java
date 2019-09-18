@@ -2,11 +2,8 @@ package com.skilldistillery.carma.data;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,7 +11,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.carma.entities.Car;
 import com.skilldistillery.carma.entities.ParkingFail;
 import com.skilldistillery.carma.entities.ParkingFailComparator;
 import com.skilldistillery.carma.entities.Picture;
@@ -149,12 +145,14 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		return em.createQuery(jpql, ParkingFail.class).setParameter("id", id).getResultList();
 	}
 
+
 	@Override
 	public List<Picture> findPicturesByUserId(int id) {
 		String jpql = "select p from Picture p where p.parkingFail.user.id = :id";
 		return em.createQuery(jpql, Picture.class).setParameter("id", id).getResultList();
 
 	}
+
 
 
 //	@Override

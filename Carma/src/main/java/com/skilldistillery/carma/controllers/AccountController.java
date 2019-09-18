@@ -38,24 +38,24 @@ public class AccountController {
 		return "sub/userpage";
 	}
 	
-	@RequestMapping(path="login.do", method=RequestMethod.POST)
-	public String doLogin(@ModelAttribute("user") User user, Model model, Errors errors, HttpSession session) {
-		System.out.println("TESTTESTTEST");
-		User u = dao.validateUser(user);
-		if (errors.hasErrors()) {
-			return "index";
-		}
-		if (u != null) {
-			session.setAttribute("loggedInUser", u);
-			model.addAttribute("listOfPF", parkingdao.findParkingFailByUserId(u.getId()));
-			model.addAttribute("listOfPictures", parkingdao.findPicturesByUserId(u.getId()));
-
-			return "sub/userpage";
-		}
-		else {
-			return "index";
-		}
-	}
+//	@RequestMapping(path="login.do", method=RequestMethod.POST)
+//	public String doLogin(@ModelAttribute("user") User user, Model model, Errors errors, HttpSession session) {
+//		System.out.println("TESTTESTTEST");
+//		User u = dao.validateUser(user);
+//		if (errors.hasErrors()) {
+//			return "index";
+//		}
+//		if (u != null) {
+//			session.setAttribute("loggedInUser", u);
+//			model.addAttribute("listOfPF", parkingdao.findParkingFailByUserId(u.getId()));
+//			model.addAttribute("listOfPictures", parkingdao.findPicturesByUserId(u.getId()));
+//
+//			return "sub/userpage";
+//		}
+//		else {
+//			return "index";
+//		}
+//	}
 	
 	@RequestMapping(path="logout.do")
 	public String doLogout(Model model, HttpSession session) {
