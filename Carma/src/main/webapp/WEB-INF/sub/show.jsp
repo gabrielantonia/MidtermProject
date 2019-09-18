@@ -5,73 +5,73 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="../styletags.jsp"/>
-<jsp:include page="../scripts.jsp"/>
-<meta charset="UTF-8">
-<meta charset="UTF-8">
-<title>Search results</title>
+<jsp:include page="../styletags.jsp" />
+<jsp:include page="../scripts.jsp" />
+<title>Search Results</title>
 </head>
-<jsp:include page="../navbar"/>
-<br><br><br>
-	<body>
-		<div class="container bootstrap snippet">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="ibox float-e-margins">
-						<div class="ibox-content">
-							<h2>
+<%-- <h2>
 								${parkingFails.size() } results found for: <span
 									class="text-navy"> ${keyword} </span>
 							</h2>
 
-							<!--  search form-->
-							<div class="search-form">
-								<form action="findParkingFailByKeyword.do" method="POST">
-									<div class="input-group">
-										<input name="keyword" type="text" placeholder="Search by Keyword"
-											name="search" class="form-control input-lg">
-										<div class="input-group-btn">
-											<button class="btn btn-lg btn-primary" type="submit"></button>
-										</div>
-									</div>
-								</form>
-							</div>
-								<!--  /search form--> 
-							
-							<c:forEach items="${parkingFails}" var="fail">
+							<%--  --%>
+<body>
+<jsp:include page="../navbar.jsp" />
+<br>
+<br>
+<br>
+	<div class="container bootstrap snippet">
+		<hr>
+		<ol class="breadcrumb">
+			<li><a href="#">Page name</a></li>
+			<li><a href="#">Search Results</a></li>
+			<li class="pull-right"><a href="" class="text-muted"><i
+					class="fa fa-refresh"></i></a></li>
+		</ol>
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div class="well search-result">
+					<div class="input-group">
 
-								<div class="hr-line-dashed"></div>
-								<div class="search-result">
-									<h3>
-										<a href="...">${fail.title }</a>
-									</h3>
-									
-									<!--  add links to working car page-->
-									<a href="..." class="search-link">link</a>
-									<p>${fail.description}</p>
-								</div>
+						<form action="findParkingFailByKeyword.do" method="POST">
+							<input name="keyword" type="text" class="form-control"
+								placeholder="Search by Keyword"> <span
+								class="input-group-btn">
+								<button class="btn btn-info btn-lg" type="button">
+									<i class="glyphicon glyphicon-search"></i> Search
+								</button>
+							</span>
+						</form>
 
-							</c:forEach>
-
-
-							<div class="text-center">
-                        <div class="btn-group">
-                            <button class="btn btn-white" type="button"><i class="glyphicon glyphicon-chevron-left"></i></button>
-                            <button class="btn btn-white">1</button>
-                            <button class="btn btn-white  active">2</button>
-                            <button class="btn btn-white">3</button>
-                            <button class="btn btn-white">4</button>
-                            <button class="btn btn-white">5</button>
-                            <button class="btn btn-white">6</button>
-                            <button class="btn btn-white">7</button>
-                            <button class="btn btn-white" type="button"><i class="glyphicon glyphicon-chevron-right"></i> </button>
-                        </div>
-                    </div> 
-						</div>
 					</div>
 				</div>
+
+
+				<c:forEach items="${parkingFails }" var="fail">
+					<div class="well search-result">
+						<div class="row">
+							<!-- <a href="#"> -->
+							<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+								<img class="img-responsive"
+									src="${fail.getListOfPictures().get(0).url}"
+									alt="image of fail">
+							</div>
+							<div class="col-xs-6 col-sm-9 col-md-9 col-lg-10 title">
+								<h3>${fail.title }</h3>
+								<p>${fail.description }</p>
+							</div>
+							<!-- </a> -->
+						</div>
+					</div>
+				</c:forEach>
+
+
+
+				<button type="button" class="btn btn-info  btn-block">
+					<i class="glyphicon glyphicon-refresh"></i>Load more...
+				</button>
 			</div>
 		</div>
-
-
-	</body></html>
+	</div>
+</body>
+</html>
