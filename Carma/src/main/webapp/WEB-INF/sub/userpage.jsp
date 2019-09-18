@@ -12,17 +12,11 @@
 	crossorigin="anonymous">
 <jsp:include page="../styletags.jsp" />
 <jsp:include page="../scripts.jsp" />
+<jsp:include page="../navbar.jsp"/>
 <title>${loggedInUser.username }'s profile</title>
 </head>
 <body>
-	<c:choose>
-		<c:when test="${not empty loggedInUser }">
-			<jsp:include page="../loggedinnav.jsp" />
-		</c:when>
-		<c:otherwise>
-			<jsp:include page="../navbar.jsp" />
-		</c:otherwise>
-	</c:choose>
+	
 	<br>
 	<br>
 	<br>
