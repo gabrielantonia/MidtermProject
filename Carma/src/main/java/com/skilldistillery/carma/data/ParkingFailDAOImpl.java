@@ -40,6 +40,17 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		return p;
 	}
 ////////////////////////////////////////////////////////////////////////////////
+	@Override
+	public List<ParkingFail> findParkingFailByKeyword(String keyword) {
+		String jpql = "SELECT p FROM ParkingFail p WHERE p.title LIKE :keyword ";
+		List<ParkingFail> p = em.createQuery(jpql, ParkingFail.class).setParameter("keyword", "%"+ keyword+ "%").getResultList();
+		
+		return p;
+	}
+	
+	
+	
+	
 ////GALLERY
 	@Override
 	public List<Picture> findAllPictures() {

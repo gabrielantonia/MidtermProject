@@ -36,5 +36,7 @@ public interface ParkingFailDAO {
 
 	public List<Picture> findPicturesByUserId(int id);
 
+	List<ParkingFail> findParkingFailByKeyword(String keyword);
+
 
 }
