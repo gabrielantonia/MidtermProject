@@ -1,8 +1,11 @@
 package com.skilldistillery.carma.controllers;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.apache.tomcat.jni.Time;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,23 +45,25 @@ public class ParkingFailController {
 	@RequestMapping(path = "create.do", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("parkingFail", new ParkingFailDTO());
+		mv.addObject("parkingFailDTO", new ParkingFailDTO());
 		mv.setViewName("sub/addParkingFail");
 		return mv;
 		// return "index"; // if using a ViewResolver.
 	}
 
 	@RequestMapping(path = "create.do", method = RequestMethod.POST)
-	public ModelAndView addParkingFail(@ModelAttribute("parkingFail") ParkingFailDTO pfd) {
-		ModelAndView mv = new ModelAndView("sub/show");
+	public ModelAndView addParkingFail(HttpSession session, @ModelAttribute("parkingFail") ParkingFailDTO pfd) {
+		ModelAndView mv = new ModelAndView("sub/userpage");
 		Car c = new Car(pfd.getLicensePlate(), pfd.getMake(), pfd.getModel(), pfd.getColor(), pfd.getDescription(),
 				pfd.getAlias());
-		User u = new User("finaltest", "test2", "test3");
+		User u = (User) session.getAttribute("loggedInUser");
 		Location l = new Location(pfd.getName(), pfd.getStreet(), pfd.getCity(), pfd.getState(), pfd.getZip());
-		ParkingFail pf = new ParkingFail(pfd.getTitle(), c, u, l, "8:30", pfd.getDescription());
+		ParkingFail pf = new ParkingFail(pfd.getTitle(), c, u, l, LocalTime.now().toString(), pfd.getDescription());
 		dao.createParkingFail(pf);
-		dao.addPicture(new Picture("google.com", pf));
+		dao.addPicture(new Picture(pfd.getUrl(), pf));
 		mv.addObject("parkingFail", pf);
+		mv.addObject("parkingFailDTO", new ParkingFailDTO());
+		mv.addObject("listOfPF", dao.findParkingFailByUserId(u.getId()));
 		return mv;
 		// return "index"; // if using a ViewResolver.
 	}

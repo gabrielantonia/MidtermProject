@@ -96,3 +96,36 @@ h1 {
   font-size: 16px;
   padding: 16px 32px;
 }
+
+.profilecontainer {
+	display: flex;
+}
+
+.profilecontainer > div {
+	flex: 1;
+}
+
+#profileimage {
+	height: 75%;
+	width: 75%;
+}
+
+#left {
+	padding-left: 15px;
+	
+}
+
+.userpics {
+	width: 30%;
+	height: 100%;
+}
+
+.modal-content {
+	z-index: 10001;
+    background-color: #3D4849;
+    font-size: 12px;
+}
+
+.modal-lg {
+	max-width: 80% !important;
+}
