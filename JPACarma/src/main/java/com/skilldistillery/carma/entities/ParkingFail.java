@@ -29,7 +29,7 @@ public class ParkingFail  {
 	@JoinColumn(name = "car_id")
 	private Car car;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "user_id")
 	private User user;
 
