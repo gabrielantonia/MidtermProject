@@ -26,11 +26,6 @@ public interface ParkingFailDAO {
 
 	public List<ParkingFail> findParkingFailByUserId(int id);
 
-	Map<Integer, String> findPicturesByUserId(int userId);
-
-	Map<Integer, String> findAllPictures();
-
-
 	ParkingFail findParkingFailOfDay();
 
 	User findUserOfDay();
@@ -39,5 +34,9 @@ public interface ParkingFailDAO {
 
 
 	List<ParkingFail> findCarByLicensePlate(String licensePlate);
+
+	List<Picture> findAllPictures();
+
+	public List<Picture> findPicturesByUserId(int id);
 
 }

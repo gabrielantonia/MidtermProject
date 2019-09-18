@@ -1,47 +1,98 @@
 input[type=text], input[type=password] {
-    display: block;
-    width: 90%; 
-    border: 1px solid #818181;
-    padding: 5px;
-    margin: auto;
+	display: block;
+	width: 90%;
+	border: 1px solid #818181;
+	padding: 5px;
+	margin: auto;
 }
 
-img{
+img {
 	margin: auto;
 	width: 80%;
 }
 
-#myNav{
-	position:fixed;
+#myNav {
+	position: fixed;
 	width: 100%;
 	z-index: 10000;
-	
 }
 
 #username, #password {
 	margin: auto;
 }
 
-
-body{
+body {
 	background-color: black;
-	color:white;
+	color: white;
 }
-h1{
+
+h1 {
 	text-align: center;
-	color:white;
+	color: white;
 }
+
 .jumbotron {
 	color: black;
 }
+
 .display-4 {
 	color: black;
 }
 
 .carousel-caption {
-	 text-shadow:
-        -1px -1px 0 #000,
-        1px -1px 0 #000,
-        -1px 1px 0 #000,
-        1px 1px 0 #000;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px
+		0 #000;
+}
+
+.container {
+	line-height: 0;
+	-webkit-column-count: 4;
+	-webkit-column-gap: 0px;
+	-moz-column-count: 4;
+	-moz-column-gap: 0px;
+	column-count: 4;
+	column-gap: 3px;
+}
+
+#galleryImage {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	opacity: 1;
+	display: block;
+	transition: .5s ease;
+	backface-visibility: hidden;
+}
+
+.grid {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	align-items: stretch;
+}
+
+.middle {
+  transition: .5s ease;
+  max-width: 100px;
+  opacity: 0;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-75%, -200%);
+  -ms-transform: translate(-75%, -200%);
+  text-align: center;
+}
+.cell:hover .image {
+  opacity: 0.3;
+}
+
+.cell:hover .middle {
+  opacity: 1;
+}
+
+.viewText {
+  background-color: #7c7f7c;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
 }

@@ -8,6 +8,8 @@
 
 <meta charset="UTF-8">
 <jsp:include page="../styletags.jsp" />
+<jsp:include page="../scripts.jsp" />
+
 <title>Gallery</title>
 </head>
 <c:choose>
@@ -22,18 +24,20 @@
 
 <body>
 	<h1>Gallery</h1>
-	<div id=“page-content-wrapper”>
-		<div class=“col-lg-4”>
-<%-- 			<c:forEach var="picture" items="${pictures}">
-				<img src="${picture.url}" alt="Picture Gallery">
-			</c:forEach>
- --%>			<c:forEach var="entry" items="${pictures}">
-  				Key: <c:out value="${entry.key}" />
- 				Value: <c:out value="${entry.value}" />
+	<div class="container">
+		<div class=“grid”>
+			<c:forEach var="picture" items="${pictures}">
+					<div class="cell">
+						<img class="image" id="galleryImg" src="${picture.url}" />
+						<div class="middle">
+						<a href="/"> 
+							<div class="viewText">View</div>
+						</a>
+					</div>
+					</div>
 			</c:forEach>
 		</div>
 	</div>
-	<div class="container-fluid"></div>
 </body>
 <footer> Footer Placeholder </footer>
 

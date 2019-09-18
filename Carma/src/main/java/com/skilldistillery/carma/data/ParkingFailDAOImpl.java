@@ -45,12 +45,12 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 	}
 ////////////////////////////////////////////////////////////////////////////////
 ////GALLERY
-//	@Override
-//	public Map<Integer, String> findAllPictures() {
-//		String jpql = "SELECT picture FROM Picture picture";
-//		List<Picture> listOfPictures = em.createQuery(jpql, Picture.class).getResultList();
-//		return getImageIdsFromList(listOfPictures);
-//	}
+	@Override
+	public List<Picture> findAllPictures() {
+		String jpql = "SELECT picture FROM Picture picture";
+		List<Picture> listOfPictures = em.createQuery(jpql, Picture.class).getResultList();
+		return listOfPictures;
+	}
 
 ////////////////////////////////////////////////////////////////////////////////
 	@Override
@@ -150,21 +150,16 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 	}
 
 	@Override
-	public Map<Integer, String> findPicturesByUserId(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Picture> findPicturesByUserId(int id) {
+		String jpql = "select p from Picture p where p.parkingFail.user.id = :id";
+		return em.createQuery(jpql, Picture.class).setParameter("id", id).getResultList();
+
 	}
 
-	@Override
-	public Map<Integer, String> findAllPictures() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 //	@Override
 //	public Map<Integer, String> findPicturesByUserId(int userId) {
 //		List<ParkingFail> lpf = findParkingFailByUserId(userId);
-//		String jpql = "select p from Picture p where p.parkingFail.user.id = :id";
 //		List<List<Picture>> lp = new ArrayList<>();
 //		for (ParkingFail pf : lpf) {
 //			lp.add(em.createQuery(jpql, Picture.class).setParameter("id", pf.getId()).getResultList());

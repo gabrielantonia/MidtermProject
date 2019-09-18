@@ -132,20 +132,14 @@ public class ParkingFailController {
 
 ////////////////////////////////////////////////////////////////////////////
 ////GALLERY
-//	@RequestMapping(path = "gallery.do", method = RequestMethod.GET)
-//	public ModelAndView findAllPictures() {
-//		ModelAndView mv = new ModelAndView();
-//		mv.addObject("user", new User());
-//		List<List<Picture>> gallery = new ArrayList<>();
-//		List<ParkingFail> parkingFailList = dao.findParkingAllTime();
-//		for (ParkingFail parkingFail : parkingFailList) {
-//				gallery.add(parkingFail.getListOfPictures());
-//		}
-//		Map<Integer, String> pictureMap = dao.getImageIds(gallery);
-//		mv.addObject(pictureMap);
-//		mv.setViewName("sub/gallery");
-//		return mv;
-//	}
+	@RequestMapping(path = "gallery.do", method = RequestMethod.GET)
+	public ModelAndView findAllPictures() {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("user", new User());
+		mv.addObject("pictures", dao.findAllPictures());
+		mv.setViewName("sub/gallery");
+		return mv;
+	}
 ///////////////////////////////////////////////////////////////////////////
 //SEARCH BY LICENSE PLATE
 	@RequestMapping(path = "findCarByLicensePlate.do", method = RequestMethod.POST)
