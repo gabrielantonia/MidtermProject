@@ -8,16 +8,62 @@ input[type=text], input[type=password] {
 
 img {
 	margin: auto;
-	width: 80%;
+	/* width: 80%; */
 }
-
+/* --------------navBar---------------- */
 #myNav {
 	position: fixed;
 	width: 100%;
 	z-index: 10000;
 }
+input[type=search] {
+  width: 130px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
 
+/* When the input field gets focus, change its width to 100% */
+input[type=search]:focus {
+  width: 100%;
+}
+/* --------------/navBar---------------- */
+/* -------------Search Results-------------- */
 
+.search-result .title h3 {
+    margin: 0 0 15px;
+    color: #333;
+}
+.search-result .title p {
+    font-size: 12px;
+    color: #333;
+}
+.well {
+    border: 0;
+    padding: 20px;
+    min-height: 63px;
+    background: #fff;
+    box-shadow: none;
+    border-radius: 3px;
+    position: relative;
+    max-height: 100000px;
+    border-bottom: 2px solid #ccc;
+    transition: max-height 0.5s ease;
+    -o-transition: max-height 0.5s ease;
+    -ms-transition: max-height 0.5s ease;
+    -moz-transition: max-height 0.5s ease;
+    -webkit-transition: max-height 0.5s ease;
+}
+.form-control {
+    height: 45px;
+    padding: 10px;
+    font-size: 16px;
+    box-shadow: none;
+    border-radius: 0;
+    position: relative;
+}                    
+                    
+          
+/* -------------Search Results-------------- */
 #username, #password {
 	margin: auto;
 }
@@ -31,7 +77,7 @@ h1 {
 	text-align: center;
 	color: white;
 }
-
+/* Jumbotron */
 .jumbotron {
 	color: black;
 }
@@ -39,7 +85,8 @@ h1 {
 .display-4 {
 	color: black;
 }
-
+/* /Jumbotron */
+/*  Carousel */
 .carousel-caption {
 	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px
 		0 #000;
@@ -64,7 +111,8 @@ h1 {
 	transition: .5s ease;
 	backface-visibility: hidden;
 }
-
+/*  /Carousel */
+/* Wall of Shame */
 .grid {
 	display: flex;
 	flex-wrap: wrap;
@@ -97,6 +145,7 @@ h1 {
   font-size: 16px;
   padding: 16px 32px;
 }
+/* /Wall of Shame */
 
 .profilecontainer {
 	display: flex;

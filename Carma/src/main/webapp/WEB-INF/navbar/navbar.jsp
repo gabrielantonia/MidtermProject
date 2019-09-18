@@ -18,12 +18,12 @@
 			<li class="nav-item active"><a class="nav-link"
 				href="gallery.do"> Gallery <span class="sr-only">(current)</span>
 			</a></li>
-			
-			<li class="nav-item"><a class="nav-link"
-				href="wallOfShame.do"> Wall Of Shame <span class="sr-only">(current)</span>
+
+			<li class="nav-item"><a class="nav-link" href="wallOfShame.do">
+					Wall Of Shame <span class="sr-only">(current)</span>
 			</a></li>
-			
-			
+
+
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -59,12 +59,12 @@
 				</div></li>
 
 		</ul>
-		<form action="findCarByLicensePlate.do"
-			class="form-inline my-2 my-lg-0" method="post">
-			<input name="licensePlate" class="form-control mr-sm-2" type="search"
-				placeholder="Search" aria-label="Search"> <input
-				class="btn btn-outline-success my-2 my-sm-0" type="submit"
-				value="Search" />
+		<form action="findParkingFailByKeyword.do"
+			class="form-inline my-2 my-lg-0" method="POST">
+			<input name="keyword" class="form-control mr-sm-2" type="search"
+				placeholder="Search by Keyword" aria-label="Search" />
+			<input class="btn btn-outline-success my-2 my-sm-0"
+				type="submit" value="Search" />
 		</form>
 	</div>
 </nav>
