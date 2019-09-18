@@ -10,15 +10,8 @@
 <jsp:include page="../scripts.jsp" />
 </head>
 <!-- ---------------------------------------------------------------------------------------------------- -->
-<c:choose>
-	<c:when test="${not empty loggedInUser }">
-		<jsp:include page="../loggedinnav.jsp" />
-	</c:when>
-	<c:otherwise>
-		<jsp:include page="../navbar.jsp" />
-	</c:otherwise>
-</c:choose>
-
+<jsp:include page="../navbar.jsp" />
+<br><br><br> <!--room for navbar  -->
 <body class="d-flex flex-column h-100">
 	<!--  JumboTron-->
 	<div class="jumbotron">
