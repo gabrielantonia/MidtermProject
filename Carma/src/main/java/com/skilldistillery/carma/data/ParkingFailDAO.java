@@ -44,5 +44,8 @@ public interface ParkingFailDAO {
 	
 	List<Carma> findCarmaListById(int id);
 
+	void addCommentToCarma(Carma carma);
+
+
 
 }

@@ -173,19 +173,13 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		return em.createQuery(jpql, Picture.class).setParameter("id", id).getResultList();
 
 	}
+	
+	@Override
+	public void addCommentToCarma(Carma carma)
+	{	
+		em.persist(carma);
+		em.flush();
+	}
+		
+	}
 
-
-
-//	@Override
-//	public Map<Integer, String> findPicturesByUserId(int userId) {
-//		List<ParkingFail> lpf = findParkingFailByUserId(userId);
-//		List<List<Picture>> lp = new ArrayList<>();
-//		for (ParkingFail pf : lpf) {
-//			lp.add(em.createQuery(jpql, Picture.class).setParameter("id", pf.getId()).getResultList());
-//		}
-//		
-//		return getImageIds(lp);
-//	}
-
-
-}

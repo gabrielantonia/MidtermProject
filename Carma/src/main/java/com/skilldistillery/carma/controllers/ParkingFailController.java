@@ -1,5 +1,6 @@
 package com.skilldistillery.carma.controllers;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.carma.data.ParkingFailDAOImpl;
 import com.skilldistillery.carma.entities.Car;
+import com.skilldistillery.carma.entities.Carma;
 import com.skilldistillery.carma.entities.Location;
 import com.skilldistillery.carma.entities.ParkingFail;
 import com.skilldistillery.carma.entities.ParkingFailDTO;
@@ -164,12 +166,34 @@ public class ParkingFailController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("pf", dao.findParkingFailById(id));
 		mv.addObject("carma", dao.findCarmaById(id));
-	//	mv.addObject("picList", dao.findPicturesByUserId(id));
+		
+		//hack to get single picture
+	//	List<Picture> tempList = dao.findPicturesByUserId(id);
+	//	String tempPic = tempList.get(id).getUrl();
+	//	mv.addObject("picture", tempPic);
 		mv.addObject("user", new User());
 		mv.setViewName("sub/showparkingfail");
 		return mv;
 	}
 
+	@RequestMapping(path = "addComment.do", method = RequestMethod.POST)
+	public ModelAndView addComment(HttpSession session, @RequestParam("comment") int id) {
+		ModelAndView mv = new ModelAndView();
+	       Carma carma = new Carma();
+	       
+	      // Date date=java.util.Calendar.getInstance().getTime();
+	       LocalDateTime time = LocalDateTime.now();
+	       
+	       carma.setDateVoted(time);
+	       carma.setId(id);
+	       carma.setText(comment);
+	     //  carma.setVote(vote);
+	       addCommentToCarma(carma);
+
+		mv.addObject("pf", dao.findParkingFailById(id));
+		mv.addObject("carma", dao.findCarmaById(id));
+	
+	}
 
 	
 	

@@ -1,20 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <jsp:include page="../styletags.jsp" />
-<!-- link rel="stylesheet" href="../css/parkingfail.css">  -->
- <link rel="stylesheet" href="../css/styles.css">
+<!--  <link rel="stylesheet" href="../css/styles.css"> -->
+<link rel="stylesheet" href="../css/parkingfail.css">
 <title>${pf.title}</title>
 </head>
 
 <jsp:include page="../navbar.jsp" />
-<br><br><br> <!--room for navbar  -->
+<br>
+<br>
+<br>
+<!--room for navbar  -->
 
-<body id=“babout”>
+<body id=“CARMA”>
 	<div id=“header”>
+		<br>
 		<h1>[C A R M A ] | Parking Fail</h1>
 		<div id=“wrapper”>
 			<div id=“content-wrapper”>
@@ -26,16 +31,20 @@
 							<strong> ${pf.title} </strong>
 						</dd>
 						<dd>
-							PICT URE HEREE!!!! PICLIST
-							<img src=“${picList}” class=“CommentPhotoSize”
-								alt=“CommentPhotoSize”></img>
+							<!--  	<c:forEach var="picture" items="${pf.listOfPictures}">
+							
+								<img src=“${picture.url}” 
+								alt=“CommentListOfPictures”></img>
+								</c:forEach>
+								-->
+							<img src="https://i.imgur.com/BQVugRJ.gif" height=400 width=400
+								class="CommentPhotoSize">
 						</dd>
 						<dt>DESCRIPTION</dt>
 						<dd class=“last”>
 							<em>${pf.description}</em>
 						</dd>
 					</dl>
-					<hr>
 				</div>
 			</div>
 			<!---First Side BAR --->
@@ -43,11 +52,9 @@
 				<div id=“sidebar”>
 					<h3>Ranking</h3>
 					<ul>
-						<form action=“/updateCarma”>
-							<input type=button>&#128514<br> <input type=button>&#128545
-							<br> <br> Enter a Comment <br> <input type=“text”
-								name=“comment” value=“...“><br> <input
-								type=“submit” value=“Submit”>
+						<form action=“addRanking.do”>
+							<input type=button>	&#128077<br> <input type=button>&#128078
+							<br><br> 
 						</form>
 					</ul>
 					<h3>Comments</h3>
@@ -56,18 +63,20 @@
 						<li>DATE: <strong>${carma.dateVoted }</strong>
 						</li>
 						<ul>
-							Username:${carma.user.username}
+							Username: ${carma.user.username}
 							<br>${carma.text}
 						</ul>
-						<li>UserName 2:</li>
-						<button type=“button”>Add A Comment</button>
-						<button type=“button”>Update A Comment</button>
+						</form>
+						<br>
+						<textarea rows="4" cols="50" name="comment" form="usrform">Vent Your Frustration...</textarea>
+						<form action="addComment.do" id="comment">
+							<input type="submit">
+
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
-	<hr>
 	<a href="/"></a>
 </body>
 </html>
