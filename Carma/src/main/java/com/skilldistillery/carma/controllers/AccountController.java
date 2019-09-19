@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.skilldistillery.carma.data.ParkingFailDAO;
 import com.skilldistillery.carma.data.UserDAO;
+import com.skilldistillery.carma.entities.ParkingFailDTO;
 import com.skilldistillery.carma.entities.User;
 
 @Controller
@@ -38,24 +39,23 @@ public class AccountController {
 		return "sub/userpage";
 	}
 	
-//	@RequestMapping(path="login.do", method=RequestMethod.POST)
-//	public String doLogin(@ModelAttribute("user") User user, Model model, Errors errors, HttpSession session) {
-//		System.out.println("TESTTESTTEST");
-//		User u = dao.validateUser(user);
-//		if (errors.hasErrors()) {
-//			return "index";
-//		}
-//		if (u != null) {
-//			session.setAttribute("loggedInUser", u);
-//			model.addAttribute("listOfPF", parkingdao.findParkingFailByUserId(u.getId()));
-//			model.addAttribute("listOfPictures", parkingdao.findPicturesByUserId(u.getId()));
-//
-//			return "sub/userpage";
-//		}
-//		else {
-//			return "index";
-//		}
-//	}
+	@RequestMapping(path="login.do", method=RequestMethod.POST)
+	public String doLogin(@ModelAttribute("user") User user, Model model, Errors errors, HttpSession session) {
+		User u = dao.validateUser(user);
+		if (errors.hasErrors()) {
+			return "index";
+		}
+		if (u != null) {
+			session.setAttribute("loggedInUser", u);
+			model.addAttribute("listOfPF", parkingdao.findParkingFailByUserId(u.getId()));
+			model.addAttribute("listOfPictures", parkingdao.findPicturesByUserId(u.getId()));
+			model.addAttribute("parkingFailDTO", new ParkingFailDTO());
+			return "sub/userpage";
+		}
+		else {
+			return "index";
+		}
+	}
 	
 	@RequestMapping(path="logout.do")
 	public String doLogout(Model model, HttpSession session) {
