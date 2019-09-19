@@ -109,6 +109,6 @@
 
 <!--container end.//-->
 </body> 
-
+<jsp:include page="../footer.jsp"/>
 
 </html>
