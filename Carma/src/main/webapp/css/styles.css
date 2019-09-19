@@ -351,4 +351,56 @@ text-shadow: 3px 5px 2px #474747;
     border-radius: 0;
     position: relative;
 }             
-           
+
+/* ---------Userpage------------------------- */
+.profilecontainer {
+	display: flex;
+}
+
+.profilecontainer > div {
+	flex: 1;
+}
+
+#profileimage {
+	width: 50%;
+	display: block;
+	margin: auto;
+}
+
+#userinfo {
+	padding-top: 50px;
+	padding-left: 100px;
+	margin: auto;
+}
+
+#left {
+	padding-left: 15px;
+	
+}
+
+.card {
+	width: 50%;
+}
+
+.card-body {
+	background-color: gray;
+}
+
+.modal-content {
+	background-color: gray;
+}
+
+
+a { color: inherit; } 
+
+#addpf {
+	float: right;
+	margin-top: 50px;
+	margin-right: 50px;
+}
+
+#deletebutton, #viewbutton {
+	float: left;
+	padding-right: 10px
+}
+
