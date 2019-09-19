@@ -1,4 +1,3 @@
-
 input[type=text], input[type=password] {
 	display: block;
 	width: 90%;
@@ -254,6 +253,8 @@ text-shadow: 3px 5px 2px #474747;
 /* ---------Userpage------------------------- */
 .profilecontainer {
 	display: flex;
+	border-radius: 15px;
+	background-color:#212121;
 }
 
 .profilecontainer > div {
@@ -271,6 +272,7 @@ text-shadow: 3px 5px 2px #474747;
 	padding-left: 100px;
 	margin: auto;
 }
+
 
 #left {
 	padding-left: 15px;
@@ -302,6 +304,7 @@ a { color: inherit; }
 #deletebutton, #viewbutton, #updatebutton {
 	float: left;
 	padding-right: 10px
+
 }
 /* login dropdown*/
 #formLogin{
@@ -322,4 +325,5 @@ a { color: inherit; }
 }
 
 /* end-login */
+
 
