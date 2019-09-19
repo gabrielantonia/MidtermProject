@@ -10,6 +10,7 @@ html
 a:link { text-decoration: none; color: #7799bb; }
 a:visited { text-decoration: none; color: #557799; }
 a:hover, a:active { color: #dd5555; }
+
 /* Html Elements */
 h1, h2, h3, h4, h5, h6 { font-weight: normal; margin: 0; padding: 10px 0; color: #779955; }
 h1 { font-size: 32px; }
@@ -50,6 +51,7 @@ del { text-decoration: line-through; }
 blockquote { text-align: right; }
 blockquote p { text-align: left; }
 blockquote cite { font-style: normal; padding-right: 10px; }
+
 /* Structure */
 body
 {

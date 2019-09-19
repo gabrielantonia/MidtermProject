@@ -3,7 +3,6 @@ package com.skilldistillery.carma.data;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,6 +10,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.carma.entities.Carma;
 import com.skilldistillery.carma.entities.ParkingFail;
 import com.skilldistillery.carma.entities.ParkingFailComparator;
 import com.skilldistillery.carma.entities.Picture;
@@ -70,6 +70,10 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 	@Override
 	public ParkingFail findParkingFailById(int pfId) {
 		return em.find(ParkingFail.class, pfId);
+	}
+	@Override
+	public Carma findCarmaById(int pfId) {
+		return em.find(Carma.class, pfId);
 	}
 
 	@Override
@@ -154,6 +158,12 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 	public List<ParkingFail> findParkingFailByUserId(int id) {
 		String jpql = "Select p from ParkingFail p where p.user.id=:id";
 		return em.createQuery(jpql, ParkingFail.class).setParameter("id", id).getResultList();
+	}
+	
+	@Override
+	public List<Carma> findCarmaListById(int id) {
+		String jpql = "Select c from Carma c where p.user.id=:id";
+		return em.createQuery(jpql, Carma.class).setParameter("id", id).getResultList();
 	}
 
 

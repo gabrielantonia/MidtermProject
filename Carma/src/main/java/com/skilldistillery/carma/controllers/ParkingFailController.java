@@ -162,6 +162,8 @@ public class ParkingFailController {
 	public ModelAndView findParkingFailByKeyword(@RequestParam("val") int id) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("pf", dao.findParkingFailById(id));
+		mv.addObject("carma", dao.findCarmaById(id));
+	//	mv.addObject("picList", dao.findAllPictures());
 		mv.setViewName("sub/showparkingfail");
 		return mv;
 	}
