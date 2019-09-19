@@ -157,15 +157,21 @@ public class ParkingFailController {
 		mv.setViewName("sub/show");
 		return mv;
 	}
+	
 ///////////////////////////////////////////////////////////////////////////
 	@RequestMapping(path = "findParkingFail.do", method = RequestMethod.GET)
-	public ModelAndView findParkingFailByKeyword(@RequestParam("val") int id) {
+	public ModelAndView findParkingFailByKeyword(HttpSession session, @RequestParam("val") int id) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("pf", dao.findParkingFailById(id));
 		mv.addObject("carma", dao.findCarmaById(id));
-	//	mv.addObject("picList", dao.findAllPictures());
+	//	mv.addObject("picList", dao.findPicturesByUserId(id));
+		mv.addObject("user", new User());
 		mv.setViewName("sub/showparkingfail");
 		return mv;
 	}
 
+
+	
+	
+	
 }
