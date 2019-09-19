@@ -9,69 +9,72 @@
 <jsp:include page="../scripts.jsp" />
 <title>Search Results</title>
 </head>
-<%-- <h2>
-								${parkingFails.size() } results found for: <span
-									class="text-navy"> ${keyword} </span>
-							</h2>
-
-							<%--  --%>
 <body>
-<jsp:include page="../navbar.jsp" />
-<br>
-<br>
-<br>
-	<div class="container bootstrap snippet">
+	<jsp:include page="../navbar.jsp" />
+	<br>
+	<br>
+	<br>
+
+	<h1>Search Results</h1>
+
+	<form action="findParkingFailByKeyword.do" method="POST">
+		<div class="row container-fluid">
+			<div class="col-12">
+				<input type="search" name="keyword" class="form-control"
+					placeholder="Search for Something Else...">
+			</div>
+		</div>
+		<div class="row container-fluid">
+			<div class="col-12">
+				<button type="submit" class="btn btn-secondary btn-lg btn-block">Search</button>
+			</div>
+		</div>
+	</form>
+	<br>
+
+	<h2 style="text-align: center" >
+		${parkingFails.size() } results found for <span style="color: gray;" >
+			${keyword} </span>
+	</h2><br>
+
+	<div class="container-fluid">
+		<c:forEach items="${parkingFails }" var="fail">
+
+			<div class="row well search-result">
+				<!-- <a href="#"> -->
+				<div class="col-4">
+					<img class="img-responsive"
+						src="${fail.getListOfPictures().get(0).url}" alt="image of fail">
+				</div>
+				<div class="col-8">
+
+					<div class="row title">
+						<h3>${fail.title }</h3>
+					</div>
+					<div class="row">
+						<p style="color: black">${fail.description }</p>
+					</div>
+
+				</div>
+				<!-- </a> -->
+			</div>
+			<br>
+		</c:forEach>
+	</div>
+
+
+	<!-- Content here -->
+	<%-- 	<div class="container bootstrap snippet">
 		<hr>
 		<ol class="breadcrumb">
 			<li><a href="#">Page name</a></li>
 			<li><a href="#">Search Results</a></li>
 			<li class="pull-right"><a href="" class="text-muted"><i
 					class="fa fa-refresh"></i></a></li>
-		</ol>
-		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<div class="well search-result">
-					<div class="input-group">
-
-						<form action="findParkingFailByKeyword.do" method="POST">
-							<input name="keyword" type="text" class="form-control"
-								placeholder="Search by Keyword"> <span
-								class="input-group-btn">
-								<button class="btn btn-info btn-lg" type="button">
-									<i class="glyphicon glyphicon-search"></i> Search
-								</button>
-							</span>
-						</form>
-
-					</div>
-				</div>
-
-
-				<c:forEach items="${parkingFails }" var="fail">
-					<div class="well search-result">
-						<div class="row">
-							<!-- <a href="#"> -->
-							<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
-								<img class="img-responsive"
-									src="${fail.getListOfPictures().get(0).url}"
-									alt="image of fail">
-							</div>
-							<div class="col-xs-6 col-sm-9 col-md-9 col-lg-10 title">
-								<h3>${fail.title }</h3>
-								<p>${fail.description }</p>
-							</div>
-							<!-- </a> -->
-						</div>
-					</div>
-				</c:forEach>
+		</ol><%--  --%>
 
 
 
-				<button type="button" class="btn btn-info  btn-block">
-					<i class="glyphicon glyphicon-refresh"></i>Load more...
-				</button>
-			</div>
-		</div>
-	</div>
 </body>
+<jsp:include page="../footer.jsp"/>
 </html>

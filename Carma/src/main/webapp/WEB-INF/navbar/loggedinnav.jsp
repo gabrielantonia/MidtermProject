@@ -15,13 +15,13 @@
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active"><a class="nav-link" href="gallery.do">Gallery
+			<li class="nav-item "><a class="nav-link" href="gallery.do">Gallery
 					<span class="sr-only">(current)</span>
 			</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="wallOfShame.do"> Wall Of Shame <span class="sr-only">(current)</span>
 			</a></li>
-			<li class="nav-item active"><a class="nav-link" href="login.do">${loggedInUser.username }
+			<li class="nav-item active"><a class="nav-link"  href="userpage.do">${loggedInUser.username }
 					<span class="sr-only">(current)</span>
 			</a></li>
 			<li class="nav-item active"><a class="nav-link" href="logout.do">Logout

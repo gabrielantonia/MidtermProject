@@ -98,6 +98,8 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 
 	@Override
 	public boolean deleteParkingFail(ParkingFail parkingFail) {
+		String jpql = "Delete from Picture p where p.parkingFail.id = :id";
+		int deleted = em.createQuery(jpql).setParameter("id", parkingFail.getId()).executeUpdate();
 		if (em.contains(parkingFail)) {
 			em.remove(em.find(ParkingFail.class, parkingFail.getId()));
 			return true;
