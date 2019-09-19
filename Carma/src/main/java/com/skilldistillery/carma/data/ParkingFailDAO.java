@@ -3,6 +3,7 @@ package com.skilldistillery.carma.data;
 import java.util.ArrayList;
 import java.util.List;
 import com.skilldistillery.carma.entities.ParkingFail;
+import com.skilldistillery.carma.entities.ParkingFailDTO;
 import com.skilldistillery.carma.entities.Picture;
 import com.skilldistillery.carma.entities.User;
 
@@ -17,7 +18,7 @@ public interface ParkingFailDAO {
 
 	boolean deleteParkingFail(ParkingFail parkingFail);
 
-	void updateParkingFail(ParkingFail parkingFail);
+	void updateParkingFail(ParkingFailDTO parkingFail, int id, String url);
 
 	boolean addUser(User user);
 

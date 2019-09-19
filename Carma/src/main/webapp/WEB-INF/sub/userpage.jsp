@@ -69,7 +69,7 @@
 													</button>
 												</div>
 												<div class="modal-body">
-													<form:form action="update.do" method="POST"
+													<form:form action="updateParkingFail.do?val=${pf.id }" method="POST"
 														modelAttribute="parkingFailDTO">
 														<div class="row">
 															<div class="col-md-6">
