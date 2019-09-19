@@ -283,6 +283,7 @@ text-shadow: 3px 5px 2px #474747;
 
 .card-body {
 	background-color: gray;
+	border-radius: .5em;
 }
 
 .modal-content {
@@ -302,4 +303,23 @@ a { color: inherit; }
 	float: left;
 	padding-right: 10px
 }
+/* login dropdown*/
+#formLogin{
+	padding: 15px; min-width:300px;
+	text-align:  center;
+	align-items: center;
+	color: white;
+	background-color: gray !important;
+	}
+#sign-in:hover {
+ background-color: #3882c7;
+}
+#sign-in{
+	color: white;
+	background-color: #54a2eb;
+	padding: .5em;
+	border-radius: .5em;
+}
+
+/* end-login */
 
