@@ -399,7 +399,7 @@ a { color: inherit; }
 	margin-right: 50px;
 }
 
-#deletebutton, #viewbutton {
+#deletebutton, #viewbutton, #updatebutton {
 	float: left;
 	padding-right: 10px
 }
