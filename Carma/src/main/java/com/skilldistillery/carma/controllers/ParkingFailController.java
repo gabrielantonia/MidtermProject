@@ -142,13 +142,11 @@ public class ParkingFailController {
 	}
 	
 	@RequestMapping(path = "findParkingFailByKeyword.do", method = RequestMethod.POST)
-	public ModelAndView findParkingFailByKeyword(@RequestParam("keyword") String keyword) {
+	public ModelAndView findParkingFailByKeyword(@RequestParam("keyword") String keyword, User user) {
 		ModelAndView mv = new ModelAndView();
-		System.out.println("********"+ keyword+ "*************");
 		List<ParkingFail> pfList = dao.findParkingFailByKeyword(keyword);
 		mv.addObject("parkingFails", pfList);
 		mv.addObject("keyword", keyword);
-		System.out.println(pfList);
 		mv.setViewName("sub/show");
 		return mv;
 	}
