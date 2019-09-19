@@ -1,6 +1,6 @@
 		<br>
-		<footer class="pt-5 pb-4" id="contact">
-			<div class="container-fluid" style="background-color:#222">
+		<footer class="pt-5 pb-4 bg-dark" id="contact">
+			<div class="container-fluid bg-dark" ><!-- style="background-color:#222 --> 
 				<div class="row">
 					<div class="col-lg-3 col-md-6 col-sm-6 mt-2 mb-4">
 						<h5 class="mb-4 font-weight-bold">ABOUT US</h5>

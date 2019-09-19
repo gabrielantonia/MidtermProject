@@ -13,10 +13,12 @@
 <br>
 <br>
 <br>
-<body class="d-flex flex-column h-100">
+<br>
+<body class="d-flex flex-column h-100" style="align-items: center; ">
 
-<div class="card bg-light">
-	<article class="card-body mx-auto" style="max-width: 400px;">
+<div class="card bg-dark" style="align:center; ">
+<br>
+	<article class="card-body mx-auto" style="max-width: 500px;">
 		<h4 class="card-title mt-3 text-center">Create Account</h4>
 		<p class="text-center">Get started with your free account</p>
 		<p>
@@ -47,35 +49,6 @@
 				<form:input path="email" class="form-control" placeholder="Email Address"
 					type="email" required="required"></form:input>
 			</div>
-			<!-- form-group// -->
-			<!-- <div class="form-group input-group">
-				<div class="input-group-prepend">
-					<span class="input-group-text"> <i class="fa fa-phone"></i>
-					</span>
-				</div>
-				<select class="custom-select" style="max-width: 120px;">
-					<option selected="">+971</option>
-					<option value="1">+972</option>
-					<option value="2">+198</option>
-					<option value="3">+701</option>
-				</select> <input name="" class="form-control" placeholder="Phone number"
-					type="text">
-			</div> -->
-			<!-- form-group// -->
-			<!-- <div class="form-group input-group">
-				<div class="input-group-prepend">
-					<span class="input-group-text"> <i class="fa fa-building"></i>
-					</span>
-				</div>
-				<select class="form-control">
-					<option selected="">Select job type</option>
-					<option>Designer</option>
-					<option>Manager</option>
-					<option>Accaunting</option>
-				</select>
-			</div> -->
-			<!-- form-group end.// -->
-			
 			
 			<div class="form-group input-group">
 				<div class="input-group-prepend">
@@ -104,6 +77,7 @@
 			</p>
 		</form:form>
 	</article>
+	<br>
 </div>
 <!-- card.// -->
 
