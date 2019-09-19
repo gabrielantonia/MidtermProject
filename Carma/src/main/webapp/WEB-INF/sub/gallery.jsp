@@ -32,6 +32,6 @@
 		</div>
 	</div>
 </body>
-<footer> Footer Placeholder </footer>
+<jsp:include page="../footer.jsp"/>
 
 </html>
