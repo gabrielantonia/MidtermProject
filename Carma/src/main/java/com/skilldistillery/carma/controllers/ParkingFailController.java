@@ -64,6 +64,7 @@ public class ParkingFailController {
 		mv.addObject("parkingFail", pf);
 		mv.addObject("parkingFailDTO", new ParkingFailDTO());
 		mv.addObject("listOfPF", dao.findParkingFailByUserId(u.getId()));
+		mv.addObject("listOfPictures", dao.findPicturesByUserId(u.getId()));
 		return mv;
 		// return "index"; // if using a ViewResolver.
 	}
@@ -76,12 +77,6 @@ public class ParkingFailController {
 		// return "show"; // if using a ViewResolver.
 	}
 
-	@RequestMapping(path = "createParkingFail.do", method = RequestMethod.POST)
-	public String createPokemon(ParkingFail parkingFail, Model model) {
-		model.addAttribute("parkingFail", dao.findAll());
-		dao.createParkingFail(parkingFail);
-		return "index";
-	}
 
 	@RequestMapping(path = "update.do")
 	public ModelAndView update(ParkingFail parkingFail) {
@@ -100,12 +95,12 @@ public class ParkingFailController {
 		return "index";
 	}
 
-	@RequestMapping(path = "deleteParkingFail.do", method = RequestMethod.POST)
-	public ModelAndView deleteParkingFail(@ModelAttribute("parkingFail") ParkingFail parkingFail) {
+	@RequestMapping(path = "deleteParkingFail.do", method = RequestMethod.GET)
+	public ModelAndView deleteParkingFail(@RequestParam("val") int id) {
 		ModelAndView mv = new ModelAndView();
-		boolean deleteParkingFail = dao.deleteParkingFail(parkingFail);
+		boolean deleteParkingFail = dao.deleteParkingFail(dao.findParkingFailById(id));
 		if (deleteParkingFail) {
-			mv.setViewName("sub/delete");
+			mv.setViewName("redirect:/userpage.do");
 		} else {
 			mv.setViewName("sub/errorDeletion");
 		}
