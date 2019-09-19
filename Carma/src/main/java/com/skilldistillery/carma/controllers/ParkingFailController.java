@@ -169,7 +169,7 @@ public class ParkingFailController {
 		return mv;
 	}
 
-	@RequestMapping(path = "addComment.do", method = RequestMethod.POST)
+/*	@RequestMapping(path = "addComment.do", method = RequestMethod.POST)
 	public ModelAndView addComment(HttpSession session, @RequestParam("comment") int id) {
 		ModelAndView mv = new ModelAndView();
 	       Carma carma = new Carma();
@@ -186,7 +186,7 @@ public class ParkingFailController {
 		mv.addObject("pf", dao.findParkingFailById(id));
 		mv.addObject("carma", dao.findCarmaById(id));
 	
-	}
+	}*/
 
 	
 	
