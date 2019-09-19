@@ -16,14 +16,14 @@
 	<!--  JumboTron-->
 	<div class="jumbotron">
 		<h1 class="display-4">Welcome to Carma! Go forth and shame!</h1>
-		<p class="lead">Carma is a new social media web application
+		
+		<hr class="my-4">
+		 <p class="lead">Carma is a new social media web application
 			designed to create an outlet of public punishment for all the
 			terrible parkers out there screwing up your daily parking experience.</p>
-		<hr class="my-4">
-		<!-- <p></p> -->
-		<a class="btn btn-primary btn-lg" href="#" role="button">Make your
-			first post!</a>
-	</div>
+		<!-- a class="btn btn-primary btn-lg" href="#" role="button">Make your
+			first post!</a>  -->
+	</div> 
 	<!--  /JumboTron-->
 
 	<!--  Carousel-->
