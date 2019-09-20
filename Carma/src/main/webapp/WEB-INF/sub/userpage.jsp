@@ -24,7 +24,7 @@
 		<br> <br>
 		<div class="imagecontainer">
 			<div id="profileimage" id="hoverPicture" ss="row">
-				<img class="userUploadedPic" src=${loggedInUser.getImage()}>
+				<img class="userUploadedPic" src=${userUpdatedString}>
 			</div>
 			<div class="updateMiddle">
 				<div class="modal-dialog modal-lg" role="document">

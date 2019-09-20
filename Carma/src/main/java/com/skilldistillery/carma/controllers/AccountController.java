@@ -69,10 +69,10 @@ public class AccountController {
 	@RequestMapping(path="userpage.do")
 	public String goToUserPage(Model model, HttpSession session) {
 		User u = (User) session.getAttribute("loggedInUser");
-		u.setImage(u.getImage());
 		model.addAttribute("listOfPF", parkingdao.findParkingFailByUserId(u.getId()));
 		model.addAttribute("listOfPictures", parkingdao.findPicturesByUserId(u.getId()));
 		model.addAttribute("parkingFailDTO", new ParkingFailDTO());
+		model.addAttribute("userUpdatedString", dao.getUpdatedImage(u));
 		return "sub/userpage";
 	}
 	@RequestMapping(path="updateUserPhoto.do")

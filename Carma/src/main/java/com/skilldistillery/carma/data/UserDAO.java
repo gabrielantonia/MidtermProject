@@ -7,4 +7,5 @@ public interface UserDAO {
 	boolean addUser(User user);
 	User validateUser(User user);
 	boolean updateImage(User user, String imageURL);
+	String getUpdatedImage(User user);
 }
