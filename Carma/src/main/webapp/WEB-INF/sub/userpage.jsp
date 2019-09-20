@@ -25,7 +25,13 @@
 		<div id="left">
 			<br>
 			<div id="profileimage">
-				<img src="https://i.imgur.com/BQVugRJ.gif">
+				<!-- <img src="https://i.imgur.com/BQVugRJ.gif">  -->
+				<img src=${loggedInUser.image }>
+			<%-- 	<form id>
+					<input type"text placeholder="enter image URL" ="imageURL">
+					<button>Update</button>
+					</form> --%>
+				
 			</div>
 			<div id="userinfo">
 				<br>
