@@ -27,7 +27,6 @@ public class Carma {
 	
 	private int vote;
 	
-	private String comment;
 	
 	@Column(name="date_voted")
 	LocalDateTime dateVoted;
@@ -37,12 +36,11 @@ public class Carma {
 	}
 	
 	
-	public Carma(User user, ParkingFail parkingFail, int vote, String comment, LocalDateTime dateVoted) {
+	public Carma(User user, ParkingFail parkingFail, int vote, LocalDateTime dateVoted) {
 		super();
 		this.user = user;
 		this.parkingFail = parkingFail;
 		this.vote = vote;
-		this.comment = comment;
 		this.dateVoted = dateVoted;
 	}
 
@@ -70,12 +68,6 @@ public class Carma {
 	}
 	public void setVote(int vote) {
 		this.vote = vote;
-	}
-	public String getText() {
-		return comment;
-	}
-	public void setText(String text) {
-		this.comment = text;
 	}
 	public LocalDateTime getDateVoted() {
 		return dateVoted;
@@ -108,7 +100,7 @@ public class Carma {
 
 	@Override 
 	public String toString() {
-		return "Carma [id=" + id + ", user=" + user + ", vote=" + vote + ", text=" + comment + ", dateVoted=" + dateVoted
+		return "Carma [id=" + id + ", user=" + user + ", vote=" + vote + ",  dateVoted=" + dateVoted
 				+ "]";
 	}
 	
