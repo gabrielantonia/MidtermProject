@@ -1,5 +1,6 @@
 package com.skilldistillery.carma.data;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,6 +12,8 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.carma.entities.Car;
+import com.skilldistillery.carma.entities.Carma;
+import com.skilldistillery.carma.entities.Comment;
 import com.skilldistillery.carma.entities.Location;
 import com.skilldistillery.carma.entities.ParkingFail;
 import com.skilldistillery.carma.entities.ParkingFailComparator;
@@ -23,6 +26,7 @@ import com.skilldistillery.carma.entities.UserComparator;
 @Service
 public class ParkingFailDAOImpl implements ParkingFailDAO {
 
+	private static final String DATE_FORMATTER = "yyyy-MM-dd HH:mm:ss";
 	@PersistenceContext
 	private EntityManager em;
 
@@ -38,22 +42,21 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 	public List<ParkingFail> findCarByLicensePlate(String licensePlate) {
 		String jpql = "SELECT p FROM ParkingFail p WHERE p.car.licensePlate LIKE :id";
 		List<ParkingFail> p = em.createQuery(jpql, ParkingFail.class).setParameter("id", licensePlate).getResultList();
-		
+
 		return p;
 	}
+
 ////////////////////////////////////////////////////////////////////////////////
 	@Override
 	public List<ParkingFail> findParkingFailByKeyword(String keyword) {
 		String jpql = "SELECT p FROM ParkingFail p WHERE p.title LIKE :keyword ";
-		List<ParkingFail> p = em.createQuery(jpql, ParkingFail.class).setParameter("keyword", "%"+ keyword+ "%").getResultList();
-		
+		List<ParkingFail> p = em.createQuery(jpql, ParkingFail.class).setParameter("keyword", "%" + keyword + "%")
+				.getResultList();
+
 		return p;
 	}
-	
-	
-	
-	
-////GALLERY
+
+//////////////////////////////////////////GALLERY///////////////////////////////////////
 	@Override
 	public List<Picture> findAllPictures() {
 		String jpql = "SELECT picture FROM Picture picture";
@@ -72,6 +75,11 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 	@Override
 	public ParkingFail findParkingFailById(int pfId) {
 		return em.find(ParkingFail.class, pfId);
+	}
+
+	@Override
+	public Carma findCarmaById(int pfId) {
+		return em.find(Carma.class, pfId);
 	}
 
 	@Override
@@ -123,6 +131,7 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 			return true;
 		}
 	}
+
 	@Override
 	public ParkingFail findParkingFailOfDay() {
 		ArrayList<ParkingFail> allPF = (ArrayList<ParkingFail>) findAll();
@@ -167,13 +176,44 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		String jpql = "Select p from ParkingFail p where p.user.id=:id";
 		return em.createQuery(jpql, ParkingFail.class).setParameter("id", id).getResultList();
 	}
+	@Override
+	public User findUserByUserId(int id) {
+		String jpql = "Select u from User u where u.user.id=:id";
+		return em.createQuery(jpql, User.class).setParameter("id", id).getSingleResult();
+	}
 
+	@Override
+	public List<Carma> findCarmaListById(int id) {
+		String jpql = "Select c from Carma c where p.user.id=:id";
+		return em.createQuery(jpql, Carma.class).setParameter("id", id).getResultList();
+	}
 
 	@Override
 	public List<Picture> findPicturesByUserId(int id) {
 		String jpql = "select p from Picture p where p.parkingFail.user.id = :id";
 		return em.createQuery(jpql, Picture.class).setParameter("id", id).getResultList();
 
+	}
+
+
+	@Override
+	public void addComment(Comment comment) {
+		em.persist(comment);
+		em.flush();
+	}
+
+	@Override
+	public void addRankVote(int carmaId) {
+		//need get user ID
+		Carma carma = new Carma();
+		carma = findCarmaById(carmaId);
+		LocalDateTime time = LocalDateTime.now();
+
+		carma.setVote(carma.getVote() + 1);
+		carma.setDateVoted(time);
+		//carma.setUser(findUserByUserId(userId);
+		em.persist(carma);
+		em.flush();
 	}
 
 }
