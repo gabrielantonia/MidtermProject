@@ -70,7 +70,7 @@
 										class="btn btn-success btn-sm">Login</button>
 									<br> <br>
 									<p>
-										New around here? <a id="sign-in" href="register.do" type="get">Sign
+										New around here? <a id="sign-in" href="register.do">Sign
 											up</a>
 									</p>
 								</div>
