@@ -31,9 +31,8 @@ public class ParkingFailController {
 	private ParkingFailDAOImpl dao;
 
 	@RequestMapping(path = "/", method = RequestMethod.GET)
-	public String index(Model model, RedirectAttributes ra) {
+	public String index(Model model) {
 		ArrayList<ParkingFail> parkingFailTopThree = dao.findTopParkingFailByAmount(3);
-		model.addAttribute("validationfailed", ra.getFlashAttributes());
 		model.addAttribute("user", new User());
 		model.addAttribute("parkingFailTopThree", parkingFailTopThree);
 		ArrayList<String> urls = new ArrayList<String>();

@@ -23,7 +23,7 @@ public class User {
 	@Column(name="date_user_account_created")
 	private String dateCreated;
 	@Column(name="profile_image")
-	private String image;
+	private String image = "https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg";
 	
 	@OneToMany(mappedBy="user")
 	private List<Comment> comments;

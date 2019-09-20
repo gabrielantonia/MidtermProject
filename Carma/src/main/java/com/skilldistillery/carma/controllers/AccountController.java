@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,15 +34,15 @@ public class AccountController {
 		model.addAttribute("user", new User());
 		return "sub/register";
 	}
-
-	@RequestMapping(path="register.do", method=RequestMethod.POST)
-	public String createUser(@ModelAttribute("user") User user, Model model, HttpSession session) {
-		user.setDateCreated(LocalDate.now().toString());
-		dao.addUser(user);
-		model.addAttribute("parkingFailDTO", new ParkingFailDTO());
-		session.setAttribute("loggedInUser", user);
-		return "sub/userpage";
-	}
+	
+	@RequestMapping(path= "register.do", method=RequestMethod.POST)
+    public String createUser(@ModelAttribute("user") User user, Model model, HttpSession session) {
+        user.setDateCreated(LocalDate.now().toString());
+        dao.addUser(user);
+        model.addAttribute("parkingFailDTO", new ParkingFailDTO());
+        session.setAttribute("loggedInUser", user);
+        return "sub/userpage";
+    }
 	
 	@RequestMapping(path="login.do", method=RequestMethod.POST)
 	public String doLogin(@ModelAttribute("user") User user, Errors errors, HttpSession session, RedirectAttributes ra) {
@@ -74,9 +75,10 @@ public class AccountController {
 		return "sub/userpage";
 	}
 	@RequestMapping(path="updateUserPhoto.do")
-	public String updateUserImage(Model model, HttpSession session, @RequestParam User user, @RequestParam("imageURL")String imageURL) {
-		dao.updateImage(user, imageURL);
-		return "sub/userpage";
+	public String updateUserImage(Model model, HttpSession session, @RequestParam("image")String imageURL) {
+		User u = (User) session.getAttribute("loggedInUser");
+		dao.updateImage(u, imageURL);
+		return "redirect:/userpage.do";
 		
 	}
 	
