@@ -11,7 +11,7 @@
 <jsp:include page="../scripts.jsp" />
 <jsp:include page="../navbar.jsp" />
 <br>
-<title>${loggedInUser.username }'s Profile</title>
+<title>${loggedInUser.username }'sProfile</title>
 </head>
 <body>
 
@@ -21,31 +21,38 @@
 		<div class="row username_text">
 			<h1>${loggedInUser.username }</h1>
 		</div>
-		<br>
-		<br>
-
-		<div id="profileimage">
-			<div class="row">
-				<img src=${loggedInUser.image }>
+		<br> <br>
+		<div class="imagecontainer">
+			<div id="profileimage" id="hoverPicture" ss="row">
+				<img class="userUploadedPic" src=${loggedInUser.getImage()}>
 			</div>
-			<br>
-			<%-- <div class="row">
-					<form:form action="#" method="post">
-						<form:input path="image" type="url" name="image" placeholder="enter image URL" ></form:input>
-				<button>Update</button>
-				</form:form>
-				</div> --%>
+			<div class="updateMiddle">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+								<div class="row">
+									<form method="POST" action="updateUserPhoto.do">
+										URL : <input type="text" name="image" />
+										<input class="btn btn-primary" type="submit" value="Update">
+									</form>
+								</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
 		</div>
-		<!-- info -->
-		<div id="userinfo">
-			<br>
-			<h4>${loggedInUser.username }</h4>
-			<br>
-			<h6>Join date: ${loggedInUser.dateCreated }</h6>
-			<br>
-			<h6>Email: ${loggedInUser.email }</h6>
-		</div>
-		<!-- -->
+	</div>
+	<!-- info -->
+	<div id="userinfo">
+		<br>
+		<h4>${loggedInUser.username }</h4>
+		<br>
+		<h6>Join date: ${loggedInUser.dateCreated }</h6>
+		<br>
+		<h6>Email: ${loggedInUser.email }</h6>
+	</div>
+	<!-- -->
 	</div>
 	<div id="rightuserpage">
 		<br>

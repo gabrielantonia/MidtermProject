@@ -47,7 +47,6 @@ public class UserDAOImpl implements UserDAO {
 		boolean updated = false;
 		User updatedUser = em.find(User.class, user.getId());
 		updatedUser.setImage(imageURL);
-		em.persist(updatedUser);
 		if(em.contains(updatedUser)) {
 			updated = true;
 		}
