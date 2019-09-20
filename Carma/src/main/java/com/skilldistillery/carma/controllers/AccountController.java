@@ -35,16 +35,14 @@ public class AccountController {
 		return "sub/register";
 	}
 	
-	@RequestMapping(path="register.do", method=RequestMethod.POST)
-	public String createUser(@ModelAttribute("user") User user, Model model, HttpSession session) {
-		user.setDateCreated(LocalDate.now().toString());
-		dao.addUser(user);
-		model.addAttribute("validationfailed", false);
-		model.addAttribute("user", user);
-		model.addAttribute("parkingFailDTO", new ParkingFailDTO());
-		
-		return "sub/userpage";
-	}
+	@RequestMapping(path= "register.do", method=RequestMethod.POST)
+    public String createUser(@ModelAttribute("user") User user, Model model, HttpSession session) {
+        user.setDateCreated(LocalDate.now().toString());
+        dao.addUser(user);
+        model.addAttribute("parkingFailDTO", new ParkingFailDTO());
+        session.setAttribute("loggedInUser", user);
+        return "sub/userpage";
+    }
 	
 	@RequestMapping(path="login.do", method=RequestMethod.POST)
 	public String doLogin(@ModelAttribute("user") User user, Errors errors, HttpSession session, RedirectAttributes ra) {
