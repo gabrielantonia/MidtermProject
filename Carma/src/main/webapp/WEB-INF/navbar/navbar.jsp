@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <link href="css/styles.css" rel="stylesheet" type="text/css">
@@ -65,10 +66,12 @@
 									<form:label id="password" path="password">Password</form:label>
 									<form:input type="password" path="password" required="required" />
 									<br />
-								<button type="submit" id="btnLogin"
-									class="btn btn-success btn-sm">Login</button>
-									<br><br>
-									<p> New around here?  <a id="sign-in" href="register.do">Sign up</a>
+									<button type="submit" id="btnLogin"
+										class="btn btn-success btn-sm">Login</button>
+									<br> <br>
+									<p>
+										New around here? <a id="sign-in" href="register.do">Sign
+											up</a>
 									</p>
 								</div>
 							</form:form>
@@ -87,5 +90,6 @@
 				value="Search" />
 		</form>
 	</div>
+
 </nav>
 </html>

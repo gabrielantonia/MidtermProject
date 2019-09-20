@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +20,9 @@
 <div class="card bg-dark" style="align:center; ">
 <br>
 	<article class="card-body mx-auto" style="max-width: 500px;">
+		<c:if test="${validationresult==true}">
+			<p align="center">Invalid login credentials, create an account or try again</p>
+		</c:if>
 		<h4 class="card-title mt-3 text-center">Create Account</h4>
 		<p class="text-center">Get started with your free account</p>
 		<p>

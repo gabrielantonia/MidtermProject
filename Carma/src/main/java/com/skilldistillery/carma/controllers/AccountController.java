@@ -11,6 +11,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.carma.data.ParkingFailDAO;
 import com.skilldistillery.carma.data.UserDAO;
@@ -26,7 +28,13 @@ public class AccountController {
 	private ParkingFailDAO parkingdao;
 
 	@RequestMapping(path = "register.do", method=RequestMethod.GET)
-	public String registerUser(Model model) {
+	public String registerUser(Model model, @RequestParam("validationfailed") Boolean validationresult) {
+		if (validationresult) {
+			model.addAttribute("validationresult", validationresult);
+		}
+		else {
+			model.addAttribute("validationresult", false);
+		}
 		model.addAttribute("user", new User());
 		return "sub/register";
 	}
@@ -40,20 +48,18 @@ public class AccountController {
 	}
 	
 	@RequestMapping(path="login.do", method=RequestMethod.POST)
-	public String doLogin(@ModelAttribute("user") User user, Model model, Errors errors, HttpSession session) {
+	public String doLogin(@ModelAttribute("user") User user, Errors errors, HttpSession session, RedirectAttributes ra) {
 		User u = dao.validateUser(user);
 		if (errors.hasErrors()) {
-			return "index";
+			return "redirect:/";
 		}
 		if (u != null) {
 			session.setAttribute("loggedInUser", u);
-			model.addAttribute("listOfPF", parkingdao.findParkingFailByUserId(u.getId()));
-			model.addAttribute("listOfPictures", parkingdao.findPicturesByUserId(u.getId()));
-			model.addAttribute("parkingFailDTO", new ParkingFailDTO());
-			return "sub/userpage";
+			return "redirect:/userpage.do";
 		}
 		else {
-			return "index";
+			ra.addAttribute("validationfailed", true);
+			return "redirect:/register.do";
 		}
 	}
 	
