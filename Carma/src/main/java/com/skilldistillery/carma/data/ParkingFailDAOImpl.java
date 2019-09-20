@@ -177,9 +177,9 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 	}
 	
 	@Override
-	public void addCommentToCarma(Carma carma)
+	public void AddCommentToCarma(Carma carma)
 	{	
-		em.persist(carma);
+		em.persist(carma.getId());
 		em.flush();
 	}
 		

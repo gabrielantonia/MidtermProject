@@ -50,7 +50,6 @@ public class ParkingFailController {
 		mv.addObject("parkingFailDTO", new ParkingFailDTO());
 		mv.setViewName("sub/addParkingFail");
 		return mv;
-		// return "index"; // if using a ViewResolver.
 	}
 
 	@RequestMapping(path = "create.do", method = RequestMethod.POST)
@@ -78,7 +77,6 @@ public class ParkingFailController {
 		return "sub/show.jsp";
 		// return "show"; // if using a ViewResolver.
 	}
-
 
 	@RequestMapping(path = "update.do")
 	public ModelAndView update(ParkingFail parkingFail) {
@@ -133,6 +131,7 @@ public class ParkingFailController {
 		mv.setViewName("sub/gallery");
 		return mv;
 	}
+
 ///////////////////////////////////////////////////////////////////////////
 //SEARCH BY LICENSE PLATE
 	@RequestMapping(path = "findCarByLicensePlate.do", method = RequestMethod.POST)
@@ -142,7 +141,7 @@ public class ParkingFailController {
 		mv.setViewName("sub/show");
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "findParkingFailByKeyword.do", method = RequestMethod.POST)
 	public ModelAndView findParkingFailByKeyword(@RequestParam("keyword") String keyword, User user) {
 		ModelAndView mv = new ModelAndView();
@@ -152,43 +151,49 @@ public class ParkingFailController {
 		mv.setViewName("sub/show");
 		return mv;
 	}
-	
+
 ///////////////////////////////////////////////////////////////////////////
 	@RequestMapping(path = "findParkingFail.do", method = RequestMethod.GET)
 	public ModelAndView findParkingFailByKeyword(HttpSession session, @RequestParam("val") int id) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("pf", dao.findParkingFailById(id));
 		mv.addObject("carma", dao.findCarmaById(id));
-		
-		//hack to get single picture
-	//	List<Picture> tempList = dao.findPicturesByUserId(id);
-	//	String tempPic = tempList.get(id).getUrl();
-	//	mv.addObject("picture", tempPic);
+
+		// hack to get single picture
+		// List<Picture> tempList = dao.findPicturesByUserId(id);
+		// String tempPic = tempList.get(id).getUrl();
+		// mv.addObject("picture", tempPic);
 		mv.addObject("user", new User());
 		mv.setViewName("sub/showparkingfail");
 		return mv;
 	}
 
-/*	@RequestMapping(path = "addComment.do", method = RequestMethod.POST)
-	public ModelAndView addComment(HttpSession session, @RequestParam("comment") int id) {
+	@RequestMapping(path = "addComment.do", method = RequestMethod.GET)
+	public ModelAndView addComment(HttpSession session, @RequestParam("comment") String comment,
+	 @RequestParam("1") int userId)
+	
+	//@RequestParam("parkingFailId") int pfid)
+
+	{
+		Carma carma = new Carma();
+
+		// Date date=java.util.Calendar.getInstance().getTime();
+		LocalDateTime time = LocalDateTime.now();
+
+		carma.setId(1);
+		carma.setDateVoted(time);
+		carma.setParkingFail(dao.findParkingFailById(1));;
+		carma.setVote(1);
+		carma.setText(comment);
+		dao.AddCommentToCarma(carma);
+
+		
 		ModelAndView mv = new ModelAndView();
-	       Carma carma = new Carma();
-	       
-	      // Date date=java.util.Calendar.getInstance().getTime();
-	       LocalDateTime time = LocalDateTime.now();
-	       
-	       carma.setDateVoted(time);
-	       carma.setId(id);
-	       carma.setText(comment);
-	     //  carma.setVote(vote);
-	       addCommentToCarma(carma);
+		mv.addObject("pf", dao.findParkingFailById(1));
+		mv.addObject("carma", dao.findCarmaById(1));
+		mv.setViewName("sub/showparkingfail");
+		return mv;
 
-		mv.addObject("pf", dao.findParkingFailById(id));
-		mv.addObject("carma", dao.findCarmaById(id));
-	
-	}*/
+	}
 
-	
-	
-	
 }

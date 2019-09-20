@@ -68,8 +68,9 @@
 						</ul>
 						</form>
 						<br>
-						<textarea rows="4" cols="50" name="comment" form="usrform">Vent Your Frustration...</textarea>
-						<form action="addComment.do" id="comment">
+						<textarea rows="4" cols="50" name="comment" form="comment">Vent Your Frustration...</textarea>
+				 	 <input type="hidden" id="1" name="pfid" value="1">
+					<form action="addComment.do" id="comment">
 							<input type="submit">
 
 					</ul>
