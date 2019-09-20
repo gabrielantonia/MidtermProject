@@ -157,7 +157,7 @@ public class ParkingFailController {
 		mv.setViewName("sub/showparkingfail");
 		return mv;
 	}
-
+//////////////////////////////////////////////////////add comments /////////////////////////////
 	@RequestMapping(path = "addComment.do", method = RequestMethod.GET)
 	public ModelAndView addComment(HttpSession session, @RequestParam("comment") String comment,
 	 @RequestParam("1") int userId)
@@ -181,9 +181,28 @@ public class ParkingFailController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("pf", dao.findParkingFailById(1));
 		mv.addObject("carma", dao.findCarmaById(1));
+		mv.addObject("user", new User());
 		mv.setViewName("sub/showparkingfail");
 		return mv;
 
 	}
+	
+//////////////////////////////////////////////////////add ranks /////////////////////////////////////
+@RequestMapping(path ="addRankVote.do", method = RequestMethod.GET)
+public ModelAndView addRankVote (HttpSession session, @RequestParam("comment") int vote)
+{
+	Carma carma = new Carma();
+
+	dao.addRankVote(carma, vote);
+
+	
+	ModelAndView mv = new ModelAndView();
+	mv.addObject("pf", dao.findParkingFailById(1));
+	mv.addObject("carma", dao.findCarmaById(1));
+	mv.addObject("user", new User());
+	mv.setViewName("sub/showparkingfail");
+	return mv;
+	
+}
 
 }

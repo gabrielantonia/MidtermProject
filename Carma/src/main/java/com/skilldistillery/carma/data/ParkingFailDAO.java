@@ -47,6 +47,8 @@ public interface ParkingFailDAO {
 
 	public void AddCommentToCarma(Carma carma);
 
+	void addRankVote(Carma carma, int RankVote);
+
 
 
 }

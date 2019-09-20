@@ -82,3 +82,33 @@ img.Thumbnail {
     border-top: 10px solid #151515;
     background: #404040 url(images/navigation_hover.gif) top left repeat;
 }
+
+/* Centering the Parking Fail Image  */
+/* .center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+} */
+
+#img {
+  height: auto;
+  width: 100%;
+  border: 10px solid;
+  border-radius: 2em;
+  border-color: grey;
+  padding: 5px;
+} 
+
+#auto-description{
+	text-align:left !important;
+	
+	
+}
+
+#comment{
+	text-align:right;
+	display: inline-block;
+	
+}
+/*  TEMPLATE CSS  */

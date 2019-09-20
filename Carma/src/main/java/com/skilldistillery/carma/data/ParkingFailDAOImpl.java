@@ -193,5 +193,13 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		em.persist(carma.getId());
 		em.flush();
 	}
+	
+	@Override
+	public void addRankVote(Carma carma, int RankVote)
+	{	
+		carma.setVote(carma.getVote() + RankVote);
+		em.persist(carma);
+		em.flush();
+	}
 		
 }
