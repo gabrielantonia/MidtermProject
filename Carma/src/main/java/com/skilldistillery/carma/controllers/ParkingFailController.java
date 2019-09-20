@@ -176,7 +176,6 @@ public class ParkingFailController {
 		carma.setDateVoted(time);
 		carma.setParkingFail(dao.findParkingFailById(1));;
 		carma.setVote(1);
-		carma.setText(comment);
 		dao.AddCommentToCarma(carma);
 
 		
@@ -198,8 +197,8 @@ public ModelAndView addRankVote (HttpSession session, @RequestParam("camraId") i
 	dao.addRankVote(camraId);
 	
 	ModelAndView mv = new ModelAndView();
-	mv.addObject("pf", dao.findParkingFailById(1));
-	mv.addObject("carma", dao.findCarmaById(1));
+	mv.addObject("pf", dao.findParkingFailById(camraId));
+	mv.addObject("carma", dao.findCarmaById(camraId));
 	mv.addObject("user", new User());
 	mv.setViewName("sub/showparkingfail");
 	return mv;
