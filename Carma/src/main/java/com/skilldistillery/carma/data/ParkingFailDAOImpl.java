@@ -10,8 +10,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.carma.entities.Carma;
 import com.skilldistillery.carma.entities.Car;
+import com.skilldistillery.carma.entities.Carma;
 import com.skilldistillery.carma.entities.Location;
 import com.skilldistillery.carma.entities.ParkingFail;
 import com.skilldistillery.carma.entities.ParkingFailComparator;
@@ -52,9 +52,7 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 	}
 	
 	
-	
-	
-////GALLERY
+//////////////////////////////////////////GALLERY///////////////////////////////////////
 	@Override
 	public List<Picture> findAllPictures() {
 		String jpql = "SELECT picture FROM Picture picture";
@@ -195,10 +193,12 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 	}
 	
 	@Override
-	public void addRankVote(Carma carma, int RankVote)
+	public void addRankVote(int carmaId)
 	{	
-		carma.setVote(carma.getVote() + RankVote);
-		em.persist(carma);
+		Carma carma = new Carma();
+		carma = findCarmaById(carmaId);
+		carma.setVote(carma.getVote()-1);
+		em.persist(carma); 
 		em.flush();
 	}
 		

@@ -68,6 +68,8 @@
 					<ul>
 						<li>DATE: <strong>${carma.dateVoted }</strong>
 						</li>
+						<li>Votes: <strong>${carma.vote }</strong>
+						</li>
 						<ul>
 							Username: ${carma.user.username}
 							<br>${carma.text}
@@ -121,28 +123,18 @@
 	<br>
 	<br>
 	<br>
-	<!-- BEGIN COMMENTS BOX -->
-	<form action="createComment.do" path="createComment">
-		<div id="comment" class="col-8">
-			<fieldset>
-				<textarea maxlength="300" name="comment" cols="40" rows="4"
-					path="carma">${carma.comment}</textarea>
-				<br> <input type="hidden" name="id" value="${carma.id }">
-				<button type='submit'>Submit</button>
 
-			</fieldset>
-		</div>
-	</form>
-
-	<!-- END COMMENTS BOX -->
 
 	<!-- BEGIN VOTING BOX -->
 	<div id="vote" class="col-12">
 		<p>Think this person deserves bad Carma?
 		:</p>
+		<form action="addRankVote.do">
+ 		<input type="hidden" id="camraId" name="camraId" value="vote">		
 		<button style="font-size: 24px">
 			BAD CARMA! <i class="fa fa-thumbs-down"></i>
 		</button>
+		</form>
 	</div>
 	<!-- END VOTING BOX -->
 </body>

@@ -189,12 +189,11 @@ public class ParkingFailController {
 	
 //////////////////////////////////////////////////////add ranks /////////////////////////////////////
 @RequestMapping(path ="addRankVote.do", method = RequestMethod.GET)
-public ModelAndView addRankVote (HttpSession session, @RequestParam("comment") int vote)
+public ModelAndView addRankVote (HttpSession session, @RequestParam("camraId") int camraId)
 {
 	Carma carma = new Carma();
 
-	dao.addRankVote(carma, vote);
-
+	dao.addRankVote(camraId);
 	
 	ModelAndView mv = new ModelAndView();
 	mv.addObject("pf", dao.findParkingFailById(1));
