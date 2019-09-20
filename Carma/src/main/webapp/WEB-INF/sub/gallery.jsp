@@ -13,25 +13,28 @@
 <title>Gallery</title>
 
 </head>
+<jsp:include page="../navbar.jsp" />
 
 <body>
-<jsp:include page="../navbar.jsp" />
-<br><br><br> <!--room for navbar  -->
+	<br>
+	<br>
+	<br>
+	<!--room for navbar  -->
 	<div class="container">
 		<div class=“grid”>
 			<c:forEach var="picture" items="${pictures}">
-					<div class="cell">
-						<img class="image" id="galleryImg" src="${picture.url}" />
-						<div class="middle">
-						<a href="findParkingFail.do?val=${picture.parkingFail.id }"> 
+				<div class="cell">
+					<img class="image" id="galleryImg" src="${picture.url}" />
+					<div class="middle">
+						<a href="findParkingFail.do?val=${picture.parkingFail.id }">
 							<div class="viewText">View</div>
 						</a>
 					</div>
-					</div>
+				</div>
 			</c:forEach>
 		</div>
 	</div>
 </body>
-<jsp:include page="../footer.jsp"/>
+<jsp:include page="../footer.jsp" />
 
 </html>

@@ -1,66 +1,80 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <jsp:include page="../scripts.jsp" />
 <jsp:include page="../styletags.jsp" />
-<link rel="css/stylesheet" type="text/css" href="../../css/parkingfail.css">
-<title>${pf.title} </title>
+<link href="../../css/parkingfail.css" rel="stylesheet" type="text/css">
+<title>${pf.title}</title>
+
 </head>
-<body id=“babout”>
-    <div id=“header”>
-        <h1>[C A R M A ] | Parking Fail</h1>
-        <div id=“wrapper”>
-            <div id=“content-wrapper”>
-                <div id=“content”>
-                    <h3>CARMA PROFILE</h3>
-                    <dl>
-                        <dt>Title</dt>
-                        <dd>
-                            <strong> ${pf.title} </strong>
-                        </dd>
-                        <dd>
-                        <img src=“https://i.imgur.com/2Pch7zQ.jpg”
-                            class=“CommentPhotoSize” alt=“CommentPhotoSize”></img>
-                        </dd>
-                        <dt>DESCRIPTION</dt>
-                        <dd class=“last”>
-                            <em>${pf.description}</em>
-                        </dd>
-                    </dl>
-                    <hr>
-                </div>
-            </div>
-            <!---First Side BAR --->
-         <%--    <div id=“sidebar-wrapper”>
-                <div id=“sidebar”>
-                    <h3>Ranking</h3>
-                    <ul>
-                        <form action=“/updateCarma”>
-                            <input type=“checkbox” name=“rating” value=“Bike”>&#128514<br>
-                            <input type=“checkbox” name=“vehicle2” value=“Car”>&#128545
-                            <br> <br> Enter a Comment <br> <input type=“text”
-                                name=“comment” value=“...“><br> <input
-                                type=“submit” value=“Submit”>
-                        </form>
-                    </ul>
-                    <h3>Comments</h3>
-                    <ul>
-                        <li>DATE: <strong>${carma.dateVoted }</strong>
-                        </li>
-                        <ul>
-                            Username:${carma.user.username}
-                            <br>${carma.text}
-                        </ul>
-                        <li>UserName 2:</li>
-                        <button type=“button”>Add A Comment</button>
-                        <button type=“button”>Update A Comment</button>
-                    </ul>
-                </div>
-            </div> --%>
-        </div>
-        </div>
+<jsp:include page="../navbar.jsp" />
+<br>
+<br>
+<br>
+<body class="container-fluid">
+
+	<!-- BEGIN JUMBOTRON -->
+	<div class="jumbotron">
+		<h1 class="display-4">${pf.title}</h1>
+		<hr class="my-4">
+		<p class="lead" align="center">${pf.description}</p>
+	</div>
+	<!-- END JUMBOTRON -->
+
+	<div class="row">
+		<!-- BEGIN IMAGE -->
+		<div class="col-7" id="img" align="left" >
+			<c:forEach var="picture" items="${pf.listOfPictures }">
+				<img src="${picture.url}" class="left">
+			</c:forEach>
+
+		</div>
+		<!-- END-IMAGE -->
+		
+		<!-- BEGIN AUTO DESCRIPTION -->
+		<div class="col-5" id="auto-description">
+			<div class="row" id="alias">Alias: ${pf.car.alias }</div>
+			<div class="row" id="description">Description:
+				${pf.car.description }</div>
+			<div class="row" id="make">Make: ${pf.car.make }</div>
+			<div class="row" id="model">Model: ${pf.car.model }</div>
+			<div class="row" id="color">Color: ${pf.car.color }</div>
+			<div class="row" id="license-plate">License Plate:
+				${pf.car.licensePlate }</div>
+		</div>
+		<!-- END AUTO DESCRIPTION -->
+	</div>
+	<br>
+	<br>
+	<br>
+	<!-- BEGIN COMMENTS BOX -->
+	<form action="createComment.do" path="createComment">
+		<div id="comment" class="col-8">
+			<fieldset>
+				<textarea maxlength="300" name="comment" cols="40" rows="4"
+					path="carma">${carma.comment}</textarea>
+				<br> <input type="hidden" name="id" value="${carma.id }">
+				<button type='submit'>Submit</button>
+
+			</fieldset>
+		</div>
+	</form>
+
+	<!-- END COMMENTS BOX -->
+
+	<!-- BEGIN VOTING BOX -->
+	<div id="vote" class="col-12">
+		<p>Think this person deserves bad Carma?
+		:</p>
+		<button style="font-size: 24px">
+			BAD CARMA! <i class="fa fa-thumbs-down"></i>
+		</button>
+	</div>
+	<!-- END VOTING BOX -->
+
 </body>
+<jsp:include page="../footer.jsp" />
 </html>
