@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `role` VARCHAR(45) NOT NULL DEFAULT 'user',
   `email` VARCHAR(200) NULL,
   `date_user_account_created` VARCHAR(30) NULL,
+  `profile_image` VARCHAR(200) NULL DEFAULT 'https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg',
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB;
@@ -131,7 +132,6 @@ CREATE TABLE IF NOT EXISTS `carma` (
   `user_id` INT NOT NULL,
   `parking_fail_id` INT NOT NULL,
   `vote` INT NOT NULL,
-  `comment` TEXT NULL,
   `date_voted` DATETIME NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_vote_user_idx` (`user_id` ASC),
@@ -142,6 +142,33 @@ CREATE TABLE IF NOT EXISTS `carma` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_vote_parking_fail`
+    FOREIGN KEY (`parking_fail_id`)
+    REFERENCES `parking_fail` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `comment`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `comment` ;
+
+CREATE TABLE IF NOT EXISTS `comment` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `date_comment_created` VARCHAR(30) NOT NULL,
+  `text` TEXT(500) NOT NULL,
+  `user_id` INT NOT NULL,
+  `parking_fail_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_comment_user1_idx` (`user_id` ASC),
+  INDEX `fk_comment_parking_fail1_idx` (`parking_fail_id` ASC),
+  CONSTRAINT `fk_comment_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_comment_parking_fail1`
     FOREIGN KEY (`parking_fail_id`)
     REFERENCES `parking_fail` (`id`)
     ON DELETE NO ACTION
@@ -164,26 +191,26 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `carmadb`;
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`) VALUES (id, 'Jim Jeffries', 'carmauser', 1, 'user', 'jimjeffries@gmail.com', '20190911');
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`) VALUES (2, 'Dave Chappelle', 'carmauser', 1, 'user', 'whocares@yahoo.com', '20190912');
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`) VALUES (3, 'George Carlin', 'carmauser', 1, 'user', 'georgecarlin@deadguy.com', '20190913');
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`) VALUES (4, 'Eddy Murphy', 'carmauser', 1, 'user', 'eddiemurphy@gmail.com', '20190916');
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`) VALUES (5, 'John Doe', 'carmauser', 1, 'user', 'JohnDoe@gmail.com', '20190913');
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`) VALUES (6, 'Jane Joe', 'carmauser', 1, 'user', 'janedoe@gmail.com', '20190917');
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`) VALUES (7, 'Lisa Simpson', 'carmauser', 1, 'user', 'lisasimpson@gmail.com', '20190913');
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`) VALUES (8, 'Peter Griffin', 'carmauser', 1, 'user', 'petergriffin@gmail.com', '20190916');
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`) VALUES (9, 'Morty Sanchez', 'carmauser', 1, 'user', 'mortysanchez@gmail.com', '20190913');
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`) VALUES (10, 'Rick Grimes', 'carmauser', 1, 'user', 'rickgrimes@gmail.com', '20190912');
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`) VALUES (11, 'Scruff McGruff', 'carmauser', 1, 'user', 'scruffmcgruff@gmail.com', '20190914');
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`) VALUES (12, 'Lauren Natalia', 'carmauser', 1, 'user', 'laurennatalia@gmail.com', '20190913');
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`) VALUES (13, 'Louis Lane', 'carmauser', 1, 'user', 'louislane@gmail.com', '20190917');
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`) VALUES (14, 'Bruce Wayne', 'carmauser', 1, 'user', 'brucewayne@gmail.com', '20190916');
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`) VALUES (15, 'Natalie Portman', 'carmauser', 1, 'user', 'natalieportman@gmail.com', '20190913');
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`) VALUES (16, 'Morgan Freeman', 'carmauser', 1, 'user', 'morganfreeman@gmail.com', '20190912');
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`) VALUES (17, 'Mr. Pink', 'carmauser', 1, 'user', 'mrpink@gmail.com', '20190914');
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`) VALUES (18, 'John Wayne', 'carmauser', 1, 'user', 'johnwayne@gmail.com', '20190916');
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`) VALUES (19, 'John Wick', 'carmauser', 1, 'user', 'johnwick@gmail.com', '20190915');
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`) VALUES (20, 'David Hasselhoff', 'carmauser', 1, 'user', 'davidhasselhoff@gmail.com', '20190911');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`, `profile_image`) VALUES (id, 'Jim Jeffries', 'carmauser', 1, 'user', 'jimjeffries@gmail.com', '20190911', 'https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`, `profile_image`) VALUES (2, 'Dave Chappelle', 'carmauser', 1, 'user', 'whocares@yahoo.com', '20190912', 'https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`, `profile_image`) VALUES (3, 'George Carlin', 'carmauser', 1, 'user', 'georgecarlin@deadguy.com', '20190913', 'https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`, `profile_image`) VALUES (4, 'Eddy Murphy', 'carmauser', 1, 'user', 'eddiemurphy@gmail.com', '20190916', 'https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`, `profile_image`) VALUES (5, 'John Doe', 'carmauser', 1, 'user', 'JohnDoe@gmail.com', '20190913', 'https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`, `profile_image`) VALUES (6, 'Jane Joe', 'carmauser', 1, 'user', 'janedoe@gmail.com', '20190917', 'https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`, `profile_image`) VALUES (7, 'Lisa Simpson', 'carmauser', 1, 'user', 'lisasimpson@gmail.com', '20190913', 'https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`, `profile_image`) VALUES (8, 'Peter Griffin', 'carmauser', 1, 'user', 'petergriffin@gmail.com', '20190916', 'https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`, `profile_image`) VALUES (9, 'Morty Sanchez', 'carmauser', 1, 'user', 'mortysanchez@gmail.com', '20190913', 'https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`, `profile_image`) VALUES (10, 'Rick Grimes', 'carmauser', 1, 'user', 'rickgrimes@gmail.com', '20190912', 'https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`, `profile_image`) VALUES (11, 'Scruff McGruff', 'carmauser', 1, 'user', 'scruffmcgruff@gmail.com', '20190914', 'https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`, `profile_image`) VALUES (12, 'Lauren Natalia', 'carmauser', 1, 'user', 'laurennatalia@gmail.com', '20190913', 'https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`, `profile_image`) VALUES (13, 'Louis Lane', 'carmauser', 1, 'user', 'louislane@gmail.com', '20190917', 'https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`, `profile_image`) VALUES (14, 'Bruce Wayne', 'carmauser', 1, 'user', 'brucewayne@gmail.com', '20190916', 'https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`, `profile_image`) VALUES (15, 'Natalie Portman', 'carmauser', 1, 'user', 'natalieportman@gmail.com', '20190913', 'https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`, `profile_image`) VALUES (16, 'Morgan Freeman', 'carmauser', 1, 'user', 'morganfreeman@gmail.com', '20190912', 'https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`, `profile_image`) VALUES (17, 'Mr. Pink', 'carmauser', 1, 'user', 'mrpink@gmail.com', '20190914', 'https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`, `profile_image`) VALUES (18, 'John Wayne', 'carmauser', 1, 'user', 'johnwayne@gmail.com', '20190916', 'https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`, `profile_image`) VALUES (19, 'John Wick', 'carmauser', 1, 'user', 'johnwick@gmail.com', '20190915', 'https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `date_user_account_created`, `profile_image`) VALUES (20, 'David Hasselhoff', 'carmauser', 1, 'user', 'davidhasselhoff@gmail.com', '20190911', 'https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg');
 
 COMMIT;
 
@@ -309,26 +336,26 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `carmadb`;
-INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `comment`, `date_voted`) VALUES (1, 1, 1, 1, 'Greedy BMW Driver takes up two spots', '20190911');
-INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `comment`, `date_voted`) VALUES (2, 2, 2, 1, 'Driver parks his car on top of and between two parked cars', '20190912');
-INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `comment`, `date_voted`) VALUES (3, 3, 3, 1, 'Darn BMW driver sprawling his vehicle out in parking lot.', '20190913');
-INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `comment`, `date_voted`) VALUES (4, 4, 4, 1, 'This beige van decides to block everyone in by double parking behind them', '20190913');
-INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `comment`, `date_voted`) VALUES (5, 5, 5, 1, 'Driver decides to park his Audi out in front of the parking spot', '20190913');
-INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `comment`, `date_voted`) VALUES (6, 6, 6, 1, 'Truck driver puts his needs ahead of handicapable people', '20190913');
-INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `comment`, `date_voted`) VALUES (7, 7, 7, 1, 'Parking Enforcement officer not enforcing his own parking', '20190913');
-INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `comment`, `date_voted`) VALUES (8, 8, 8, 1, 'Driver decides to park his grey van right on the sidewalk', '20190913');
-INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `comment`, `date_voted`) VALUES (9, 9, 9, 1, 'This guys gonna park straight no matter how angled that parking spot is', '20190914');
-INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `comment`, `date_voted`) VALUES (10, 10, 10, 1, 'This driver wanted his car to get some sun, in an indoor parking lot', '20190914');
-INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `comment`, `date_voted`) VALUES (11, 11, 11, 1, 'Couldn\'t find a parking space, no problem, park on a house roof', '20190914');
-INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `comment`, `date_voted`) VALUES (12, 12, 12, 1, 'This driver just needed someone to lean on', '20190914');
-INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `comment`, `date_voted`) VALUES (13, 13, 13, 1, 'I guess this guy\'s SUV thought it was a motorcycle today', '20190914');
-INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `comment`, `date_voted`) VALUES (14, 14, 14, 1, 'This was just a tragedy...', '20190914');
-INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `comment`, `date_voted`) VALUES (15, 15, 15, 1, 'Sideways parking saves space', '20190915');
-INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `comment`, `date_voted`) VALUES (16, 16, 16, 1, 'How does someone feel this entitled to take up multiple parking spots?', '20190915');
-INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `comment`, `date_voted`) VALUES (17, 17, 17, 1, 'This person can really park close!', '20190915');
-INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `comment`, `date_voted`) VALUES (18, 18, 18, 1, 'Talk about headfirst parking! Holy crap!', '20190915');
-INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `comment`, `date_voted`) VALUES (19, 19, 19, 1, 'Look at this guy take up multiple parking spots in a school parking lot! Think of the children!', '20190915');
-INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `comment`, `date_voted`) VALUES (20, 20, 20, 1, 'Parking nuissance or genious!?', '20190916');
+INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `date_voted`) VALUES (1, 1, 1, 1, '20190911');
+INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `date_voted`) VALUES (2, 2, 2, 1, '20190912');
+INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `date_voted`) VALUES (3, 3, 3, 1, '20190913');
+INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `date_voted`) VALUES (4, 4, 4, 1, '20190913');
+INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `date_voted`) VALUES (5, 5, 5, 1, '20190913');
+INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `date_voted`) VALUES (6, 6, 6, 1, '20190913');
+INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `date_voted`) VALUES (7, 7, 7, 1, '20190913');
+INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `date_voted`) VALUES (8, 8, 8, 1, '20190913');
+INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `date_voted`) VALUES (9, 9, 9, 1, '20190914');
+INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `date_voted`) VALUES (10, 10, 10, 1, '20190914');
+INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `date_voted`) VALUES (11, 11, 11, 1, '20190914');
+INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `date_voted`) VALUES (12, 12, 12, 1, '20190914');
+INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `date_voted`) VALUES (13, 13, 13, 1, '20190914');
+INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `date_voted`) VALUES (14, 14, 14, 1, '20190914');
+INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `date_voted`) VALUES (15, 15, 15, 1, '20190915');
+INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `date_voted`) VALUES (16, 16, 16, 1, '20190915');
+INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `date_voted`) VALUES (17, 17, 17, 1, '20190915');
+INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `date_voted`) VALUES (18, 18, 18, 1, '20190915');
+INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `date_voted`) VALUES (19, 19, 19, 1, '20190915');
+INSERT INTO `carma` (`id`, `user_id`, `parking_fail_id`, `vote`, `date_voted`) VALUES (20, 20, 20, 1, '20190916');
 
 COMMIT;
 

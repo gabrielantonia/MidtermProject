@@ -22,7 +22,26 @@ public class User {
 	private List<Carma> listOfCarma;
 	@Column(name="date_user_account_created")
 	private String dateCreated;
+	@Column(name="profile_image")
+	private String image;
 	
+	@OneToMany(mappedBy="user")
+	private List<Comment> comments;
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 
 	public String getDateCreated() {
 		return dateCreated;

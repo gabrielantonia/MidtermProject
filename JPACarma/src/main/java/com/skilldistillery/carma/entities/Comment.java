@@ -1,7 +1,5 @@
 package com.skilldistillery.carma.entities;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,11 +9,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Carma {
-	
+public class Comment {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int Id;
+	
+	private String text;
+	
+	@Column(name="date_comment_created")
+	private String dateCreated;
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
@@ -24,63 +27,52 @@ public class Carma {
 	@ManyToOne
 	@JoinColumn(name="parking_fail_id")
 	private ParkingFail parkingFail;
-	
-	private int vote;
-	
-	
-	@Column(name="date_voted")
-	LocalDateTime dateVoted;
-	
-	public Carma() {
-		
-	}
-	
-	
-	public Carma(User user, ParkingFail parkingFail, int vote, LocalDateTime dateVoted) {
-		super();
-		this.user = user;
-		this.parkingFail = parkingFail;
-		this.vote = vote;
-		this.dateVoted = dateVoted;
-	}
-
 
 	public int getId() {
-		return id;
+		return Id;
 	}
+
 	public void setId(int id) {
-		this.id = id;
+		Id = id;
 	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public String getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(String dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
 	public User getUser() {
 		return user;
 	}
+
 	public void setUser(User user) {
 		this.user = user;
 	}
+
 	public ParkingFail getParkingFail() {
 		return parkingFail;
 	}
+
 	public void setParkingFail(ParkingFail parkingFail) {
 		this.parkingFail = parkingFail;
-	}
-	public int getVote() {
-		return vote;
-	}
-	public void setVote(int vote) {
-		this.vote = vote;
-	}
-	public LocalDateTime getDateVoted() {
-		return dateVoted;
-	}
-	public void setDateVoted(LocalDateTime dateVoted) {
-		this.dateVoted = dateVoted;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
+		result = prime * result + Id;
 		return result;
 	}
 
@@ -92,18 +84,23 @@ public class Carma {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Carma other = (Carma) obj;
-		if (id != other.id)
+		Comment other = (Comment) obj;
+		if (Id != other.Id)
 			return false;
 		return true;
 	}
 
-	@Override 
-	public String toString() {
-		return "Carma [id=" + id + ", user=" + user + ", vote=" + vote + ",  dateVoted=" + dateVoted
-				+ "]";
+	public Comment(int id, String text, String dateCreated, User user, ParkingFail parkingFail) {
+		super();
+		Id = id;
+		this.text = text;
+		this.dateCreated = dateCreated;
+		this.user = user;
+		this.parkingFail = parkingFail;
 	}
-	
-	
+
+	public Comment() {
+		super();
+	}
 	
 }

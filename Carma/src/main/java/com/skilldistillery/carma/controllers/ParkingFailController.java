@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.carma.data.ParkingFailDAOImpl;
 import com.skilldistillery.carma.entities.Car;
@@ -32,8 +33,9 @@ public class ParkingFailController {
 	private ParkingFailDAOImpl dao;
 
 	@RequestMapping(path = "/", method = RequestMethod.GET)
-	public String index(Model model) {
+	public String index(Model model, RedirectAttributes ra) {
 		ArrayList<ParkingFail> parkingFailTopThree = dao.findTopParkingFailByAmount(3);
+		model.addAttribute("validationfailed", ra.getFlashAttributes());
 		model.addAttribute("user", new User());
 		model.addAttribute("parkingFailTopThree", parkingFailTopThree);
 		ArrayList<String> urls = new ArrayList<String>();
