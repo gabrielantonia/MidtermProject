@@ -194,7 +194,7 @@ public class ParkingFailController {
 public ModelAndView addRankVote (HttpSession session, @RequestParam("camraId") int camraId)
 {
 	Carma carma = new Carma();
-
+	System.out.println(camraId);
 	dao.addRankVote(camraId);
 	
 	ModelAndView mv = new ModelAndView();

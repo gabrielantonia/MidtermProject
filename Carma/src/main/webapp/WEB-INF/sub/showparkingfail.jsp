@@ -77,7 +77,7 @@
 						</form>
 						<br>
 						<textarea rows="4" cols="50" name="comment" form="comment">Vent Your Frustration...</textarea>
-				 	 <input type="hidden" id="1" name="pfid" value="1">
+				 	 <input type="hidden" id="carmaId" name="carmaId" value="carmaId">
 					<form action="addComment.do" id="comment">
 							<input type="submit">
 
@@ -130,7 +130,7 @@
 		<p>Think this person deserves bad Carma?
 		:</p>
 		<form action="addRankVote.do">
- 		<input type="hidden" id="camraId" name="camraId" value="vote">		
+ 		<input type="hidden" id="camraId" name="camraId" value="camraId">		
 		<button style="font-size: 24px">
 			BAD CARMA! <i class="fa fa-thumbs-down"></i>
 		</button>
