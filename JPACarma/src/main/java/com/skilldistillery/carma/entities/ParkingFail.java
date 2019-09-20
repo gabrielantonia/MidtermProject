@@ -1,7 +1,6 @@
 package com.skilldistillery.carma.entities;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -47,6 +46,17 @@ public class ParkingFail  {
 
 	@OneToMany(mappedBy = "parkingFail")
 	private List<Carma> listOfCarma;
+	
+	@OneToMany(mappedBy = "parkingFail")
+	private List<Comment> listOfComments;
+	
+	public List<Comment> getListOfComments() {
+		return listOfComments;
+	}
+
+	public void setListOfComments(List<Comment> listOfComments) {
+		this.listOfComments = listOfComments;
+	}
 
 	public ParkingFail() {
 
