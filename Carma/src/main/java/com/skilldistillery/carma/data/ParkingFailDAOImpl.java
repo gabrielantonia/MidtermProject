@@ -11,8 +11,11 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.carma.entities.Carma;
+import com.skilldistillery.carma.entities.Car;
+import com.skilldistillery.carma.entities.Location;
 import com.skilldistillery.carma.entities.ParkingFail;
 import com.skilldistillery.carma.entities.ParkingFailComparator;
+import com.skilldistillery.carma.entities.ParkingFailDTO;
 import com.skilldistillery.carma.entities.Picture;
 import com.skilldistillery.carma.entities.User;
 import com.skilldistillery.carma.entities.UserComparator;
@@ -84,16 +87,24 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 	}
 
 	@Override
-	public void updateParkingFail(ParkingFail parkingFail) {
-		ParkingFail managed = em.find(ParkingFail.class, parkingFail.getId());
-		managed.setCar(parkingFail.getCar());
-		managed.setDescription(parkingFail.getDescription());
-		managed.setFailTime(parkingFail.getFailTime());
-		managed.setListOfPictures(parkingFail.getListOfPictures());
-		managed.setLocation(parkingFail.getLocation());
-		managed.setText(parkingFail.getText());
-		managed.setTitle(parkingFail.getTitle());
-		managed.setUser(parkingFail.getUser());
+	public void updateParkingFail(ParkingFailDTO pfd, int id, String url) {
+		ParkingFail managed = em.find(ParkingFail.class, id);
+		Car car = managed.getCar();
+		car.setLicensePlate(pfd.getLicensePlate());
+		car.setAlias(pfd.getAlias());
+		car.setColor(pfd.getColor());
+		car.setDescription(pfd.getDescription());
+		car.setMake(pfd.getMake());
+		car.setModel(pfd.getModel());
+		Location location = managed.getLocation();
+		location.setCity(pfd.getCity());
+		location.setName(pfd.getName());
+		location.setState(pfd.getState());
+		location.setStreet(pfd.getStreet());
+		location.setZip(pfd.getZip());
+		managed.setTitle(pfd.getTitle());
+		managed.getListOfPictures().get(0).setUrl(pfd.getUrl());
+		em.flush();
 	}
 
 	@Override
@@ -183,5 +194,4 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		em.flush();
 	}
 		
-	}
-
+}

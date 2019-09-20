@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,21 +15,20 @@
 <jsp:include page="../scripts.jsp" />
 <jsp:include page="../navbar.jsp" />
 <br>
-<br>
-<br>
 <title>${loggedInUser.username }'s profile</title>
 </head>
 <body>
 
 	<br>
 	<br>
-	<div class="profilecontainer">
+	<div class="profilecontainer container-fluid">
 		<div id="left">
+			<br>
 			<div id="profileimage">
 				<img src="https://i.imgur.com/BQVugRJ.gif">
 			</div>
 			<div id="userinfo">
-				<br> <br>
+				<br>
 				<h4>${loggedInUser.username }</h4>
 				<br>
 				<h6>Join date: ${loggedInUser.dateCreated }</h6>
@@ -37,7 +37,8 @@
 			</div>
 		</div>
 		<div id="rightuserpage">
-			Parking Fails Added <br>
+		<br>
+			<p style="text-align:center">${fn:length(listOfPF)} Parking Fails Uploaded</p> <br>
 			<div class="container-fluid">
 				<div class="row">
 					<c:forEach var="pf" items="${listOfPF }" varStatus="status">
@@ -68,7 +69,7 @@
 													</button>
 												</div>
 												<div class="modal-body">
-													<form:form action="update.do" method="POST"
+													<form:form action="updateParkingFail.do?val=${pf.id }" method="POST"
 														modelAttribute="parkingFailDTO">
 														<div class="row">
 															<div class="col-md-6">
@@ -195,4 +196,5 @@
 		</div>
 	</div>
 </body>
+<jsp:include page="../footer.jsp"/>
 </html>

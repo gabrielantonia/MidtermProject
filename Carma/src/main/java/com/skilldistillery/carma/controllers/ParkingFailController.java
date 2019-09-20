@@ -78,21 +78,11 @@ public class ParkingFailController {
 		// return "show"; // if using a ViewResolver.
 	}
 
-	@RequestMapping(path = "update.do")
-	public ModelAndView update(ParkingFail parkingFail) {
-		ModelAndView mv = new ModelAndView();
-		parkingFail = dao.findParkingFailById(parkingFail.getId());
-		mv.addObject("parkingFail", parkingFail);
-		mv.setViewName("sub/update");
-		return mv;
-		// return "index"; // if using a ViewResolver.
-	}
-
 	@RequestMapping(path = "updateParkingFail.do", method = RequestMethod.POST)
-	public String updateParkingFail(ParkingFail parkingFail, Model model) {
-		dao.updateParkingFail(parkingFail);
-		model.addAttribute("parkingFail", dao.findAll());
-		return "index";
+	public String updateParkingFail(HttpSession session, @RequestParam("val") int pfID, @ModelAttribute("parkingFailDTO") ParkingFailDTO pfd, Model model) {
+		System.out.println(pfID);
+		dao.updateParkingFail(pfd, pfID, pfd.getUrl());
+		return "redirect:/userpage.do";
 	}
 
 	@RequestMapping(path = "deleteParkingFail.do", method = RequestMethod.GET)
