@@ -281,28 +281,17 @@ footer .input-group-addon {
 	border-radius: 15px;
 	background-color:#212121;
 }
-
-.profilecontainer>div {
-	flex: 1;
+#profileTitle{
+	text-align: center;
 }
-
 #profileimage {
-	width: 50%;
-	display: block;
-	margin: auto;
+	align-content: flex-start;
 }
 
 #userinfo {
-	padding-top: 50px;
-	padding-left: 100px;
-	margin: auto;
 }
 
-
-#left {
-	padding-left: 15px;
-}
-
+/*  */
 .card {
 	width: 50%;
 }

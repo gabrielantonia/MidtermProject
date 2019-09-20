@@ -20,7 +20,7 @@
 <div class="card bg-dark" style="align:center; ">
 <br>
 	<article class="card-body mx-auto" style="max-width: 500px;">
-		<c:if test="${validationresult==true}">
+		<c:if test="${validationfailed==true}">
 			<p align="center">Invalid login credentials, create an account or try again</p>
 		</c:if>
 		<h4 class="card-title mt-3 text-center">Create Account</h4>

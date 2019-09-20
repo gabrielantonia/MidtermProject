@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `role` VARCHAR(45) NOT NULL DEFAULT 'user',
   `email` VARCHAR(200) NULL,
   `date_user_account_created` VARCHAR(30) NULL,
-  `profile_image` VARCHAR(200) NULL DEFAULT 'https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg',
+  `profile_image` VARCHAR(200) NOT NULL DEFAULT 'https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg',
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB;

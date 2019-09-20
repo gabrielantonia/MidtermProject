@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,22 +30,20 @@ public class AccountController {
 	private ParkingFailDAO parkingdao;
 
 	@RequestMapping(path = "register.do", method=RequestMethod.GET)
-	public String registerUser(Model model, @RequestParam("validationfailed") Boolean validationresult) {
-		if (validationresult) {
-			model.addAttribute("validationresult", validationresult);
-		}
-		else {
-			model.addAttribute("validationresult", false);
-		}
+	public String registerUser(Model model, @RequestParam(value="validationfailed", defaultValue="false") boolean loginstatus) {
+		model.addAttribute("validationfailed", loginstatus);
 		model.addAttribute("user", new User());
 		return "sub/register";
 	}
-
+	
 	@RequestMapping(path="register.do", method=RequestMethod.POST)
 	public String createUser(@ModelAttribute("user") User user, Model model) {
 		user.setDateCreated(LocalDate.now().toString());
 		dao.addUser(user);
+		model.addAttribute("validationfailed", false);
 		model.addAttribute("user", user);
+		model.addAttribute("parkingFailDTO", new ParkingFailDTO());
+		
 		return "sub/userpage";
 	}
 	
@@ -79,9 +78,10 @@ public class AccountController {
 		return "sub/userpage";
 	}
 	@RequestMapping(path="updateUserPhoto.do")
-	public String updateUserImage(Model model, HttpSession session, @RequestParam User user, @RequestParam("imageURL")String imageURL) {
-		dao.updateImage(user, imageURL);
-		return "sub/userpage";
+	public String updateUserImage(Model model, HttpSession session, @RequestParam("image")String imageURL) {
+		User u = (User) session.getAttribute("loggedInUser");
+		dao.updateImage(u, imageURL);
+		return "redirect:/userpage.do";
 		
 	}
 	
