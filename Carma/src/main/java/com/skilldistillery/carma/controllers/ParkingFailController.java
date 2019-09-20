@@ -2,6 +2,7 @@ package com.skilldistillery.carma.controllers;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.skilldistillery.carma.data.ParkingFailDAOImpl;
 import com.skilldistillery.carma.entities.Car;
 import com.skilldistillery.carma.entities.Carma;
+import com.skilldistillery.carma.entities.Comment;
 import com.skilldistillery.carma.entities.Location;
 import com.skilldistillery.carma.entities.ParkingFail;
 import com.skilldistillery.carma.entities.ParkingFailDTO;
@@ -28,6 +30,8 @@ import com.skilldistillery.carma.entities.User;
 
 @Controller
 public class ParkingFailController {
+
+	private static final String DATE_FORMATTER = "yyyy-MM-dd HH:mm";
 
 	@Autowired
 	private ParkingFailDAOImpl dao;
@@ -81,7 +85,8 @@ public class ParkingFailController {
 	}
 
 	@RequestMapping(path = "updateParkingFail.do", method = RequestMethod.POST)
-	public String updateParkingFail(HttpSession session, @RequestParam("val") int pfID, @ModelAttribute("parkingFailDTO") ParkingFailDTO pfd, Model model) {
+	public String updateParkingFail(HttpSession session, @RequestParam("val") int pfID,
+			@ModelAttribute("parkingFailDTO") ParkingFailDTO pfd, Model model) {
 		System.out.println(pfID);
 		dao.updateParkingFail(pfd, pfID, pfd.getUrl());
 		return "redirect:/userpage.do";
@@ -159,50 +164,53 @@ public class ParkingFailController {
 		mv.setViewName("sub/showparkingfail");
 		return mv;
 	}
+
 //////////////////////////////////////////////////////add comments /////////////////////////////
 	@RequestMapping(path = "addComment.do", method = RequestMethod.GET)
-	public ModelAndView addComment(HttpSession session, @RequestParam("comment") String comment,
-	 @RequestParam("1") int userId)
-	
-	//@RequestParam("parkingFailId") int pfid)
-
+	public ModelAndView addComment(HttpSession session, @RequestParam("comment") String text,
+			@RequestParam("carmaId") int carmaId)
 	{
-		Carma carma = new Carma();
+		User currentUser = (User) session.getAttribute("loggedInUser");
+		
+		Comment comment = new Comment();
+		LocalDateTime localDateTime = LocalDateTime.now(); // get current date time
 
-		// Date date=java.util.Calendar.getInstance().getTime();
-		LocalDateTime time = LocalDateTime.now();
-
-		carma.setId(1);
-		carma.setDateVoted(time);
-		carma.setParkingFail(dao.findParkingFailById(1));;
-		carma.setVote(1);
-		dao.AddCommentToCarma(carma);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
+		String formatDateTime = localDateTime.format(formatter);
 
 		
+		comment.setDateCreated(formatDateTime);
+//		comment.setId(carmaId);
+		comment.setText(text);
+		comment.setParkingFail(dao.findParkingFailById(carmaId));
+		comment.setUser(currentUser);
+		dao.addComment(comment);
+		
+		
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("pf", dao.findParkingFailById(1));
-		mv.addObject("carma", dao.findCarmaById(1));
+		mv.addObject("pf", dao.findParkingFailById(carmaId));
+		mv.addObject("carma", dao.findCarmaById(carmaId));
 		mv.addObject("user", new User());
 		mv.setViewName("sub/showparkingfail");
 		return mv;
 
 	}
-	
+
+
 //////////////////////////////////////////////////////add ranks /////////////////////////////////////
-@RequestMapping(path ="addRankVote.do", method = RequestMethod.GET)
-public ModelAndView addRankVote (HttpSession session, @RequestParam("camraId") int camraId)
-{
-	Carma carma = new Carma();
-	System.out.println(camraId);
-	dao.addRankVote(camraId);
-	
-	ModelAndView mv = new ModelAndView();
-	mv.addObject("pf", dao.findParkingFailById(camraId));
-	mv.addObject("carma", dao.findCarmaById(camraId));
-	mv.addObject("user", new User());
-	mv.setViewName("sub/showparkingfail");
-	return mv;
-	
-}
+	@RequestMapping(path = "addRankVote.do", method = RequestMethod.GET)
+	public ModelAndView addRankVote(HttpSession session, @RequestParam("camraId") int camraId) {
+		Carma carma = new Carma();
+		System.out.println(camraId);
+		dao.addRankVote(camraId);
+
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("pf", dao.findParkingFailById(camraId));
+		mv.addObject("carma", dao.findCarmaById(camraId));
+		mv.addObject("user", new User());
+		mv.setViewName("sub/showparkingfail");
+		return mv;
+
+	}
 
 }

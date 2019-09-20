@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.skilldistillery.carma.entities.Carma;
+import com.skilldistillery.carma.entities.Comment;
 import com.skilldistillery.carma.entities.ParkingFail;
 import com.skilldistillery.carma.entities.ParkingFailDTO;
 import com.skilldistillery.carma.entities.Picture;
@@ -45,9 +46,11 @@ public interface ParkingFailDAO {
 	
 	List<Carma> findCarmaListById(int id);
 
-	public void AddCommentToCarma(Carma carma);
-
 	void addRankVote(int carmaId);
+
+	void addComment(Comment comment);
+
+	User findUserByUserId(int id);
 
 
 }

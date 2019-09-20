@@ -81,22 +81,36 @@
 			<!-- !!!BREAK!!!  -->
 
 			<!-- BEGIN VOTING BOX -->
-			<div id="vote" class="col-12">
-				<p>Think this person deserves bad Carma?</p>
-				<ul>
-					<li>DATE: <strong>${carma.dateVoted }</strong>
-					</li>
-					<li>Votes: <strong>${carma.vote }</strong>
-					</li>
+			<!--  need to prevent multiple votes by same user 
+			
+			
+			 -->
+			</ul>
+			</form>
+			<br>
+			<textarea rows="4" cols="50" name="comment" form="comment">Vent Your Frustration...</textarea>
+
+			<input type="hidden" id="carmaId" name="carmaId" value="${pf.id}">
+			<form action="addComment.do" id="comment">
+				<input type="submit">
+				</ul>
+
+				<div id="vote" class="col-12">
 					<ul>
-						<form action="addRankVote.do">
-							<input type="hidden" id="camraId" name="camraId" value="${pf.id}">
-							<button style="font-size: 24px">
-								BAD CARMA! <i class="fa fa-thumbs-down"></i>
-							</button>
-						</form>
-			</div>
-			<!-- END VOTING BOX -->
+						<li>Votes: <strong>${carma.vote }</strong>
+
+							<ul>
+								<p>Think this person deserves bad Carma?</p>
+
+								<form action="addRankVote.do">
+									<input type="hidden" id="carmaId" name="carmaId"
+										value="${pf.id}">
+									<button style="font-size: 24px">
+										BAD CARMA! <i class="fa fa-thumbs-down"></i>
+									</button>
+								</form>
+				</div>
+				<!-- END VOTING BOX -->
 		</body>
 		<jsp:include page="../footer.jsp" />
 </html>
