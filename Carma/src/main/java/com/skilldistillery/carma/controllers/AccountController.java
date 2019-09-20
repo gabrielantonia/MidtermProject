@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestAttribute;
@@ -37,7 +36,7 @@ public class AccountController {
 	}
 	
 	@RequestMapping(path="register.do", method=RequestMethod.POST)
-	public String createUser(@ModelAttribute("user") User user, Model model) {
+	public String createUser(@ModelAttribute("user") User user, Model model, HttpSession session) {
 		user.setDateCreated(LocalDate.now().toString());
 		dao.addUser(user);
 		model.addAttribute("validationfailed", false);
