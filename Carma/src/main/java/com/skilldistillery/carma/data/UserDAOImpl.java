@@ -54,4 +54,9 @@ public class UserDAOImpl implements UserDAO {
 		return updated;
 		
 	}
+
+	@Override
+	public String getUpdatedImage(User user) {
+		return em.find(User.class, user.getId()).getImage();
+	}
 }
