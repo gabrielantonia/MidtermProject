@@ -39,21 +39,21 @@
       <div class="carousel-item active">
         <img src="${urls.get(0) }" class="d-block w-100" height="1000px" alt="...">
         <div class="carousel-caption d-none d-md-block">
-         <h5>${parkingFailTopThree.get(0).getTitle() }</h5>
+         <h5><a href="findParkingFail.do?val=${parkingFailTopThree.get(0).id }">${parkingFailTopThree.get(0).getTitle() }</a></h5>
 					<p>${parkingFailTopThree.get(0).getDescription() }</p>
         </div>
       </div>
       <div class="carousel-item">
         <img src="${urls.get(1) }" class="d-block w-100" height="1000px" alt="...">
         <div class="carousel-caption d-none d-md-block">
-         <h5>${parkingFailTopThree.get(1).getTitle() }</h5>
+         <h5><a href="findParkingFail.do?val=${parkingFailTopThree.get(1).id }">${parkingFailTopThree.get(1).getTitle() }</a></h5>
 					<p>${parkingFailTopThree.get(1).getDescription() }</p>
         </div>
       </div>
       <div class="carousel-item">
         <img src="${urls.get(2) }" class="d-block w-100" height="1000px" alt="...">
         <div class="carousel-caption d-none d-md-block">
-         <h5>${parkingFailTopThree.get(2).getTitle() }</h5>
+         <h5><a href="findParkingFail.do?val=${parkingFailTopThree.get(2).id }">${parkingFailTopThree.get(2).getTitle() }</a></h5>
 					<p>${parkingFailTopThree.get(2).getDescription() }</p>
         </div>
       </div>
