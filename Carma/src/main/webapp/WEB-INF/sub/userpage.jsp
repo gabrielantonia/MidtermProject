@@ -10,13 +10,29 @@
 <jsp:include page="../styletags.jsp" />
 <jsp:include page="../scripts.jsp" />
 <jsp:include page="../navbar.jsp" />
-<br>
 <title>${loggedInUser.username }'sProfile</title>
 </head>
 <body>
 
 	<br>
 	<br>
+	<!-- Comment History -->
+	<div class="container-fluid">
+	<c:choose>
+	<c:when test="${empty loggedInUser}">
+	<p>No Comments to display</p>
+	</c:when>
+	<c:otherwise>
+	<c:forEach items="${loggedInUser.comments }" var="comment">
+		<div class="col">
+			${comment.text}
+			<br><br>
+		</div>
+	</c:forEach>
+	</c:otherwise>
+	</c:choose>
+	</div>
+	<!-- end-Comment History -->
 	<div class="container-fluid profile_container">
 		<div class="row username_text">
 			<h1>${loggedInUser.username }</h1>
@@ -32,7 +48,7 @@
 						<div class="modal-body">
 								<div class="row">
 									<form method="POST" action="updateUserPhoto.do">
-										URL : <input type="text" name="image" />
+										URL : <input type="text" name="image" /><br>
 										<input class="btn btn-primary" type="submit" value="Update">
 									</form>
 								</div>
@@ -213,7 +229,7 @@
 			</div>
 		</div>
 	</div>
-	</div>
+	
 </body>
 <jsp:include page="../footer.jsp" />
 </html>

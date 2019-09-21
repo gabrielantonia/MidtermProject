@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,15 +19,16 @@ public class User {
 	private String username;
 	private String password;
 	private String email;
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user" )
 	private List<Carma> listOfCarma;
 	@Column(name="date_user_account_created")
 	private String dateCreated;
 	@Column(name="profile_image")
 	private String image = "https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg";
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user" , fetch = FetchType.EAGER)
 	private List<Comment> comments;
+	
 	public List<Comment> getComments() {
 		return comments;
 	}
