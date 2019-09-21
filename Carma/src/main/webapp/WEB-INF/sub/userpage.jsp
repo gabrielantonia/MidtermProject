@@ -10,29 +10,13 @@
 <jsp:include page="../styletags.jsp" />
 <jsp:include page="../scripts.jsp" />
 <jsp:include page="../navbar.jsp" />
-<title>${loggedInUser.username }'sProfile</title>
+<title>${loggedInUser.username }'s Profile</title>
 </head>
 <body>
-
 	<br>
 	<br>
-	<!-- Comment History -->
-	<div class="container-fluid">
-	<c:choose>
-	<c:when test="${empty loggedInUser}">
-	<p>No Comments to display</p>
-	</c:when>
-	<c:otherwise>
-	<c:forEach items="${loggedInUser.comments }" var="comment">
-		<div class="col">
-			${comment.text}
-			<br><br>
-		</div>
-	</c:forEach>
-	</c:otherwise>
-	</c:choose>
-	</div>
-	<!-- end-Comment History -->
+	<br>
+	
 	<div class="container-fluid profile_container">
 		<div class="row username_text">
 			<h1>${loggedInUser.username }</h1>
@@ -69,7 +53,6 @@
 		<h6>Email: ${loggedInUser.email }</h6>
 	</div>
 	<!-- -->
-	</div>
 	<div id="rightuserpage">
 		<br>
 		<p style="text-align: center">${fn:length(listOfPF)}ParkingFails
@@ -229,7 +212,25 @@
 			</div>
 		</div>
 	</div>
-	
+	<!-- Comment History -->
+	<div class="container-fluid">
+	<div class="row center" ><h2>Comment History</h2>
+	<c:choose>
+	<c:when test="${empty loggedInUser.getComments()}">
+	<p>No Comments to display</p>
+	</c:when>
+	<c:otherwise>
+	<c:forEach items="${loggedInUser.getComments() }" var="comment">
+		<div class="col">
+			${comment.text}
+			<br><br>
+		</div>
+	</c:forEach>
+	</c:otherwise>
+	</c:choose>
+	</div>
+	</div>
+	<!-- end-Comment History -->
 </body>
 <jsp:include page="../footer.jsp" />
 </html>
