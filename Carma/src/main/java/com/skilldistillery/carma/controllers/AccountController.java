@@ -81,6 +81,7 @@ public class AccountController {
 		System.out.println(dao.getUpdatedImage(u));
 		return "sub/userpage";
 	}
+	
 	@RequestMapping(path="updateUserPhoto.do")
 	public String updateUserImage(Model model, HttpSession session, @RequestParam("image")String imageURL) {
 		User u = (User) session.getAttribute("loggedInUser");
