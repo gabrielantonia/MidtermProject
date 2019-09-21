@@ -8,6 +8,11 @@
 <title>WallOfShame</title>
 <jsp:include page="../styletags.jsp" />
 <jsp:include page="../scripts.jsp" />
+<script>jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});</script>
 </head>
 <!-- ---------------------------------------------------------------------------------------------------- -->
 <jsp:include page="../navbar.jsp" />
@@ -36,11 +41,9 @@
   <tbody>
   <c:forEach var="fail" items="${parkingFailList}" >
   <c:set var="count" value="${count + 1}" scope="page"/>
-  <tr>
+  <tr class='clickable-row' data-href='findParkingFail.do?val=${fail.id }' >
       <th scope="row">${count}</th>
-      <a href="..." > <!--  implement link functionality once car page is finished-->
       <td> ${fail.getCarmaValue() }</td>
-      </a>
       <td> ${fail.getTitle() }</td>
       <td>${fail.getCar().getMake() }</td>
       <td>${fail.getCar().getModel() }</td>
