@@ -33,7 +33,7 @@
 								<div class="row">
 									<form method="POST" action="updateUserPhoto.do">
 										URL : <input type="text" name="image" />
-										<input class="btn btn-primary" type="submit" value="Update">
+									<input class="btn btn-primary" type="submit" value="Update">
 									</form>
 								</div>
 						</div>
