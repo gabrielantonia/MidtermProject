@@ -24,7 +24,7 @@
 		<br> <br>
 		<div class="imagecontainer">
 			<div id="profileimage" id="hoverPicture" ss="row">
-				<img class="userUploadedPic" src=${userUpdatedString}>
+				<img class="userUploadedPic" src=${loggedInUser.image}>
 			</div>
 			<div class="updateMiddle">
 				<div class="modal-dialog modal-lg" role="document">
@@ -33,8 +33,8 @@
 								<div class="row">
 									<form method="POST" action="updateUserPhoto.do">
 										URL : <input type="text" name="image" />
-										<input class="btn btn-primary" type="submit" value="Update">
 									</form>
+									<input class="btn btn-primary" type="submit" value="Update">
 								</div>
 						</div>
 					</div>

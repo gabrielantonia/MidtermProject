@@ -154,7 +154,6 @@ public class ParkingFailController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("pf", dao.findParkingFailById(id));
 		mv.addObject("carma", dao.findCarmaById(id));
-
 		// hack to get single picture
 		// List<Picture> tempList = dao.findPicturesByUserId(id);
 		// String tempPic = tempList.get(id).getUrl();
@@ -183,6 +182,7 @@ public class ParkingFailController {
 		comment.setText(text);
 		comment.setParkingFail(dao.findParkingFailById(carmaId));
 		comment.setUser(currentUser);
+		System.out.println(currentUser);
 		dao.addComment(comment);
 		
 		

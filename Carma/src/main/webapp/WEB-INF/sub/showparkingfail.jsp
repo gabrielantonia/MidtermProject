@@ -75,8 +75,6 @@
 				<!-- END AUTO DESCRIPTION -->
 			</div>
 			<br>
-			<br>
-			<br>
 
 			<!-- !!!BREAK!!!  -->
 
@@ -85,32 +83,60 @@
 			
 			
 			 -->
-			</ul>
-			</form>
-			<br>
-			<textarea rows="4" cols="50" name="comment" form="comment">Vent Your Frustration...</textarea>
-
-			<input type="hidden" id="carmaId" name="carmaId" value="${pf.id}">
-			<form action="addComment.do" id="comment">
-				<input type="submit">
-				</ul>
-
-				<div id="vote" class="col-12">
-					<ul>
-						<li>Votes: <strong>${carma.vote }</strong>
-
-							<ul>
-								<p>Think this person deserves bad Carma?</p>
-
-								<form action="addRankVote.do">
-									<input type="hidden" id="carmaId" name="carmaId"
-										value="${pf.id}">
-									<button style="font-size: 24px">
-										BAD CARMA! <i class="fa fa-thumbs-down"></i>
-									</button>
-								</form>
+<!-- 			 TEXT BOX-->
+			<c:choose>
+			<c:when test="${not empty loggedInUser}">
+				<form action="addComment.do" id="comment">
+					<textarea rows="4" cols="50" name="comment" form="comment">Vent Your Frustration...</textarea>
+					<input type="hidden" id="carmaId" name="carmaId" value="${pf.id}">
+					<input type="hidden" id="userId" name="userId" value="${loggedInUser.id}">
+					<input type="submit">
+				</form>
+			</c:when>
+			<c:otherwise>
+				<c:out value="Sign in to comment"></c:out>
+			</c:otherwise>
+			</c:choose>	
+			
+<!-- 			COMMENTS	
+ -->			
+ 			<h5>Comments</h5>
+ 			<br>
+ 			<br>
+ 			<br>
+			<div class="commentConainer">
+				<div class="commentRow">
+						<c:forEach var="comment" items="${pf.listOfComments }">
+							<div class="col-sm-1">
+								<div class="thumbnail">
+									<img class="img-responsive user-photo" src="${comment.user.image}">
+								</div>			<!-- thumbnail -->
+							</div>
+							<div class="col-sm-5">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<strong>${comment.user.username }</strong> <span class="text-muted">${comment.dateCreated }</span>
+									</div> <!--  panel-heading -->
+									<div class="commentContent">
+										${comment.text }
+									</div>
+								</div> <!-- panel -->
+							</div>	<!-- col-sm-1 -->
+					</c:forEach>
+					
 				</div>
-				<!-- END VOTING BOX -->
+			</div>
+			
+			<div id="vote" class="col-12">
+				<p>Think this person deserves bad Carma?</p>
+				<form action="addRankVote.do">
+					<input type="hidden" id="carmaId" name="carmaId" value="${pf.id}">
+					<button style="font-size: 24px">
+						BAD CARMA! <i class="fa fa-thumbs-down"></i>
+					</button>
+				</form>
+			</div>
+			<!-- END VOTING BOX -->
 		</body>
 		<jsp:include page="../footer.jsp" />
 </html>
