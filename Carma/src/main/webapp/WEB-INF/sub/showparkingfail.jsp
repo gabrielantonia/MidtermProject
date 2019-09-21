@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,30 +25,29 @@
 <!--room for navbar  -->
 
 <body id=“CARMA”>
-	<div id=“header”>
 
-		<a href="/"></a>
-		<body class="container-fluid">
+	<a href="/"></a>
 
-			<!-- BEGIN JUMBOTRON -->
-			<div class="jumbotron">
-				<h1 class="display-4">${pf.title}</h1>
-				<hr class="my-4">
-				<p class="lead" align="center">${pf.description}</p>
-			</div>
-			<!-- END JUMBOTRON -->
+	<!-- BEGIN JUMBOTRON -->
+	<div class="jumbotron">
+		<h1 class="display-4">${pf.title}</h1>
+		<hr class="my-4">
+		<p class="lead" align="center">${pf.description}</p>
+	</div>
+	<!-- END JUMBOTRON -->
 
-			<div class="row" class="">
-				<!-- BEGIN IMAGE -->
-				<div class="col-9" id="img" align="center">
-					<c:forEach var="picture" items="${pf.listOfPictures }">
-						<img src="${picture.url}">
-					</c:forEach>
+	<div class="row" class="">
+		<!-- BEGIN IMAGE -->
+		<div class="col-9" id="parkignFailPictures" align="center">
+			<c:forEach var="picture" items="${pf.listOfPictures }">
+				<img src="${picture.url}">
+			</c:forEach>
 
-				</div>
-				<!-- END-IMAGE -->
+		</div>
+	</div>
+	<!-- END-IMAGE -->
 
-				<%-- 		<!-- BEGIN COMMENTS BOX -->
+	<%-- 		<!-- BEGIN COMMENTS BOX -->
 		<form action="createComment.do" path="################" id="form">
 		<br>
 			<div id="comment" class="col-12" align="center">
@@ -61,82 +61,124 @@
 		</form>  -->
 		<!-- END COMMENTS BOX --> 
 --%>
-				<!-- BEGIN AUTO DESCRIPTION -->
-				<div class="col-5" id="auto-description">
-					<div class="row" id="alias">Alias: ${pf.car.alias }</div>
-					<div class="row" id="description">Description:
-						${pf.car.description }</div>
-					<div class="row" id="make">Make: ${pf.car.make }</div>
-					<div class="row" id="model">Model: ${pf.car.model }</div>
-					<div class="row" id="color">Color: ${pf.car.color }</div>
-					<div class="row" id="license-plate">License Plate:
-						${pf.car.licensePlate }</div>
-				</div>
-				<!-- END AUTO DESCRIPTION -->
-			</div>
-			<br>
+	<!-- BEGIN AUTO DESCRIPTION -->
+	<div class="jumbotron" id="desc_and_comments">
+		<div id="vote">
+		<p >${pf.car.alias } has ${pf.getCarmaValue() } carma! Think this person deserves bad Carma?</p>
+		<form action="addRankVote.do">
+			<input type="hidden" id="carmaId" name="carmaId" value="${pf.id}">
+			<button style="font-size: 24px">
+				BAD CARMA! <i class="fa fa-thumbs-down"></i>
+			</button>
+		</form>
+	</div>
+		<div class="pfDescription">
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">Description: ${pf.car.description }
+				</li>
+				<li class="list-group-item">Make: ${pf.car.make }</li>
+				<li class="list-group-item">Model: ${pf.car.model }</li>
+				<li class="list-group-item">Color: ${pf.car.color }</li>
+			</ul>
+		</div>
+		<!-- END AUTO DESCRIPTION -->
+		<br>
 
-			<!-- !!!BREAK!!!  -->
+		<!-- 			COMMENTS	
+ -->
+		<div class="commentContainer">
+			<div id="inputBox">
+				<c:choose>
+					<c:when test="${not empty loggedInUser}">
+						<form action="addComment.do" id="comment">
+							<textarea rows="4" cols="50" name="comment" form="comment">Vent Your Frustration...</textarea>
+							<input type="hidden" id="carmaId" name="carmaId" value="${pf.id}">
+							<input type="hidden" id="userId" name="userId"
+								value="${loggedInUser.id}"> <input type="submit">
+						</form>
+						<hr>
+						<br>
+					</c:when>
+					<c:otherwise>
+						<button type="button" class="btn btn-primary btn-sm"
+							data-toggle="modal" data-target="#login">Login to
+							comment</button>
 
-			<!-- BEGIN VOTING BOX -->
-			<!--  need to prevent multiple votes by same user 
-			
-			
-			 -->
-<!-- 			 TEXT BOX-->
-			<c:choose>
-			<c:when test="${not empty loggedInUser}">
-				<form action="addComment.do" id="comment">
-					<textarea rows="4" cols="50" name="comment" form="comment">Vent Your Frustration...</textarea>
-					<input type="hidden" id="carmaId" name="carmaId" value="${pf.id}">
-					<input type="hidden" id="userId" name="userId" value="${loggedInUser.id}">
-					<input type="submit">
-				</form>
-			</c:when>
-			<c:otherwise>
-				<c:out value="Sign in to comment"></c:out>
-			</c:otherwise>
-			</c:choose>	
-			
-<!-- 			COMMENTS	
- -->			
- 			<h5>Comments</h5>
- 			<br>
- 			<br>
- 			<br>
-			<div class="commentConainer">
-				<div class="commentRow">
-						<c:forEach var="comment" items="${pf.listOfComments }">
-							<div class="col-sm-1">
-								<div class="thumbnail">
-									<img class="img-responsive user-photo" src="${comment.user.image}">
-								</div>			<!-- thumbnail -->
-							</div>
-							<div class="col-sm-5">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<strong>${comment.user.username }</strong> <span class="text-muted">${comment.dateCreated }</span>
-									</div> <!--  panel-heading -->
-									<div class="commentContent">
-										${comment.text }
+						<!-- Modal -->
+						<div class="modal fade" id="login" tabindex="-1" role="dialog"
+							aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">Login</h5>
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
 									</div>
-								</div> <!-- panel -->
-							</div>	<!-- col-sm-1 -->
-					</c:forEach>
-					
-				</div>
+									<div class="modal-body">
+										<form:form action="login.do" method="POST"
+											modelAttribute="user">
+											<div class="form-group">
+												<form:label id="username" path="username">Username</form:label>
+												<form:input type="text" path="username" required="required" />
+												<br />
+												<form:label id="password" path="password">Password</form:label>
+												<form:input type="password" path="password"
+													required="required" />
+												<br />
+												<input type="hidden" id="fromPFPage" name="fromPFPage" value="true"> 
+												<input type="hidden" id="pfId" name="pfId" value="${pf.id }"> 
+												<button type="submit" id="btnLogin"
+													class="btn btn-success btn-sm">Login</button>
+												<br> <br>
+												<p>
+													New around here? <a id="sign-in" href="register.do"
+														type="get">Sign up</a>
+												</p>
+											</div>
+										</form:form>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br>
+					</c:otherwise>
+				</c:choose>
 			</div>
-			
-			<div id="vote" class="col-12">
-				<p>Think this person deserves bad Carma?</p>
-				<form action="addRankVote.do">
-					<input type="hidden" id="carmaId" name="carmaId" value="${pf.id}">
-					<button style="font-size: 24px">
-						BAD CARMA! <i class="fa fa-thumbs-down"></i>
-					</button>
-				</form>
+			<hr id="separator">
+			<br>
+			<h3>Comments</h3>
+			<br> <br>
+			<div class="commentRow">
+				<c:forEach var="comment" items="${pf.listOfComments }">
+					<div class="profileImage">
+						<div class="thumbnail">
+							<img id="photo" class="img-responsive user-photo"
+								src="${comment.user.image}">
+						</div>
+						<!-- thumbnail -->
+					</div>
+					<div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<strong>${comment.user.username }</strong> <span
+									class="text-muted">${comment.dateCreated }</span>
+							</div>
+							<!--  panel-heading -->
+							<div class="commentContent">${comment.text }</div>
+						</div>
+						<!-- panel -->
+					</div>
+					<hr>
+					<!-- col-sm-1 -->
+				</c:forEach>
 			</div>
-			<!-- END VOTING BOX -->
-		</body>
-		<jsp:include page="../footer.jsp" />
+
+		</div>
+	</div>
+	</div>
+	<!-- END VOTING BOX -->
+</body>
+<jsp:include page="../footer.jsp" />
 </html>

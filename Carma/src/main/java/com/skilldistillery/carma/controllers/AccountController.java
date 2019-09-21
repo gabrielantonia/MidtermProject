@@ -45,10 +45,15 @@ public class AccountController {
     }
 	
 	@RequestMapping(path="login.do", method=RequestMethod.POST)
-	public String doLogin(@ModelAttribute("user") User user, Errors errors, HttpSession session, RedirectAttributes ra) {
+	public String doLogin(@ModelAttribute("user") User user, Errors errors, HttpSession session, RedirectAttributes ra, @RequestParam(value="fromPFPage", defaultValue="false") boolean fromPF, @RequestParam(value="pfId", defaultValue="0") String pfId) {
 		User u = dao.validateUser(user);
 		if (errors.hasErrors()) {
 			return "redirect:/";
+		}
+		System.out.println(fromPF);
+		if (fromPF) {
+			session.setAttribute("loggedInUser", u);
+			return "redirect:/findParkingFail.do?val=" + pfId; 
 		}
 		if (u != null) {
 			session.setAttribute("loggedInUser", u);
@@ -73,12 +78,14 @@ public class AccountController {
 		model.addAttribute("listOfPictures", parkingdao.findPicturesByUserId(u.getId()));
 		model.addAttribute("parkingFailDTO", new ParkingFailDTO());
 		model.addAttribute("userUpdatedString", dao.getUpdatedImage(u));
+		System.out.println(dao.getUpdatedImage(u));
 		return "sub/userpage";
 	}
 	@RequestMapping(path="updateUserPhoto.do")
 	public String updateUserImage(Model model, HttpSession session, @RequestParam("image")String imageURL) {
 		User u = (User) session.getAttribute("loggedInUser");
 		dao.updateImage(u, imageURL);
+		System.out.println(imageURL);
 		return "redirect:/userpage.do";
 		
 	}

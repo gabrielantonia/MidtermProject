@@ -182,7 +182,6 @@ public class ParkingFailController {
 		comment.setText(text);
 		comment.setParkingFail(dao.findParkingFailById(carmaId));
 		comment.setUser(currentUser);
-		System.out.println(currentUser);
 		dao.addComment(comment);
 		
 		
@@ -198,14 +197,13 @@ public class ParkingFailController {
 
 //////////////////////////////////////////////////////add ranks /////////////////////////////////////
 	@RequestMapping(path = "addRankVote.do", method = RequestMethod.GET)
-	public ModelAndView addRankVote(HttpSession session, @RequestParam("camraId") int camraId) {
+	public ModelAndView addRankVote(HttpSession session, @RequestParam("carmaId") int carmaId) {
 		Carma carma = new Carma();
-		System.out.println(camraId);
-		dao.addRankVote(camraId);
+		dao.addRankVote(carmaId);
 
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("pf", dao.findParkingFailById(camraId));
-		mv.addObject("carma", dao.findCarmaById(camraId));
+		mv.addObject("pf", dao.findParkingFailById(carmaId));
+		mv.addObject("carma", dao.findCarmaById(carmaId));
 		mv.addObject("user", new User());
 		mv.setViewName("sub/showparkingfail");
 		return mv;
