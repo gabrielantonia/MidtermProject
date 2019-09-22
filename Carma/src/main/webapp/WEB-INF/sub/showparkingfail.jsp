@@ -91,7 +91,7 @@
 				<c:choose>
 					<c:when test="${not empty loggedInUser}">
 						<form action="addComment.do" id="comment">
-							<textarea rows="4" cols="50" name="comment" form="comment">Vent Your Frustration...</textarea>
+							<textarea rows="4" cols="50" name="comment" placeholder="Vent your frucstrations" form="comment"></textarea>
 							<input type="hidden" id="carmaId" name="carmaId" value="${pf.id}">
 							<input type="hidden" id="userId" name="userId"
 								value="${loggedInUser.id}"> <input type="submit">
