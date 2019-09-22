@@ -85,7 +85,9 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 	@Override
 
 	public void createParkingFail(ParkingFail parkingFail) {
+		Carma c = new Carma(em.find(User.class, parkingFail.getUser().getId()), parkingFail, 1, LocalDateTime.now());
 		em.persist(parkingFail);
+		em.persist(c);
 		em.flush();
 	}
 
@@ -176,6 +178,7 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		String jpql = "Select p from ParkingFail p where p.user.id=:id";
 		return em.createQuery(jpql, ParkingFail.class).setParameter("id", id).getResultList();
 	}
+
 	@Override
 	public User findUserByUserId(int id) {
 		String jpql = "Select u from User u where u.user.id=:id";
@@ -195,7 +198,6 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 
 	}
 
-
 	@Override
 	public void addComment(Comment comment) {
 		em.persist(comment);
@@ -203,17 +205,17 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 	}
 
 	@Override
-	public void addRankVote(int carmaId) {
-		//need get user ID
-		Carma carma = new Carma();
-		carma = findCarmaById(carmaId);
+	public void addRankVote(int pfId) {
 		LocalDateTime time = LocalDateTime.now();
-
-		carma.setVote(carma.getVote() + 1);
-		carma.setDateVoted(time);
-		//carma.setUser(findUserByUserId(userId);
-		em.persist(carma);
-		em.flush();
+		ParkingFail pf = em.find(ParkingFail.class, pfId);
+		Carma carma = pf.getListOfCarma().get(0);
+		if (carma != null) {
+			carma.setVote(carma.getVote() + 1);
+			carma.setDateVoted(time);
+			// carma.setUser(findUserByUserId(userId);
+			em.persist(carma);
+			em.flush();
+		}
 	}
 
 }
