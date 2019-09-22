@@ -47,8 +47,7 @@ CREATE TABLE IF NOT EXISTS `car` (
   `color` VARCHAR(45) NULL,
   `description` VARCHAR(2000) NULL,
   `alias` VARCHAR(200) NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `license_plate_UNIQUE` (`license_plate` ASC))
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
