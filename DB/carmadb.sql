@@ -41,9 +41,9 @@ DROP TABLE IF EXISTS `car` ;
 
 CREATE TABLE IF NOT EXISTS `car` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `license_plate` VARCHAR(10) NOT NULL,
-  `make` VARCHAR(100) NOT NULL,
-  `model` VARCHAR(100) NOT NULL,
+  `license_plate` VARCHAR(10) NULL,
+  `make` VARCHAR(100) NULL,
+  `model` VARCHAR(100) NULL,
   `color` VARCHAR(45) NULL,
   `description` VARCHAR(2000) NULL,
   `alias` VARCHAR(200) NULL,
@@ -59,10 +59,10 @@ DROP TABLE IF EXISTS `location` ;
 CREATE TABLE IF NOT EXISTS `location` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(200) NULL,
-  `street` VARCHAR(200) NOT NULL,
-  `city` VARCHAR(200) NOT NULL,
-  `state` CHAR(2) NOT NULL,
-  `zip` CHAR(5) NOT NULL,
+  `street` VARCHAR(200) NULL,
+  `city` VARCHAR(200) NULL,
+  `state` CHAR(50) NULL,
+  `zip` CHAR(50) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
