@@ -59,4 +59,14 @@ public class UserDAOImpl implements UserDAO {
 	public String getUpdatedImage(User user) {
 		return em.find(User.class, user.getId()).getImage();
 	}
+
+	@Override
+	public boolean checkUniqueUsername(String username) {
+		String jpql = "Select u.username from User u";
+		List<String> ls = em.createQuery(jpql, String.class).getResultList();
+		if (ls.contains(username)) {
+			return true;
+		}
+		return false;
+	}
 }

@@ -60,18 +60,33 @@ public class ParkingFailController {
 	@RequestMapping(path = "create.do", method = RequestMethod.POST)
 	public ModelAndView addParkingFail(HttpSession session, @ModelAttribute("parkingFail") ParkingFailDTO pfd) {
 		ModelAndView mv = new ModelAndView("sub/userpage");
-		Car c = new Car(pfd.getLicensePlate(), pfd.getMake(), pfd.getModel(), pfd.getColor(), pfd.getDescription(),
-				pfd.getAlias());
-		User u = (User) session.getAttribute("loggedInUser");
-		Location l = new Location(pfd.getName(), pfd.getStreet(), pfd.getCity(), pfd.getState(), pfd.getZip());
-		ParkingFail pf = new ParkingFail(pfd.getTitle(), c, u, l, LocalTime.now().toString(), pfd.getDescription());
-		dao.createParkingFail(pf);
-		dao.addPicture(new Picture(pfd.getUrl(), pf));
-		mv.addObject("parkingFail", pf);
-		mv.addObject("parkingFailDTO", new ParkingFailDTO());
-		mv.addObject("listOfPF", dao.findParkingFailByUserId(u.getId()));
-		mv.addObject("listOfPictures", dao.findPicturesByUserId(u.getId()));
-		return mv;
+		List<ParkingFail> c = dao.findCarByLicensePlate(pfd.getLicensePlate());
+		if (c.size() == 0) {
+			Car newCar = new Car(pfd.getLicensePlate(), pfd.getMake(), pfd.getModel(), pfd.getColor(),
+					pfd.getDescription(), pfd.getAlias());
+			User u = (User) session.getAttribute("loggedInUser");
+			Location l = new Location(pfd.getName(), pfd.getStreet(), pfd.getCity(), pfd.getState(), pfd.getZip());
+			ParkingFail pf = new ParkingFail(pfd.getTitle(), newCar, u, l, LocalTime.now().toString(), pfd.getDescription());
+			dao.createParkingFail(pf);
+			dao.addPicture(new Picture(pfd.getUrl(), pf));
+			mv.addObject("parkingFail", pf);
+			mv.addObject("parkingFailDTO", new ParkingFailDTO());
+			mv.addObject("listOfPF", dao.findParkingFailByUserId(u.getId()));
+			mv.addObject("listOfPictures", dao.findPicturesByUserId(u.getId()));
+			return mv;
+		} else {
+			User u = (User) session.getAttribute("loggedInUser");
+			Location l = new Location(pfd.getName(), pfd.getStreet(), pfd.getCity(), pfd.getState(), pfd.getZip());
+			ParkingFail pf = new ParkingFail(pfd.getTitle(), c.get(0).getCar(), u, l, LocalTime.now().toString(),
+					pfd.getDescription());
+			dao.createParkingFail(pf);
+			dao.addPicture(new Picture(pfd.getUrl(), pf));
+			mv.addObject("parkingFail", pf);
+			mv.addObject("parkingFailDTO", new ParkingFailDTO());
+			mv.addObject("listOfPF", dao.findParkingFailByUserId(u.getId()));
+			mv.addObject("listOfPictures", dao.findPicturesByUserId(u.getId()));
+			return mv;
+		}
 		// return "index"; // if using a ViewResolver.
 	}
 
@@ -166,25 +181,22 @@ public class ParkingFailController {
 //////////////////////////////////////////////////////add comments /////////////////////////////
 	@RequestMapping(path = "addComment.do", method = RequestMethod.GET)
 	public ModelAndView addComment(HttpSession session, @RequestParam("comment") String text,
-			@RequestParam("carmaId") int carmaId)
-	{
+			@RequestParam("carmaId") int carmaId) {
 		User currentUser = (User) session.getAttribute("loggedInUser");
-		
+
 		Comment comment = new Comment();
 		LocalDateTime localDateTime = LocalDateTime.now(); // get current date time
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
 		String formatDateTime = localDateTime.format(formatter);
 
-		
 		comment.setDateCreated(formatDateTime);
 //		comment.setId(carmaId);
 		comment.setText(text);
 		comment.setParkingFail(dao.findParkingFailById(carmaId));
 		comment.setUser(currentUser);
 		dao.addComment(comment);
-		
-		
+
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("pf", dao.findParkingFailById(carmaId));
 		mv.addObject("carma", dao.findCarmaById(carmaId));
@@ -193,7 +205,6 @@ public class ParkingFailController {
 		return mv;
 
 	}
-
 
 //////////////////////////////////////////////////////add ranks /////////////////////////////////////
 	@RequestMapping(path = "addRankVote.do", method = RequestMethod.GET)

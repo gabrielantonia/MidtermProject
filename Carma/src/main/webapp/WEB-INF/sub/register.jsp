@@ -23,6 +23,9 @@
 		<c:if test="${validationfailed==true}">
 			<p align="center">Invalid login credentials, create an account or try again</p>
 		</c:if>
+		<c:if test="${registerStatus==true}">
+			<p align="center">Duplicate username Try another one.</p>
+		</c:if>
 		<h4 class="card-title mt-3 text-center">Create Account</h4>
 		<p class="text-center">Get started with your free account</p>
 		<p>

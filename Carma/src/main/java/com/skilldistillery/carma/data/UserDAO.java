@@ -8,4 +8,5 @@ public interface UserDAO {
 	User validateUser(User user);
 	boolean updateImage(User user, String imageURL);
 	String getUpdatedImage(User user);
+	boolean checkUniqueUsername(String username);
 }
