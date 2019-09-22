@@ -66,7 +66,7 @@
 		<div id="vote">
 		<p >${pf.car.alias } has ${pf.getCarmaValue() } carma! Think this person deserves bad Carma?</p>
 		<form action="addRankVote.do">
-			<input type="hidden" id="carmaId" name="carmaId" value="${pf.id}">
+			<input type="hidden" id="pfId" name="pfId" value="${pf.id}">
 			<button style="font-size: 24px">
 				BAD CARMA! <i class="fa fa-thumbs-down"></i>
 			</button>

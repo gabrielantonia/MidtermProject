@@ -197,13 +197,11 @@ public class ParkingFailController {
 
 //////////////////////////////////////////////////////add ranks /////////////////////////////////////
 	@RequestMapping(path = "addRankVote.do", method = RequestMethod.GET)
-	public ModelAndView addRankVote(HttpSession session, @RequestParam("carmaId") int carmaId) {
-		Carma carma = new Carma();
-		dao.addRankVote(carmaId);
-
+	public ModelAndView addRankVote(HttpSession session, @RequestParam("pfId") int pfId) {
+		dao.addRankVote(pfId);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("pf", dao.findParkingFailById(carmaId));
-		mv.addObject("carma", dao.findCarmaById(carmaId));
+		mv.addObject("pf", dao.findParkingFailById(pfId));
+		mv.addObject("carma", dao.findCarmaById(pfId));
 		mv.addObject("user", new User());
 		mv.setViewName("sub/showparkingfail");
 		return mv;
