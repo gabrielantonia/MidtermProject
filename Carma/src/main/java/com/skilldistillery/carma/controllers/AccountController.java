@@ -29,14 +29,19 @@ public class AccountController {
 	private ParkingFailDAO parkingdao;
 
 	@RequestMapping(path = "register.do", method=RequestMethod.GET)
-	public String registerUser(Model model, @RequestParam(value="validationfailed", defaultValue="false") boolean loginstatus) {
+	public String registerUser(Model model, @RequestParam(value="validationfailed", defaultValue="false") boolean loginstatus, @RequestParam(value="duplicateUser", defaultValue="false") boolean registerStatus) {
 		model.addAttribute("validationfailed", loginstatus);
 		model.addAttribute("user", new User());
+		model.addAttribute("registerStatus", registerStatus);
 		return "sub/register";
 	}
 	
 	@RequestMapping(path= "register.do", method=RequestMethod.POST)
-    public String createUser(@ModelAttribute("user") User user, Model model, HttpSession session) {
+    public String createUser(@ModelAttribute("user") User user, Model model, HttpSession session, RedirectAttributes ra) {
+		if (dao.checkUniqueUsername(user.getUsername())) {
+			ra.addAttribute("duplicateUser", true);
+			return "redirect:/register.do";
+		}
         user.setDateCreated(LocalDate.now().toString());
         dao.addUser(user);
         model.addAttribute("parkingFailDTO", new ParkingFailDTO());

@@ -2,6 +2,7 @@ package com.skilldistillery.carma.entities;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +22,7 @@ public class Carma {
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="parking_fail_id")
 	private ParkingFail parkingFail;
 	
