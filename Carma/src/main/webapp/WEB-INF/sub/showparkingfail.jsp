@@ -64,7 +64,7 @@
 	<!-- BEGIN AUTO DESCRIPTION -->
 	<div class="jumbotron" id="desc_and_comments">
 		<div id="vote">
-		<p >${pf.car.alias } has ${pf.getCarmaValue() } carma! Think this person deserves bad Carma?</p>
+		<p >${pf.car.alias } has - ${pf.getCarmaValue()} bad carma! Think this person deserves bad Carma? Click Below!</p>
 		<form action="addRankVote.do">
 			<input type="hidden" id="pfId" name="pfId" value="${pf.id}">
 			<button style="font-size: 24px">
@@ -91,7 +91,7 @@
 				<c:choose>
 					<c:when test="${not empty loggedInUser}">
 						<form action="addComment.do" id="comment">
-							<textarea rows="4" cols="50" name="comment" placeholder="Vent your frucstrations" form="comment"></textarea>
+							<textarea rows="4" cols="50" name="comment" placeholder="Vent your frustration!" form="comment"></textarea>
 							<input type="hidden" id="carmaId" name="carmaId" value="${pf.id}">
 							<input type="hidden" id="userId" name="userId"
 								value="${loggedInUser.id}"> <input type="submit">

@@ -43,7 +43,7 @@
   <c:set var="count" value="${count + 1}" scope="page"/>
   <tr class='clickable-row' data-href='findParkingFail.do?val=${fail.id }' >
       <th scope="row">${count}</th>
-      <td> ${fail.getCarmaValue() }</td>
+      <td> - ${fail.getCarmaValue() }</td>
       <td> ${fail.getTitle() }</td>
       <td>${fail.getCar().getMake() }</td>
       <td>${fail.getCar().getModel() }</td>
