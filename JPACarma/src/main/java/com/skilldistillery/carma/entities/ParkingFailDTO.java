@@ -1,10 +1,13 @@
 package com.skilldistillery.carma.entities;
 
+
 public class ParkingFailDTO {
-	
+
 	private String title;
 	private String description;
 	//CAR
+	
+
 	private String licensePlate;
 	private String make;
 	public String getMake() {
