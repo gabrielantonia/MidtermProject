@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.carma.entities.Comment;
 import com.skilldistillery.carma.entities.User;
 
 @Transactional
@@ -68,5 +69,17 @@ public class UserDAOImpl implements UserDAO {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void deleteComment(int commentId) {
+		em.remove(em.find(Comment.class, commentId));
+		return;
+	}
+
+	@Override
+	public List<Comment> getAllComments(int userId) {
+		String jpql = "Select c from Comment c where c.user.id = :id";
+		return em.createQuery(jpql, Comment.class).setParameter("id", userId).getResultList();
 	}
 }
