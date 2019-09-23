@@ -97,7 +97,6 @@
 		</table>
 	</div>
 </div>
-
 	<div >
 		<br>
 		<h2 style="text-align: center">${fn:length(listOfPF)} Carma Posts Uploaded</h2>
