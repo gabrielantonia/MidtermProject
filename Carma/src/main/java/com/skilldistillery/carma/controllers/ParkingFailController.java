@@ -54,6 +54,7 @@ public class ParkingFailController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("parkingFailDTO", new ParkingFailDTO());
 		mv.setViewName("sub/addParkingFail");
+		
 		return mv;
 	}
 
@@ -69,6 +70,7 @@ public class ParkingFailController {
 			ParkingFail pf = new ParkingFail(pfd.getTitle(), newCar, u, l, LocalTime.now().toString(), pfd.getDescription());
 			dao.createParkingFail(pf);
 			dao.addPicture(new Picture(pfd.getUrl(), pf));
+			dao.insertCarma(new Carma(u, pf, 1, LocalDateTime.now()));
 			return "redirect:/userpage.do";
 		} else {
 			User u = (User) session.getAttribute("loggedInUser");
@@ -77,6 +79,7 @@ public class ParkingFailController {
 					pfd.getDescription());
 			dao.createParkingFail(pf);
 			dao.addPicture(new Picture(pfd.getUrl(), pf));
+			dao.insertCarma(new Carma(u, pf, 1, LocalDateTime.now()));
 			return "redirect:/userpage.do";
 		}
 	}

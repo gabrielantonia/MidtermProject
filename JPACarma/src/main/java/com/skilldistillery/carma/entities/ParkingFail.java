@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +25,7 @@ public class ParkingFail  {
 
 	private String title;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
 	@JoinColumn(name = "car_id")
 	private Car car;
 
@@ -46,6 +47,7 @@ public class ParkingFail  {
 
 	@OneToMany(mappedBy = "parkingFail")
 	private List<Carma> listOfCarma= new ArrayList<Carma>();
+	
 	
 	@OneToMany(mappedBy = "parkingFail")
 	private List<Comment> listOfComments;

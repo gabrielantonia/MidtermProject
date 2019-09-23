@@ -27,9 +27,66 @@
 	</div>
 	<!-- END JUMBOTRON -->
 	<!-- BEGIN IMAGE -->
+<!--  -->
+<!--Carousel Wrapper-->
+<div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
+  <!--Indicators-->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-1z" data-slide-to="1"></li>
+    <li data-target="#carousel-example-1z" data-slide-to="2"></li>
+  </ol>
+  <!--/.Indicators-->
+  <!--Slides-->
+  <div class="carousel-inner" role="listbox">
+    <!--First slide-->
+    <div class="carousel-item active">
+      <img class="d-block w-50" style="position:relative" src="${pf.listOfPictures.get(0).url }"
+        alt="First slide">
+    </div>
+    <!--/First slide-->
+    <!--Second slide-->
+    <c:if test="${ pf.listOfPictures.size() > 1}">
+    <div class="carousel-item">
+      <img class="d-block w-50" style="position:relative" src="${pf.listOfPictures.get(1).url }"
+        alt="Second slide">
+    </div>
+    </c:if>
+    <!--/Second slide-->
+    <!--Third slide-->
+    <c:if test="${ pf.listOfPictures.size() > 2}">
+    <div class="carousel-item">
+      <img class="d-block w-50" style="position:relative" src="${pf.listOfPictures.get(2).url }"
+        alt="Third slide">
+    </div>
+    </c:if>
+    
+    <!--/Third slide-->
+  </div>
+  <!--/.Slides-->
+  <!--Controls-->
+  <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+  <!--/.Controls-->
+</div>
+<!--/.Carousel Wrapper-->
+    <form  style="text-align:center;" action="addRankVote.do">
+						<input type="hidden" id="pfId" name="pfId" value="${pf.id}">
+						<button class="btn btn-danger center-block"
+							style="font-size: 24px; position: relative; z-index: 500;">
+							BAD CARMA! <i class="fa fa-thumbs-down"></i>
+						</button>
+					<p style=" color: white; position: relative; z-index: 500;">${pf.title} has ${pf.getCarmaValue() } Carma!</p>
+					</form>
+<!--  -->
 
-
-	<div id="carouselExampleControls" class="carousel slide carousel-fade"
+	<%-- <div id="carouselExampleControls" class="carousel slide carousel-fade"
 		data-ride="carousel">
 		<div class="carousel-inner">
 				<div class="carousel-item active text-center"
@@ -49,8 +106,8 @@
 					style="position: relative;">
 					<img src="${pf.listOfPictures.get(2).url }" class="d-block w-50" alt="...">
 				</div>
-				</c:if>
-				<form action="addRankVote.do">
+				</c:if> --%>
+				<%-- <form action="addRankVote.do">
 						<input type="hidden" id="pfId" name="pfId" value="${pf.id}">
 						<button class="btn btn-danger center-block"
 							style="font-size: 24px; transform: translateY(-2.5em); position: relative; z-index: 100;">
@@ -66,7 +123,7 @@
 			role="button" data-slide="next"> <span
 			class="carousel-control-next-icon" aria-hidden="true"></span> <span
 			class="sr-only">Next</span>
-		</a>
+		</a> --%>
 	
 
 	<!-- BEGIN AUTO DESCRIPTION -->
@@ -177,13 +234,13 @@
 		<hr>
 		<br>
 		<c:choose>
-			<c:when test="${empty pf.listOfComments}">
+			<c:when test="${empty comments}">
 				<p>No Comments to display. Be the first to comment.</p>
 			</c:when>
 			<c:otherwise>
 				<div class="clearfix center"
 					style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); grid-gap: 2em;">
-					<c:forEach items="${pf.listOfComments }" var="comment">
+					<c:forEach items="${comments }" var="comment">
 						<div class="shadow-sm rounded bg-light"
 							style="color: black; padding: 1em; max-width:300px;">
 							<div class="row">

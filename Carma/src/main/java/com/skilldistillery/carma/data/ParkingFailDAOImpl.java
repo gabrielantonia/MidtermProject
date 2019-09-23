@@ -220,4 +220,9 @@ public class ParkingFailDAOImpl implements ParkingFailDAO {
 		}
 	}
 
+	public void insertCarma(Carma carma) {
+		em.persist(carma);
+		em.flush();
+	}
+
 }

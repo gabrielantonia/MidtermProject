@@ -51,6 +51,8 @@ public interface ParkingFailDAO {
 	void addComment(Comment comment);
 
 	User findUserByUserId(int id);
+	
+	void insertCarma(Carma carma);
 
 
 }
