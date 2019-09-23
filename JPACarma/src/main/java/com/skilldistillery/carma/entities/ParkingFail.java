@@ -160,11 +160,7 @@ public class ParkingFail  {
 			carmaValue= carmaValue + carma2.getVote();
 		}
 		return carmaValue;
-		
-				
 	}
-	
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;

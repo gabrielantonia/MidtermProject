@@ -77,23 +77,28 @@
 			<td># of Carma Posts: ${listOfPF.size()}
 			</td>
 			<tr>
+			
+			<c:if test="${empty listOfPF }">
+			<td>
+			No Carma yet.. 
+			</td>
+			</c:if>
+			
+			<c:if test="${listOfPF.size() > 0 }">
+			
 			<c:set var="total" value="${0}"/>
 <c:forEach var="pf" items="${listOfPF}">
     <c:set var="total" value="${total + pf.getCarmaValue()}" />
 </c:forEach>
 			<td>Carma: ${total}
-		
-			
 			</td>
-			
+			</c:if>
+
 		</table>
 	</div>
 </div>
 
 	<!-- -->
-			
-	
-	
 	<div id="rightuserpage">
 		<br>
 		<h2 style="text-align: center">${fn:length(listOfPF)} Carma Posts Uploaded</h2>
