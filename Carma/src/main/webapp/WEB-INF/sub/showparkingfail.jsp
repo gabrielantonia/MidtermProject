@@ -29,31 +29,35 @@
 	<!-- BEGIN IMAGE -->
 
 
-	<div id="carouselExampleControls carousel-fade" class="carousel slide"
+	<div id="carouselExampleControls" class="carousel slide carousel-fade"
 		data-ride="carousel">
 		<div class="carousel-inner">
-			<c:forEach var="picture" items="${pf.listOfPictures }">
 				<div class="carousel-item active text-center"
 					style="position: relative;">
-					<img src="${picture.url}" class="d-block w-50" alt="...">
-					<!-- Carma Vote -->
-					<form action="addRankVote.do">
+					<img src="${pf.listOfPictures.get(0).url }" class="d-block w-50" alt="...">
+				</div>
+		</div>
+		<c:if test="${ pf.listOfPictures.size() > 1}">
+				<div class="carousel-item text-center"
+					style="position: relative;">
+					<img src="${pf.listOfPictures.get(1).url }" class="d-block w-50" alt="...">
+				</div>
+		</c:if>
+		</div>
+		<c:if test="${ pf.listOfPictures.size() > 2}">
+				<div class="carousel-item text-center"
+					style="position: relative;">
+					<img src="${pf.listOfPictures.get(2).url }" class="d-block w-50" alt="...">
+				</div>
+				</c:if>
+				<form action="addRankVote.do">
 						<input type="hidden" id="pfId" name="pfId" value="${pf.id}">
 						<button class="btn btn-danger center-block"
 							style="font-size: 24px; transform: translateY(-2.5em); position: relative; z-index: 100;">
 							BAD CARMA! <i class="fa fa-thumbs-down"></i>
 						</button>
 					</form>
-	<!-- END-IMAGE -->
-						
 					<p style="color: white;">${pf.title} has ${pf.getCarmaValue() } Carma!</p>
-					<!-- End Carma Vote -->
-				</div>
-			</c:forEach>
-
-
-
-		</div>
 		<a class="carousel-control-prev" href="#carouselExampleControls"
 			role="button" data-slide="prev"> <span
 			class="carousel-control-prev-icon" aria-hidden="true"></span> <span
@@ -63,7 +67,6 @@
 			class="carousel-control-next-icon" aria-hidden="true"></span> <span
 			class="sr-only">Next</span>
 		</a>
-	</div>
 	
 
 	<!-- BEGIN AUTO DESCRIPTION -->
