@@ -58,7 +58,7 @@ public class ParkingFailController {
 	}
 
 	@RequestMapping(path = "create.do", method = RequestMethod.POST)
-	public ModelAndView addParkingFail(HttpSession session, @ModelAttribute("parkingFail") ParkingFailDTO pfd) {
+	public String addParkingFail(HttpSession session, @ModelAttribute("parkingFail") ParkingFailDTO pfd) {
 		ModelAndView mv = new ModelAndView("sub/userpage");
 		List<ParkingFail> c = dao.findCarByLicensePlate(pfd.getLicensePlate());
 		if (c.size() == 0) {
@@ -69,11 +69,7 @@ public class ParkingFailController {
 			ParkingFail pf = new ParkingFail(pfd.getTitle(), newCar, u, l, LocalTime.now().toString(), pfd.getDescription());
 			dao.createParkingFail(pf);
 			dao.addPicture(new Picture(pfd.getUrl(), pf));
-			mv.addObject("parkingFail", pf);
-			mv.addObject("parkingFailDTO", new ParkingFailDTO());
-			mv.addObject("listOfPF", dao.findParkingFailByUserId(u.getId()));
-			mv.addObject("listOfPictures", dao.findPicturesByUserId(u.getId()));
-			return mv;
+			return "redirect:/userpage.do";
 		} else {
 			User u = (User) session.getAttribute("loggedInUser");
 			Location l = new Location(pfd.getName(), pfd.getStreet(), pfd.getCity(), pfd.getState(), pfd.getZip());
@@ -81,11 +77,7 @@ public class ParkingFailController {
 					pfd.getDescription());
 			dao.createParkingFail(pf);
 			dao.addPicture(new Picture(pfd.getUrl(), pf));
-			mv.addObject("parkingFail", pf);
-			mv.addObject("parkingFailDTO", new ParkingFailDTO());
-			mv.addObject("listOfPF", dao.findParkingFailByUserId(u.getId()));
-			mv.addObject("listOfPictures", dao.findPicturesByUserId(u.getId()));
-			return mv;
+			return "redirect:/userpage.do";
 		}
 	}
 
