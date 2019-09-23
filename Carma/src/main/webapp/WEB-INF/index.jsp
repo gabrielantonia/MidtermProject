@@ -27,31 +27,39 @@
 	<!--  /JumboTron-->
 
 	<!--  Carousel-->
+	
 
 	<div class="myCarousel">
+	<div style="center">
+	<br>
+	<h2>Recent Posts</h2>
+	<br>
+	<hr>
+	<br>
+	</div>
   <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
       <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
       <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
     </ol>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="${urls.get(0) }" class="d-block w-100" height="1000px" alt="...">
+    <div class="carousel-inner bg-primary text-black rounded">
+      <div class="carousel-item active ">
+        <img src="${urls.get(0) }" class="d-block " height="auto" width="70%" alt="...">
         <div class="carousel-caption d-none d-md-block">
          <h5><a href="findParkingFail.do?val=${parkingFailTopThree.get(0).id }">${parkingFailTopThree.get(0).getTitle() }</a></h5>
 					<p>${parkingFailTopThree.get(0).getDescription() }</p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="${urls.get(1) }" class="d-block w-100" height="1000px" alt="...">
+        <img src="${urls.get(1) }" class="d-block " height="auto" width="70%" alt="...">
         <div class="carousel-caption d-none d-md-block">
          <h5><a href="findParkingFail.do?val=${parkingFailTopThree.get(1).id }">${parkingFailTopThree.get(1).getTitle() }</a></h5>
 					<p>${parkingFailTopThree.get(1).getDescription() }</p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="${urls.get(2) }" class="d-block w-100" height="1000px" alt="...">
+        <img src="${urls.get(2) }" class="d-block " height="auto" width="70%" alt="...">
         <div class="carousel-caption d-none d-md-block">
          <h5><a href="findParkingFail.do?val=${parkingFailTopThree.get(2).id }">${parkingFailTopThree.get(2).getTitle() }</a></h5>
 					<p>${parkingFailTopThree.get(2).getDescription() }</p>
@@ -67,6 +75,7 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
+</div>
 </div>
 
 	<!-- /Carousel -->
