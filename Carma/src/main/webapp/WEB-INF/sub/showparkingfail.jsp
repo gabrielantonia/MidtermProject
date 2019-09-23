@@ -44,6 +44,8 @@
 							BAD CARMA! <i class="fa fa-thumbs-down"></i>
 						</button>
 					</form>
+	<!-- END-IMAGE -->
+						
 					<p style="color: white;">${pf.title} has ${pf.getCarmaValue() } Carma!</p>
 					<!-- End Carma Vote -->
 				</div>
@@ -62,8 +64,7 @@
 			class="sr-only">Next</span>
 		</a>
 	</div>
-	<!-- END-IMAGE -->
-
+	
 
 	<!-- BEGIN AUTO DESCRIPTION -->
 	<div class="jumbotron" id="desc_and_comments">
