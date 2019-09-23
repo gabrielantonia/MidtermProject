@@ -1,10 +1,10 @@
-Skill Distillery: Midterm Project (Weeks 10-11) 
+###Skill Distillery: Midterm Project (Weeks 10-11) 
 
-Team Name: Shrieking Rhinos
+###Team Name: Shrieking Rhinos
 
-Project Title: [ C A R M A ]
+###Project Title: [ C A R M A ]
 
-Developers: Justin Choi, Gabriel Antonia, Josh Robbins, Connor Campora
+###Developers: Justin Choi, Gabriel Antonia, Josh Robbins, Connor Campora
 
 Technologies Used: Spring Boot, Git/GitHub, mySQL Workbench, MAMP, SpringToolsuite4
 
