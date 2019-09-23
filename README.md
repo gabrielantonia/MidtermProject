@@ -6,7 +6,7 @@ Project Title: [ C A R M A ]
 
 Developers: Justin Choi, Gabriel Antonia, Josh Robbins, Connor Campora
 
-Technologies Used: Spring Boot, Git/GitHub, mySQL Workbench, MAMP, SpringToolsuite4
+Technologies Used: Spring Boot, Git/GitHub, mySQL Workbench, MAMP, SpringToolsuite4, JPA & Hibernate, HTML 5, CSS 3
 
 About: [ C A R M A ] is a functional social-media website created in a nine-day sprint used to cast shame at bad car parkers! The application is intended to shame poor parking and let those who shall not be named know the evil of their ways through the power of social pressure.
 
@@ -29,7 +29,7 @@ How to use [ C A R M A ]:
 9. Viewing the site as a non-account user: the functionality for non-account users is functionaly similar to account users however non-account users are unable to create "parking-fails" as well as unable to comment and or view other comments from other users and on other parking fails. The purpose of the non-account users is to allow prospective account holders 
 
 Goals Accomplished:
-1. Created a basic functioning social networking site after 12 days of development.
+1. Created a basic functioning social networking site after 9 days of development.
 2. Full Create Update and Delete (CRUD) functionality for users to add, update, and delete "parking fails" via their own personal user page.
 3. Allow [ C A R M A ] users to successfully shame bad parkers.
 
