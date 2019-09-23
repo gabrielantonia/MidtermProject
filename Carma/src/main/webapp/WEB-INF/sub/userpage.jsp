@@ -97,16 +97,14 @@
 		</table>
 	</div>
 </div>
-
-	<!-- -->
 	<div >
 		<br>
 		<h2 style="text-align: center">${fn:length(listOfPF)} Carma Posts Uploaded</h2>
 		<br>
-		<div class="container-fluid">
+		<div class="container-fluid w-100">
 			<div class="row">
 				<c:forEach var="pf" items="${listOfPF }" varStatus="status">
-					<div class="col-sm d-flex ">
+					<div class="col-sm d-flex mw-30">
 						<div class="card flex-fill h-75">
 							<img class="card-img-top"
 								src="${listOfPictures[status.index].url}">
@@ -193,6 +191,40 @@
 								</div>
 								<a id="deletebutton" href="deleteParkingFail.do?val=${pf.id }"
 									role="button" class="btn btn-danger btn-sm">Delete</a>
+								<!--  add photo modal-->
+								<!-- Button trigger modal -->
+								<button type="button" class="btn btn-success btn-sm"
+									data-toggle="modal" data-target="#addPicture${status.index }">
+									Add Image</button>
+
+								<!-- Modal -->
+								<div class="modal fade" id="addPicture${status.index }"
+									tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+									aria-hidden="true">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">Add
+													Photo</h5>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+												<form action="addPicture.do" method="post">
+											<div class="modal-body">
+													<input  type="hidden" value="${pf.id}" name="pfID">
+													<input  type="url" placeholder="image URL"
+														name="imageURL">
+											</div>
+											<div class="modal-footer">
+												<input type="submit" class="btn btn-primary">
+											</div>
+												</form>
+										</div>
+									</div>
+								</div>
+								<!-- add photo modal -->
 							</div>
 						</div>
 					</div>
