@@ -26,7 +26,7 @@ public class Carma {
 	@JoinColumn(name="parking_fail_id")
 	private ParkingFail parkingFail;
 	
-	private int vote;
+	private int vote = 0;
 	
 	
 	@Column(name="date_voted")

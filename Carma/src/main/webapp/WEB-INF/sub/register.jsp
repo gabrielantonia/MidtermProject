@@ -62,8 +62,9 @@
 					<span class="input-group-text"> <i class="fa fa-lock"></i>
 					</span>
 				</div>
-				<form:input path="password" class="form-control" placeholder="Create password"
-					type="password" required="required"></form:input>
+				
+				<form:input path="password" id="password" class="form-control" placeholder="Create password "
+					type="password" required="required" name="p1"  ></form:input>
 			</div>
 			<!-- form-group// -->
 			<div class="form-group input-group">
@@ -71,8 +72,10 @@
 					<span class="input-group-text"> <i class="fa fa-lock"></i>
 					</span>
 				</div>
-				<input class="form-control" placeholder="Confirm password"
-					type="password"><input>
+				<input class="form-control" name="p2" placeholder="Confirm password"
+					type="password"  required>
+<br /><br />
+<input type="submit" />
 			</div>
 			<!-- form-group// -->
 			<div class="form-group">

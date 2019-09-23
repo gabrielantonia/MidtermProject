@@ -45,7 +45,7 @@ public class ParkingFail  {
 	private List<Picture> listOfPictures;
 
 	@OneToMany(mappedBy = "parkingFail")
-	private List<Carma> listOfCarma;
+	private List<Carma> listOfCarma= new ArrayList<Carma>();
 	
 	@OneToMany(mappedBy = "parkingFail")
 	private List<Comment> listOfComments;
@@ -155,8 +155,7 @@ public class ParkingFail  {
 	
 	public int getCarmaValue() {
 		int carmaValue = 0;
-		List<Carma> carma = this.listOfCarma;
-		for (Carma carma2 : carma) {
+		for (Carma carma2 : listOfCarma) {
 			carmaValue= carmaValue + carma2.getVote();
 		}
 		return carmaValue;
