@@ -216,5 +216,10 @@ public class ParkingFailController {
 		return mv;
 
 	}
-
+	@RequestMapping(path = "addPicture.do", method = RequestMethod.POST)
+	public String addPicture(HttpSession session, Model model, @RequestParam("imageURL")String imageURL, @RequestParam("pfID") int pfID) {
+		Picture picture = new Picture(imageURL, dao.findParkingFailById(pfID));
+		dao.addPicture(picture);
+		return "redirect:/userpage.do";
+	}
 }
