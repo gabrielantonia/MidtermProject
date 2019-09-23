@@ -25,60 +25,73 @@
 			first post!</a>  -->
 	</div> 
 	<!--  /JumboTron-->
-
-	<!--  Carousel-->
-	
-
-	<div class="myCarousel">
-	<div style="center">
-	<br>
-	<h2>Recent Posts</h2>
-	<br>
-	<hr>
-	<br>
-	</div>
-  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-      <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner bg-primary text-black rounded">
-      <div class="carousel-item active ">
-        <img src="${urls.get(0) }" class="d-block " height="auto" width="70%" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-         <h5><a href="findParkingFail.do?val=${parkingFailTopThree.get(0).id }">${parkingFailTopThree.get(0).getTitle() }</a></h5>
-					<p>${parkingFailTopThree.get(0).getDescription() }</p>
-        </div>
+<div class="row justify-content-center no-gutters" >
+  <div class="col-4  bg-primary text-white rounded center"  ><h1>Recent Posts</h1></div>
+  </div>
+<!-- Carousel -->
+<div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel" style="height:800px ; overflow-y:scroll; overflow-x:hidden;padding-top:1em;padding-bottom:1em ;margin-top:2em; margin-bottom:1em;">
+  <!--Indicators-->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-2" data-slide-to="1"></li>
+    <li data-target="#carousel-example-2" data-slide-to="2"></li>
+  </ol>
+  <!--/.Indicators-->
+  <!--Slides-->
+  
+  <div class="carousel-inner bg-secondary rounded" role="listbox" >
+  
+    <div class="carousel-item active">
+      <div class="view">
+        <img class="d-block w-80" src="${urls.get(0) }${urls.get(0) }"
+          alt="First slide">
+        <div class="mask rgba-black-light"></div>
       </div>
-      <div class="carousel-item">
-        <img src="${urls.get(1) }" class="d-block " height="auto" width="70%" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-         <h5><a href="findParkingFail.do?val=${parkingFailTopThree.get(1).id }">${parkingFailTopThree.get(1).getTitle() }</a></h5>
-					<p>${parkingFailTopThree.get(1).getDescription() }</p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="${urls.get(2) }" class="d-block " height="auto" width="70%" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-         <h5><a href="findParkingFail.do?val=${parkingFailTopThree.get(2).id }">${parkingFailTopThree.get(2).getTitle() }</a></h5>
-					<p>${parkingFailTopThree.get(2).getDescription() }</p>
-        </div>
+      <div class="carousel-caption">
+        <h3 class="h3-responsive"><a href="findParkingFail.do?val=${parkingFailTopThree.get(0).id }">${parkingFailTopThree.get(0).getTitle() }</a></h3>
+        <p>${parkingFailTopThree.get(0).getDescription() }</p>
       </div>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
+    <div class="carousel-item">
+      <!--Mask color-->
+      <div class="view">
+        <img class="d-block w-80" src="${urls.get(1) }"
+          alt="Second slide">
+        <div class="mask rgba-black-strong"></div>
+      </div>
+      <div class="carousel-caption">
+        <h3 class="h3-responsive"><a href="findParkingFail.do?val=${parkingFailTopThree.get(1).id }">${parkingFailTopThree.get(1).getTitle() }</a></h3>
+        <p>${parkingFailTopThree.get(1).getDescription() }</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <!--Mask color-->
+      <div class="view">
+        <img class="d-block w-80" src="${urls.get(2) }"
+          alt="Third slide">
+        <div class="mask rgba-black-slight"></div>
+      </div>
+      <div class="carousel-caption">
+        <h3 class="h3-responsive"><a href="findParkingFail.do?val=${parkingFailTopThree.get(2).id }">${parkingFailTopThree.get(2).getTitle() }</a></h3>
+        <p>${parkingFailTopThree.get(2).getDescription() }</p>
+      </div>
+    </div>
   </div>
+  <!--/.Slides-->
+  <!--Controls-->
+  <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+  <!--/.Controls-->
 </div>
-</div>
+<!--/.Carousel Wrapper-->
 
-	<!-- /Carousel -->
+
 
 </body>
 <jsp:include page="footer.jsp"/>

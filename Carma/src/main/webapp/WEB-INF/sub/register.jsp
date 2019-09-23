@@ -71,8 +71,8 @@
 					<span class="input-group-text"> <i class="fa fa-lock"></i>
 					</span>
 				</div>
-				<form:input class="form-control" path="password" placeholder="Repeat password"
-					type="password"></form:input>
+				<input class="form-control" placeholder="Confirm password"
+					type="password"><input>
 			</div>
 			<!-- form-group// -->
 			<div class="form-group">

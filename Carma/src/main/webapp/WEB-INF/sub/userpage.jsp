@@ -157,7 +157,7 @@
 															<form:input path="description" value="${pf.description }"
 																required="required" />
 															<form:label path="licensePlate" placeholder="You must disguise license plate in photo">License plate:</form:label>
-															<form:input path="licensePlate"
+															<form:input path="licensePlate" maxlength="10" 
 																value="${pf.car.licensePlate }" />
 														</div>
 														<div class="col-md-6">
@@ -171,10 +171,10 @@
 															<form:input path="city" value="${pf.location.city }"
 																 />
 															<form:label path="State">State:</form:label>
-															<form:input path="state" value="${pf.location.state }"
+															<form:input maxlength="2" placeholder="ex: CA" path="state" value="${pf.location.state }"
 																/>
 															<form:label path="zip">Zip Code:</form:label>
-															<form:input path="zip" value="${pf.location.zip }"
+															<form:input maxlength="5" path="zip" value="${pf.location.zip }"
 																 />
 															<form:label path="url">URL:</form:label>
 															<form:input path="url"
@@ -233,7 +233,7 @@
 									<form:label path="description">Description:</form:label>
 									<form:input path="description" required="required" />
 									<form:label path="licensePlate">License plate:</form:label>
-									<form:input path="licensePlate" placeholder="You must disguise license plate in photo"/>
+									<form:input path="licensePlate" maxlength="10" placeholder="You must disguise license plate in photo"/>
 								</div>
 								<div class="col-md-6">
 									<form:label path="name">Location:</form:label>
@@ -243,9 +243,9 @@
 									<form:label path="city">City:</form:label>
 									<form:input path="city"  />
 									<form:label path="State">State:</form:label>
-									<form:input path="state" placeholder="ex: CA" />
+									<form:input maxlength="2" path="state" placeholder="ex: CA" />
 									<form:label path="zip">Zip Code:</form:label>
-									<form:input path="zip" />
+									<form:input maxlength="5"  path="zip" />
 									<form:label path="url">URL:</form:label>
 									<form:input path="url"  />
 								</div>
