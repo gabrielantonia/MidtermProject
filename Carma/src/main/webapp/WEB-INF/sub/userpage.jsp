@@ -98,15 +98,14 @@
 	</div>
 </div>
 
-	<!-- -->
 	<div >
 		<br>
 		<h2 style="text-align: center">${fn:length(listOfPF)} Carma Posts Uploaded</h2>
 		<br>
-		<div class="container-fluid">
+		<div class="container-fluid w-100">
 			<div class="row">
 				<c:forEach var="pf" items="${listOfPF }" varStatus="status">
-					<div class="col-sm d-flex ">
+					<div class="col-sm d-flex mw-30">
 						<div class="card flex-fill h-75">
 							<img class="card-img-top"
 								src="${listOfPictures[status.index].url}">
