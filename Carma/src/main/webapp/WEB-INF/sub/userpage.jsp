@@ -26,11 +26,11 @@
 	
 	<!--  /JumboTron-->
 	<!-- profile photo -->
-	<div class="flex row bg-primary rounded " style="align-items:center">
-		<div class="col-4 imagecontainer shadow-lg rounded bg-light " style="margin:3em;">
+	<div class="flex row bg-primary rounded text-center" style="align-content:center; height:700px; padding-left:5em;">
+		<div class="col-4 imagecontainer shadow-lg rounded bg-light  mh-100 rounded" style="padding:1em;">
 		
 		<div id="profileimage" id="hoverPicture" >
-				<img class="userUploadedPic" src="${userUpdatedString}"/>
+				<img class="mh-80 h-80 round" src="${userUpdatedString}"/>
 			</div>
 			<!-- update image modal -->
 			<div class="updateMiddle">
@@ -54,7 +54,7 @@
 		<!--  spacer column-->
 		<div class="col-1"></div>
 		<!-- info -->
-	<div class="col-5 text-white bg-light rounded shadow-lg table-striped" style="padding:3em;">
+	<div class="col-5 text-white bg-light rounded shadow-lg table-striped mh-80 h-80" style="padding:2em">
 		<table class="table">
 			<thead> 
 			<tr>
@@ -99,15 +99,15 @@
 </div>
 
 	<!-- -->
-	<div id="rightuserpage">
+	<div >
 		<br>
 		<h2 style="text-align: center">${fn:length(listOfPF)} Carma Posts Uploaded</h2>
 		<br>
-		<div class="container-fluid">
+		<div class="container-fluid" style="height:800px; ">
 			<div class="row">
 				<c:forEach var="pf" items="${listOfPF }" varStatus="status">
-					<div class="col-sm d-flex">
-						<div class="card flex-fill">
+					<div class="col-sm d-flex ">
+						<div class="card flex-fill h-75">
 							<img class="card-img-top"
 								src="${listOfPictures[status.index].url}">
 							<div class="card-body">
@@ -197,14 +197,14 @@
 				</c:forEach>
 			</div>
 		</div>
-		
+		</div>
 
 
 		<div class="modal fade" id="createpf" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
-					<div class="modal-header">
+					<div class="modal-header" >
 						<h5 class="modal-title">
 							<br>Add Carma Post
 						</h5>
@@ -256,11 +256,10 @@
 				</div>
 			</div>
 		</div>
-	</div>
 	<!--  -->
 	<div style="display: flex;
   align-items: center;
-  justify-content: center; margin-top:2em">
+  justify-content: center; margin-top:2em;  position: relative; z-index: 100;">
 	<button id="addpf" type="button" class="btn btn-primary"
 			data-toggle="modal" data-target="#createpf">Add Carma Post</button>
 	</div>
@@ -281,14 +280,14 @@
 	<c:otherwise>
 	<div class="clearfix center" style="display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-  grid-template-rows: 300px;
   grid-gap: 2em;" >
 	<c:forEach items="${loggedInUser.getComments() }" var="comment">
 		<div class="shadow-sm rounded bg-light"  style="color:black; padding:1em;  " >
 			<h2><a href="findParkingFail.do?val=${comment.parkingFail.id}" > ${ comment.parkingFail.title}</a></h2>
 			${comment.dateCreated }
 			<hr>
-			${comment.text}
+			<div class="text-break">${comment.text}</div>
+			
 		</div>
 	</c:forEach>
 	</div>

@@ -19,6 +19,13 @@
 	<br>
 	<br>
 	<br>
+		<!-- BEGIN JUMBOTRON -->
+	<div class="jumbotron bg-light text-black">
+		<h1 class="display-4 text-black"">Gallery</h1>
+		<hr class="my-4">
+		<p class="lead" align="center">Just here for the views? Enjoy shaming these worthless, pathetic, human pieces of garbage!</p>
+	</div>
+	<!-- END JUMBOTRON -->
 	<!--room for navbar  -->
 	<div class="container">
 		<div class=“grid”>
