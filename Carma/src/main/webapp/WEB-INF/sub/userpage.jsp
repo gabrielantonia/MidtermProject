@@ -146,6 +146,8 @@
 															<form:input path="alias" value="${pf.car.alias }"
 																/>
 															<form:label path="make">Make:</form:label>
+															<form:input path="make" value="${pf.car.make }"
+																 />
 															
 															<form:label path="model">Model:</form:label>
 															<form:input path="model" value="${pf.car.model }"
