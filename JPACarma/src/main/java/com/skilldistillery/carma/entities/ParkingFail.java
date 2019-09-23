@@ -48,6 +48,7 @@ public class ParkingFail  {
 	@OneToMany(mappedBy = "parkingFail")
 	private List<Carma> listOfCarma= new ArrayList<Carma>();
 	
+	
 	@OneToMany(mappedBy = "parkingFail")
 	private List<Comment> listOfComments;
 	

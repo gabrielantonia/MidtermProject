@@ -234,13 +234,13 @@
 		<hr>
 		<br>
 		<c:choose>
-			<c:when test="${empty pf.listOfComments}">
+			<c:when test="${empty comments}">
 				<p>No Comments to display. Be the first to comment.</p>
 			</c:when>
 			<c:otherwise>
 				<div class="clearfix center"
 					style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); grid-gap: 2em;">
-					<c:forEach items="${pf.listOfComments }" var="comment">
+					<c:forEach items="${comments }" var="comment">
 						<div class="shadow-sm rounded bg-light"
 							style="color: black; padding: 1em; max-width:300px;">
 							<div class="row">
