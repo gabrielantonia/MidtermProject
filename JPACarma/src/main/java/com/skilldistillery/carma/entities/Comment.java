@@ -21,11 +21,11 @@ public class Comment {
 	@Column(name="date_comment_created")
 	private String dateCreated;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name="parking_fail_id")
 	private ParkingFail parkingFail;
 

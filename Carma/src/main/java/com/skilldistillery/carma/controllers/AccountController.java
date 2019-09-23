@@ -84,7 +84,7 @@ public class AccountController {
 		model.addAttribute("listOfPictures", parkingdao.findPicturesByUserId(u.getId()));
 		model.addAttribute("parkingFailDTO", new ParkingFailDTO());
 		model.addAttribute("userUpdatedString", dao.getUpdatedImage(u));
-		System.out.println(dao.getUpdatedImage(u));
+		model.addAttribute("comments", dao.getAllComments(u.getId()));
 		return "sub/userpage";
 	}
 	
@@ -95,6 +95,12 @@ public class AccountController {
 		System.out.println(imageURL);
 		return "redirect:/userpage.do";
 		
+	}
+	
+	@RequestMapping(path="deleteComment.do")
+	public String deleteComment(@RequestParam("commentId") int commentId) {
+		dao.deleteComment(commentId);
+		return "redirect:/userpage.do";
 	}
 	
 }
