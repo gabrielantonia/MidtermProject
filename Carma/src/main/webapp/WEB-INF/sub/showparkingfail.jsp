@@ -44,8 +44,7 @@
 							BAD CARMA! <i class="fa fa-thumbs-down"></i>
 						</button>
 					</form>
-					<p style="color: white;">${pf.title}has${pf.getCarmaValue() }
-						Carma!</p>
+					<p style="color: white;">${pf.title} has ${pf.getCarmaValue() } Carma!</p>
 					<!-- End Carma Vote -->
 				</div>
 			</c:forEach>
@@ -182,10 +181,10 @@
 					style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); grid-gap: 2em;">
 					<c:forEach items="${pf.listOfComments }" var="comment">
 						<div class="shadow-sm rounded bg-light"
-							style="color: black; padding: 1em;">
+							style="color: black; padding: 1em; max-width:300px;">
 							<div class="row">
 							<div class="col profileImage">
-									<img class="img-responsive img-thumbnail" style=" height:auto; width:100%; max-height:100px; text-align: left;"
+									<img class="img-responsive img-thumbnail" style=" height:auto; width:100%; max-height:150px; max-width:150px; text-align: left;"
 										src="${comment.user.image}">
 										</div>
 										<div class="col">
