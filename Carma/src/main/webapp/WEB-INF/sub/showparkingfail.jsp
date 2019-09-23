@@ -6,173 +6,10 @@
 
 <html>
 <head>
-<meta charset="UTF-8">
-<jsp:include page="../styletags.jsp" />
-<!-- <link rel="stylesheet" href="../css/parkingfail.css"> -->
-<title>${pf.title}</title>
-<style>
-/* --Parking Fail-- */
-
-.MultiCarousel {
-	float: left;
-	overflow: hidden;
-	padding: 15px;
-	width: 100%;
-	position: relative;
-}
-
-.MultiCarousel .MultiCarousel-inner {
-	transition: 1s ease all;
-	float: left;
-}
-
-.MultiCarousel .MultiCarousel-inner .item {
-	float: left;
-}
-
-.MultiCarousel .MultiCarousel-inner .item>div {
-	text-align: center;
-	padding: 10px;
-	margin: 10px;
-	background: #f1f1f1;
-	color: #666;
-}
-
-.MultiCarousel .leftLst, .MultiCarousel .rightLst {
-	position: absolute;
-	border-radius: 50%;
-	top: calc(50% - 20px);
-}
-
-.MultiCarousel .leftLst {
-	left: 0;
-}
-
-.MultiCarousel .rightLst {
-	right: 0;
-}
-
-.MultiCarousel .leftLst.over, .MultiCarousel .rightLst.over {
-	pointer-events: none;
-	background: #ccc;
-}
-/* --end- Parking Fail-- */
-</style>
-<script async>
-$(document).ready(function () {
-    var itemsMainDiv = ('.MultiCarousel');
-    var itemsDiv = ('.MultiCarousel-inner');
-    var itemWidth = "";
-
-    $('.leftLst, .rightLst').click(function () {
-        var condition = $(this).hasClass("leftLst");
-        if (condition)
-            click(0, this);
-        else
-            click(1, this)
-    });
-
-    ResCarouselSize();
-
-
-
-
-    $(window).resize(function () {
-        ResCarouselSize();
-    });
-
-    //this function define the size of the items
-    function ResCarouselSize() {
-        var incno = 0;
-        var dataItems = ("data-items");
-        var itemClass = ('.item');
-        var id = 0;
-        var btnParentSb = '';
-        var itemsSplit = '';
-        var sampwidth = $(itemsMainDiv).width();
-        var bodyWidth = $('body').width();
-        $(itemsDiv).each(function () {
-            id = id + 1;
-            var itemNumbers = $(this).find(itemClass).length;
-            btnParentSb = $(this).parent().attr(dataItems);
-            itemsSplit = btnParentSb.split(',');
-            $(this).parent().attr("id", "MultiCarousel" + id);
-
-
-            if (bodyWidth >= 1200) {
-                incno = itemsSplit[3];
-                itemWidth = sampwidth / incno;
-            }
-            else if (bodyWidth >= 992) {
-                incno = itemsSplit[2];
-                itemWidth = sampwidth / incno;
-            }
-            else if (bodyWidth >= 768) {
-                incno = itemsSplit[1];
-                itemWidth = sampwidth / incno;
-            }
-            else {
-                incno = itemsSplit[0];
-                itemWidth = sampwidth / incno;
-            }
-            $(this).css({ 'transform': 'translateX(0px)', 'width': itemWidth * itemNumbers });
-            $(this).find(itemClass).each(function () {
-                $(this).outerWidth(itemWidth);
-            });
-
-            $(".leftLst").addClass("over");
-            $(".rightLst").removeClass("over");
-
-        });
-    }
-
-
-    //this function used to move the items
-    function ResCarousel(e, el, s) {
-        var leftBtn = ('.leftLst');
-        var rightBtn = ('.rightLst');
-        var translateXval = '';
-        var divStyle = $(el + ' ' + itemsDiv).css('transform');
-        var values = divStyle.match(/-?[\d\.]+/g);
-        var xds = Math.abs(values[4]);
-        if (e == 0) {
-            translateXval = parseInt(xds) - parseInt(itemWidth * s);
-            $(el + ' ' + rightBtn).removeClass("over");
-
-            if (translateXval <= itemWidth / 2) {
-                translateXval = 0;
-                $(el + ' ' + leftBtn).addClass("over");
-            }
-        }
-        else if (e == 1) {
-            var itemsCondition = $(el).find(itemsDiv).width() - $(el).width();
-            translateXval = parseInt(xds) + parseInt(itemWidth * s);
-            $(el + ' ' + leftBtn).removeClass("over");
-
-            if (translateXval >= itemsCondition - itemWidth / 2) {
-                translateXval = itemsCondition;
-                $(el + ' ' + rightBtn).addClass("over");
-            }
-        }
-        $(el + ' ' + itemsDiv).css('transform', 'translateX(' + -translateXval + 'px)');
-    }
-
-    //It is used to get some elements from btn
-    function click(ell, ee) {
-        var Parent = "#" + $(ee).parent().attr("id");
-        var slide = $(Parent).attr("data-slide");
-        ResCarousel(ell, Parent, slide);
-    }
-
-});
-</script>
-</head>
-
 <jsp:include page="../scripts.jsp" />
 <jsp:include page="../styletags.jsp" />
-<link href="../../css/parkingfail.css" rel="stylesheet" type="text/css">
+<meta charset="UTF-8">
 <title>${pf.title}</title>
-
 </head>
 <jsp:include page="../navbar.jsp" />
 <br>
@@ -180,84 +17,57 @@ $(document).ready(function () {
 <br>
 <!--room for navbar  -->
 
-<body id=“CARMA”>
-
-	<a href="/"></a>
+<body>
 
 	<!-- BEGIN JUMBOTRON -->
-	<div class="jumbotron">
-		<h1 class="display-4">${pf.title}</h1>
+	<div class="jumbotron bg-primary text-white">
+		<h1 class="display-4 text-white">${pf.title}</h1>
 		<hr class="my-4">
 		<p class="lead" align="center">${pf.description}</p>
 	</div>
 	<!-- END JUMBOTRON -->
 	<!-- BEGIN IMAGE -->
-	<%-- <div class='container-fluid'>
-		<div class="row">
-				<c:forEach var="picture" items="${pf.listOfPictures }">
-			<div class="col-4" id="parkignFailPictures">
-					<img src="${picture.url}">
-				
-			</div>
-				</c:forEach>
-		</div>
-	</div> --%>
 
-	<!--  -->
-	<div class="container">
-		<div class="row">
-			<div class="MultiCarousel" data-items="1,3,5" data-slide="1"
-				id="MultiCarousel" data-interval="1000">
-				<div class="MultiCarousel-inner">
-					<c:forEach var="picture" items="${pf.listOfPictures }">
-						<div class="item lg">
-							<div class="pad15">
-								<p class="lead">${pf.title}</p>
-								<img src="${picture.url}">
-							</div>
-						</div>
-					</c:forEach>
+
+	<div id="carouselExampleControls carousel-fade" class="carousel slide"
+		data-ride="carousel">
+		<div class="carousel-inner">
+			<c:forEach var="picture" items="${pf.listOfPictures }">
+				<div class="carousel-item active text-center"
+					style="position: relative;">
+					<img src="${picture.url}" class="d-block w-50" alt="...">
+					<!-- Carma Vote -->
+					<form action="addRankVote.do">
+						<input type="hidden" id="pfId" name="pfId" value="${pf.id}">
+						<button class="btn btn-danger center-block"
+							style="font-size: 24px; transform: translateY(-2.5em); position: relative; z-index: 100;">
+							BAD CARMA! <i class="fa fa-thumbs-down"></i>
+						</button>
+					</form>
+					<p style="color: white;">${pf.title}has${pf.getCarmaValue() }
+						Carma!</p>
+					<!-- End Carma Vote -->
 				</div>
-				<button class="btn btn-primary leftLst"></button>
-				<button class="btn btn-primary rightLst">></button>
-			</div>
+			</c:forEach>
+
+
+
 		</div>
-		<div class="row">
-			<div class="col-md-12 text-center">
-				<br />
-				<br />
-				<br />
-				<hr />
-				<p>${pf.title}</p>
-				<p>${pf.description}</p>
-			</div>
-		</div>
+		<a class="carousel-control-prev" href="#carouselExampleControls"
+			role="button" data-slide="prev"> <span
+			class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+			class="sr-only">Previous</span>
+		</a> <a class="carousel-control-next" href="#carouselExampleControls"
+			role="button" data-slide="next"> <span
+			class="carousel-control-next-icon" aria-hidden="true"></span> <span
+			class="sr-only">Next</span>
+		</a>
 	</div>
-	<!--  -->
 	<!-- END-IMAGE -->
-	<!--Carma vote  -->
-	<div>
-		<p>${pf.car.alias }has${pf.getCarmaValue() }carma! Think this
-			person deserves bad Carma?</p>
-		<form action="addRankVote.do">
-			<input type="hidden" id="pfId" name="pfId" value="${pf.id}">
-			<button style="font-size: 24px">
-				BAD CARMA! <i class="fa fa-thumbs-down"></i>
-			</button>
-		</form>
-	</div>
-	<!--END-Carma vote  -->
+
+
 	<!-- BEGIN AUTO DESCRIPTION -->
 	<div class="jumbotron" id="desc_and_comments">
-		<%-- <div id="vote">
-		<p >${pf.car.alias } has ${pf.getCarmaValue() } carma! Think this person deserves bad Carma?</p>
-		<form action="addRankVote.do">
-			<input type="hidden" id="pfId" name="pfId" value="${pf.id}">
-			<button style="font-size: 24px">
-				BAD CARMA! <i class="fa fa-thumbs-down"></i>
-			</button>
-		</form>
-	</div> --%>
 		<div class="pfDescription">
 			<ul class="list-group list-group-flush">
 				<li class="list-group-item">Description: ${pf.car.description }
@@ -276,15 +86,36 @@ $(document).ready(function () {
 			<div id="inputBox">
 				<c:choose>
 					<c:when test="${not empty loggedInUser}">
-						<form action="addComment.do" id="comment">
+						<hr>
+
+						<%-- <form action="addComment.do" id="comment">
+						<div>
 							<textarea rows="4" cols="50" name="comment"
 								placeholder="Vent your frustrations..." form="comment"></textarea>
 							<input type="hidden" id="carmaId" name="carmaId" value="${pf.id}">
 							<input type="hidden" id="userId" name="userId"
-								value="${loggedInUser.id}"> <input type="submit">
+								value="${loggedInUser.id}"> 
+								<div><button type="button" class="btn btn-primary btn-lg btn-block">Submit</button></div>
+								
+						</form> --%>
+
+						<form action="addComment.do">
+							<div class="form-group shadow-textarea" style="font-weight: 300;">
+								<textarea class="form-control z-depth-1" name="comment"
+									placeholder="Vent your frustrations..."
+									id="exampleFormControlTextarea6" rows="3"></textarea>
+
+								<input type="hidden" id="carmaId" name="carmaId"
+									value="${pf.id}"> 
+									<input type="hidden" id="userId"
+									name="userId" value="${loggedInUser.id}">
+								<div>
+									
+									<button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+								</div>
+							</div>
+							<!--  -->
 						</form>
-						<hr>
-						<br>
 					</c:when>
 					<c:otherwise>
 						<button type="button" class="btn btn-primary btn-sm"
@@ -318,7 +149,6 @@ $(document).ready(function () {
 													type="hidden" id="pfId" name="pfId" value="${pf.id }">
 												<button type="submit" id="btnLogin"
 													class="btn btn-success btn-sm">Login</button>
-												<br> <br>
 												<p>
 													New around here? <a id="sign-in" href="register.do"
 														type="get">Sign up</a>
@@ -326,45 +156,57 @@ $(document).ready(function () {
 											</div>
 										</form:form>
 									</div>
+									<br>
 								</div>
 							</div>
 						</div>
-						<br>
 					</c:otherwise>
 				</c:choose>
 			</div>
-			<hr id="separator">
-			<br>
-			<h3>Comments</h3>
-			<br> <br>
-			<div class="commentRow">
-				<c:forEach var="comment" items="${pf.listOfComments }">
-					<div class="profileImage">
-						<div class="thumbnail">
-							<img id="photo" class="img-responsive user-photo"
-								src="${comment.user.image}">
-						</div>
-						<!-- thumbnail -->
-					</div>
-					<div>
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<strong>${comment.user.username }</strong> <span
-									class="text-muted">${comment.dateCreated }</span>
-							</div>
-							<!--  panel-heading -->
-							<div class="commentContent">${comment.text }</div>
-						</div>
-						<!-- panel -->
-					</div>
-					<hr>
-					<!-- col-sm-1 -->
-				</c:forEach>
-			</div>
-
 		</div>
 	</div>
 	<!-- END VOTING BOX -->
+	<!-- Comment History -->
+	<div class="container-fluid bg-primary text-white rounded"
+		style="margin-top: 3em; margin-bottom: 2em; padding: 2em; align-items: center;">
+		<h2 style="text-align: center">Comments</h2>
+		<br>
+		<hr>
+		<br>
+		<c:choose>
+			<c:when test="${empty pf.listOfComments}">
+				<p>No Comments to display. Be the first to comment.</p>
+			</c:when>
+			<c:otherwise>
+				<div class="clearfix center"
+					style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); grid-gap: 2em;">
+					<c:forEach items="${pf.listOfComments }" var="comment">
+						<div class="shadow-sm rounded bg-light"
+							style="color: black; padding: 1em;">
+							<div class="row">
+							<div class="col profileImage">
+									<img class="img-responsive img-thumbnail" style=" height:auto; width:100%; max-height:100px; text-align: left;"
+										src="${comment.user.image}">
+										</div>
+										<div class="col">
+										<div class="row">
+								<strong>${comment.user.username }</strong><br></div>
+									<div class="row text-muted">${comment.dateCreated }
+									</div>
+									</div>
+									</div>
+								<hr>
+								<div class="row text-break" style="padding:1em;">
+								${comment.text}
+								</div>
+							</div>
+					</c:forEach>
+				</div>
+			</c:otherwise>
+		</c:choose>
+	</div>
+
+	<!-- end-Comment History -->
 </body>
 <jsp:include page="../footer.jsp" />
 </html>
