@@ -75,7 +75,7 @@
 				<input class="form-control" name="p2" placeholder="Confirm password"
 					type="password"  required>
 <br /><br />
-<input type="submit" />
+
 			</div>
 			<!-- form-group// -->
 			<div class="form-group">

@@ -46,6 +46,7 @@ public class AccountController {
         dao.addUser(user);
         model.addAttribute("parkingFailDTO", new ParkingFailDTO());
         session.setAttribute("loggedInUser", user);
+        model.addAttribute("userUpdatedString", dao.getUpdatedImage(user));
         return "sub/userpage";
     }
 	
