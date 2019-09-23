@@ -16,16 +16,23 @@
 	<br>
 	<br>
 	<br>
+
+	<!--  JumboTron-->
+	<div class="jumbotron">
+		<h1 class="display-4">Welcome ${loggedInUser.username }!</h1>
+		<hr class="my-4">
+		<p class="lead" align="center">What shameful contribution will you make today?</p>
+	</div>
 	
-	<div class="container-fluid profile_container">
-		<div class="row username_text">
-			<h1>${loggedInUser.username }</h1>
-		</div>
-		<br> <br>
-		<div class="imagecontainer">
-			<div id="profileimage" id="hoverPicture" ss="row">
-				<img class="userUploadedPic" src=${userUpdatedString}>
+	<!--  /JumboTron-->
+	<!-- profile photo -->
+	<div class="flex row bg-primary rounded " style="align-items:center">
+		<div class="col-4 imagecontainer shadow-lg rounded bg-light " style="margin:3em;">
+		
+		<div id="profileimage" id="hoverPicture" >
+				<img class="userUploadedPic" src="${userUpdatedString}"/>
 			</div>
+			<!-- update image modal -->
 			<div class="updateMiddle">
 				<div class="modal-dialog modal-lg" role="document">
 					<div class="modal-content">
@@ -41,22 +48,55 @@
 				</div>
 
 			</div>
+			<!-- end update image modal -->
 		</div>
+		
+		<!--  spacer column-->
+		<div class="col-1"></div>
+		<!-- info -->
+	<div class="col-5 text-white bg-light rounded shadow-lg table-striped" style="padding:3em;">
+		<table class="table">
+			<thead> 
+			<tr>
+			<th scope="col">${loggedInUser.username }</th>
+			</tr>		
+			</thead>
+			
+			<tr>
+			<td>Join date: ${loggedInUser.dateCreated} </td>
+			</tr>
+			
+			<tr>
+			<td>Email: ${loggedInUser.email } </td>
+			</tr>
+			
+			<tr>
+			<td># of Comments: ${loggedInUser.comments.size()}
+			</td>
+			<tr>
+			<td># of Carma Posts: ${listOfPF.size()}
+			</td>
+			<tr>
+			<c:set var="total" value="${0}"/>
+<c:forEach var="pf" items="${listOfPF}">
+    <c:set var="total" value="${total + pf.getCarmaValue()}" />
+</c:forEach>
+			<td>Carma: ${total}
+		
+			
+			</td>
+			
+		</table>
 	</div>
-	<!-- info -->
-	<div id="userinfo">
-		<br>
-		<h4>${loggedInUser.username }</h4>
-		<br>
-		<h6>Join date: ${loggedInUser.dateCreated }</h6>
-		<br>
-		<h6>Email: ${loggedInUser.email }</h6>
-	</div>
+</div>
+
 	<!-- -->
+			
+	
+	
 	<div id="rightuserpage">
 		<br>
-		<p style="text-align: center">${fn:length(listOfPF)}ParkingFails
-			Uploaded</p>
+		<h2 style="text-align: center">${fn:length(listOfPF)} Carma Posts Uploaded</h2>
 		<br>
 		<div class="container-fluid">
 			<div class="row">
@@ -92,45 +132,45 @@
 													method="POST" modelAttribute="parkingFailDTO">
 													<div class="row">
 														<div class="col-md-6">
+										
 															<form:label path="title">Title:</form:label>
 															<form:input path="title" value="${pf.title }"
 																required="required" />
 															<form:errors path="title" />
 															<form:label path="alias">Alias:</form:label>
 															<form:input path="alias" value="${pf.car.alias }"
-																required="required" />
+																/>
 															<form:label path="make">Make:</form:label>
-															<form:input path="make" value="${pf.car.make }"
-																required="required" />
+															
 															<form:label path="model">Model:</form:label>
 															<form:input path="model" value="${pf.car.model }"
-																required="required" />
+																 />
 															<form:label path="color">Color:</form:label>
 															<form:input path="color" value="${pf.car.color }"
-																required="required" />
+																 />
 															<form:label path="description">Description:</form:label>
 															<form:input path="description" value="${pf.description }"
 																required="required" />
-															<form:label path="licensePlate">License plate:</form:label>
+															<form:label path="licensePlate" placeholder="You must disguise license plate in photo">License plate:</form:label>
 															<form:input path="licensePlate"
-																value="${pf.car.licensePlate }" required="required" />
+																value="${pf.car.licensePlate }" />
 														</div>
 														<div class="col-md-6">
 															<form:label path="name">Location:</form:label>
 															<form:input path="name" value="${pf.location.name}"
-																required="required" />
+																/>
 															<form:label path="street">Street:</form:label>
 															<form:input path="street" value="${pf.location.street }"
-																required="required" />
+															 />
 															<form:label path="city">City:</form:label>
 															<form:input path="city" value="${pf.location.city }"
-																required="required" />
+																 />
 															<form:label path="State">State:</form:label>
 															<form:input path="state" value="${pf.location.state }"
-																required="required" />
+																/>
 															<form:label path="zip">Zip Code:</form:label>
 															<form:input path="zip" value="${pf.location.zip }"
-																required="required" />
+																 />
 															<form:label path="url">URL:</form:label>
 															<form:input path="url"
 																value="${listOfPictures[status.index].url}"
@@ -152,8 +192,7 @@
 				</c:forEach>
 			</div>
 		</div>
-		<button id="addpf" type="button" class="btn btn-primary"
-			data-toggle="modal" data-target="#createpf">Add parking fail</button>
+		
 
 
 		<div class="modal fade" id="createpf" tabindex="-1" role="dialog"
@@ -162,7 +201,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title">
-							<br>Add Parking Fail
+							<br>Add Carma Post
 						</h5>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
@@ -174,35 +213,36 @@
 							modelAttribute="parkingFailDTO">
 							<div class="row">
 								<div class="col-md-6">
+						
 									<form:label path="title">Title:</form:label>
 									<form:input path="title" required="required" />
 									<form:errors path="title" />
 									<form:label path="alias">Alias:</form:label>
-									<form:input path="alias" required="required" />
+									<form:input path="alias"  />
 									<form:label path="make">Make:</form:label>
-									<form:input path="make" required="required" />
+									<form:input path="make"  />
 									<form:label path="model">Model:</form:label>
-									<form:input path="model" required="required" />
+									<form:input path="model"  />
 									<form:label path="color">Color:</form:label>
-									<form:input path="color" required="required" />
+									<form:input path="color"  />
 									<form:label path="description">Description:</form:label>
 									<form:input path="description" required="required" />
 									<form:label path="licensePlate">License plate:</form:label>
-									<form:input path="licensePlate" required="required" />
+									<form:input path="licensePlate" placeholder="You must disguise license plate in photo"/>
 								</div>
 								<div class="col-md-6">
 									<form:label path="name">Location:</form:label>
-									<form:input path="name" required="required" />
+									<form:input path="name"  />
 									<form:label path="street">Street:</form:label>
-									<form:input path="street" required="required" />
+									<form:input path="street"  />
 									<form:label path="city">City:</form:label>
-									<form:input path="city" required="required" />
+									<form:input path="city"  />
 									<form:label path="State">State:</form:label>
-									<form:input path="state" required="required" />
+									<form:input path="state" placeholder="ex: CA" />
 									<form:label path="zip">Zip Code:</form:label>
-									<form:input path="zip" required="required" />
+									<form:input path="zip" />
 									<form:label path="url">URL:</form:label>
-									<form:input path="url" required="required" />
+									<form:input path="url"  />
 								</div>
 								<input class="btn btn-primary" type="submit" value="Submit">
 							</div>
@@ -212,24 +252,45 @@
 			</div>
 		</div>
 	</div>
+	<!--  -->
+	<div style="display: flex;
+  align-items: center;
+  justify-content: center; margin-top:2em">
+	<button id="addpf" type="button" class="btn btn-primary"
+			data-toggle="modal" data-target="#createpf">Add Carma Post</button>
+	</div>
+	<!--  -->
 	<!-- Comment History -->
-	<div class="container-fluid">
-	<div class="row center" ><h2>Comment History</h2>
+	<div class="container-fluid bg-primary text-white rounded" style=" margin-top: 3em;margin-bottom:2em; padding: 2em; align-items: center;
+  ">
+	
+	<h2 style="text-align: center">Comment History Uploaded</h2>
+	<br>
+	<hr>
+	<br>
+	
 	<c:choose>
 	<c:when test="${empty loggedInUser.getComments()}">
 	<p>No Comments to display</p>
 	</c:when>
 	<c:otherwise>
+	<div class="clearfix center" style="display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+  grid-template-rows: 300px;
+  grid-gap: 2em;" >
 	<c:forEach items="${loggedInUser.getComments() }" var="comment">
-		<div class="col">
+		<div class="shadow-sm rounded bg-light"  style="color:black; padding:1em;  " >
+			<h2><a href="findParkingFail.do?val=${comment.parkingFail.id}" > ${ comment.parkingFail.title}</a></h2>
+			${comment.dateCreated }
+			<hr>
 			${comment.text}
-			<br><br>
 		</div>
 	</c:forEach>
+	</div>
 	</c:otherwise>
 	</c:choose>
 	</div>
-	</div>
+
 	<!-- end-Comment History -->
 </body>
 <jsp:include page="../footer.jsp" />

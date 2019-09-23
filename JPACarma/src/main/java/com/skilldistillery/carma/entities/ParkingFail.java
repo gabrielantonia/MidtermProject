@@ -24,7 +24,7 @@ public class ParkingFail  {
 
 	private String title;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "car_id")
 	private Car car;
 

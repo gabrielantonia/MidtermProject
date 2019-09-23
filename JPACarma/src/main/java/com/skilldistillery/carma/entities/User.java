@@ -92,6 +92,14 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public int getCarmaValue() {
+		int carmaValue= 0;
+		for (Carma carma : listOfCarma) {
+			carmaValue = carmaValue+ carma.getVote();
+			
+		}
+		return carmaValue;
+	}
 
 	public User(String username, String password, String email) {
 		super();

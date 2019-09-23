@@ -62,10 +62,10 @@ public class ParkingFailController {
 		ModelAndView mv = new ModelAndView("sub/userpage");
 		List<ParkingFail> c = dao.findCarByLicensePlate(pfd.getLicensePlate());
 		if (c.size() == 0) {
+			Location l = new Location(pfd.getName(), pfd.getStreet(), pfd.getCity(), pfd.getState(), pfd.getZip());
+			User u = (User) session.getAttribute("loggedInUser");
 			Car newCar = new Car(pfd.getLicensePlate(), pfd.getMake(), pfd.getModel(), pfd.getColor(),
 					pfd.getDescription(), pfd.getAlias());
-			User u = (User) session.getAttribute("loggedInUser");
-			Location l = new Location(pfd.getName(), pfd.getStreet(), pfd.getCity(), pfd.getState(), pfd.getZip());
 			ParkingFail pf = new ParkingFail(pfd.getTitle(), newCar, u, l, LocalTime.now().toString(), pfd.getDescription());
 			dao.createParkingFail(pf);
 			dao.addPicture(new Picture(pfd.getUrl(), pf));
@@ -87,7 +87,6 @@ public class ParkingFailController {
 			mv.addObject("listOfPictures", dao.findPicturesByUserId(u.getId()));
 			return mv;
 		}
-		// return "index"; // if using a ViewResolver.
 	}
 
 	@RequestMapping(path = "getParkingFail.do")
@@ -203,7 +202,6 @@ public class ParkingFailController {
 		mv.addObject("user", new User());
 		mv.setViewName("sub/showparkingfail");
 		return mv;
-
 	}
 
 //////////////////////////////////////////////////////add ranks /////////////////////////////////////
